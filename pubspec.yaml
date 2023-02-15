@@ -1,0 +1,86 @@
+name: calendario
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  calendar_view: ^1.0.0
+  intl: ^0.17.0
+  flutter_svg: ^1.1.4
+  provider: ^6.0.1
+  http: ^0.13.4
+  google_fonts: ^3.0.1
+  material_design_icons_flutter: ^5.0.6295
+  table_calendar: ^3.0.3
+  calendar_agenda: ^0.0.2+3
+  jiffy: ^5.0.0
+  shared_preferences: ^2.0.13
+  share_plus: ^6.3.0
+
+
+  
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_launcher_icons: ^0.10.0
+
+  flutter_lints: ^2.0.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon_app.png"
+  adaptive_icon_background: "assets/icon/icon_app.png"
+  
+flutter:
+
+  uses-material-design: true
+  
+  assets:
+    - assets/svg/
+    - assets/icon/
+    - assets/png/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-ThinItalic.ttf
+    - family: Source Sans Pro
+      fonts:
+        - asset: assets/fonts/SourceSansPro-Black.ttf
+        - asset: assets/fonts/SourceSansPro-BlackItalic.ttf
+        - asset: assets/fonts/SourceSansPro-Bold.ttf
+        - asset: assets/fonts/SourceSansPro-BoldItalic.ttf
+        - asset: assets/fonts/SourceSansPro-ExtraLight.ttf
+        - asset: assets/fonts/SourceSansPro-ExtraLightItalic.ttf
+        - asset: assets/fonts/SourceSansPro-Italic.ttf
+        - asset: assets/fonts/SourceSansPro-Light.ttf
+        - asset: assets/fonts/SourceSansPro-LightItalic.ttf
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
+        - asset: assets/fonts/SourceSansPro-SemiBold.ttf
+        - asset: assets/fonts/SourceSansPro-SemiBoldItalic.ttf
