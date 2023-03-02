@@ -1,5 +1,6 @@
-import 'package:calendario/presentation/widgets/my_dialogs.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../../presentation/widgets/my_dialogs.dart';
 
 class ResponseModel<T> {
   int? statusCode = 200;
@@ -22,18 +23,17 @@ class ResponseModel<T> {
 }
 
 class ResponseErrorModel {
-  int? code;
-  String? message;
   ResponseErrorModel({this.code, this.message});
-
   factory ResponseErrorModel.fromJson(Map<String, dynamic> json) =>
       ResponseErrorModel(
-        code: json["Code"],
-        message: json["Message"],
+        code: json['Code'],
+        message: json['Message'],
       );
+  int? code;
+  String? message;
 
   Map<String, dynamic> toJson() => {
-        "code": code,
-        "message": message,
+        'code': code,
+        'message': message,
       };
 }

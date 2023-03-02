@@ -1,30 +1,11 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/widgets/appbar.dart';
-import 'package:calendario/presentation/widgets/drawer_menu.dart';
-import 'package:calendario/presentation/widgets/my_custom_loading.dart';
 import 'package:flutter/material.dart';
 
-class MyBackGroundWithButtons extends StatelessWidget {
-  final Widget? child;
-  final Widget? bottomNavigator;
-  final Widget? bottomExpanded;
-  final Widget? wFloatingActionButtom;
+import '../../core/config/palette.dart';
+import 'appbar.dart';
+import 'drawer_menu.dart';
+import 'my_custom_loading.dart';
 
-  final String? titleAppBar;
-  final String? hintText;
-  final TextEditingController? controller;
-  final Function(String)? onSubmit;
-  final Function()? onPressIcon;
-  final Function()? onPressTextField;
-  final Widget? bottomNavigatorBar;
-  final List<Widget>? actions;
-  final bool isDrawer;
-  final bool allAnchorwindow;
-  final bool backPageEnable;
-  final Function()? onTapVoice;
-  final Color? backgroundColor;
-  final bool isAppbar;
-  final bool isLoading;
+class MyBackGroundWithButtons extends StatelessWidget {
   const MyBackGroundWithButtons(
       {Key? key,
       this.child,
@@ -47,6 +28,26 @@ class MyBackGroundWithButtons extends StatelessWidget {
       this.isAppbar = true,
       this.isLoading = false})
       : super(key: key);
+  final Widget? child;
+  final Widget? bottomNavigator;
+  final Widget? bottomExpanded;
+  final Widget? wFloatingActionButtom;
+
+  final String? titleAppBar;
+  final String? hintText;
+  final TextEditingController? controller;
+  final Function(String)? onSubmit;
+  final Function()? onPressIcon;
+  final Function()? onPressTextField;
+  final Widget? bottomNavigatorBar;
+  final List<Widget>? actions;
+  final bool isDrawer;
+  final bool allAnchorwindow;
+  final bool backPageEnable;
+  final Function()? onTapVoice;
+  final Color? backgroundColor;
+  final bool isAppbar;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {

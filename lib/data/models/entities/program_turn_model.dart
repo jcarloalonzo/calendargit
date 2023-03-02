@@ -17,21 +17,20 @@ class ProgamTurnModel {
     this.finalTurn,
     this.state,
   });
+  factory ProgamTurnModel.fromJson(Map<String, dynamic> json) =>
+      ProgamTurnModel(
+        initialTurn: json['initialTurn'],
+        finalTurn: json['finalTurn'],
+        state: json['state'],
+      );
 
   String? initialTurn;
   String? finalTurn;
   int? state;
 
-  factory ProgamTurnModel.fromJson(Map<String, dynamic> json) =>
-      ProgamTurnModel(
-        initialTurn: json["initialTurn"],
-        finalTurn: json["finalTurn"],
-        state: json["state"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "initialTurn": initialTurn,
-        "finalTurn": finalTurn,
-        "state": state,
+        'initialTurn': initialTurn,
+        'finalTurn': finalTurn,
+        'state': state,
       };
 }

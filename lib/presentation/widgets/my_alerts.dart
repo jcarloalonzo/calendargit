@@ -1,10 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/config/palette.dart';
+import '../../core/config/size_text.dart';
+import 'my_buttom.dart';
+import 'my_text.dart';
 
 enum DialogsAlerts { yes, abort }
 
@@ -117,7 +118,7 @@ class MyAlerts {
           ),
           title: Column(
             children: [
-          const    SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyText(
                 text: title ?? 'Error',
                 color: Palette.colorApp,
@@ -139,8 +140,8 @@ class MyAlerts {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                 const   SizedBox(height: 5),
-                 const   Icon(
+                    const SizedBox(height: 5),
+                    const Icon(
                       Icons.error_rounded,
                       color: Palette.red,
                       size: 80,
@@ -163,7 +164,7 @@ class MyAlerts {
           ),
           actions: [
             Container(
-              margin:const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
               child: MyButtom(
                 text: 'Confirmar',
                 color: Palette.red,
@@ -202,7 +203,7 @@ class MyAlerts {
           ),
           title: Column(
             children: [
-           const   SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyText(
                 text: title ?? 'Advertencia',
                 color: Palette.colorApp,
@@ -224,14 +225,14 @@ class MyAlerts {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  const  SizedBox(height: 5),
-                   const Icon(
+                    const SizedBox(height: 5),
+                    const Icon(
                       Icons.warning_rounded,
                       color: Colors.yellow,
                       size: 80,
                     ),
                     Container(
-                      margin:const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: MyText(
                         text: body ?? '',
                         maxLines: 4,

@@ -1,13 +1,14 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/data/models/entities/dropdown_model.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/requests/booking_request.dart';
-import 'package:calendario/data/providers/booking_provider.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/config/Utils.dart';
+import '../../core/config/config.dart';
+import '../../data/models/entities/booking.dart';
+import '../../data/models/entities/dropdown_model.dart';
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/models/requests/booking_request.dart';
+import '../../data/providers/booking_provider.dart';
 
 class CalendarBloc extends ChangeNotifier {
   // bool _charge = false;
@@ -185,7 +186,7 @@ class CalendarBloc extends ChangeNotifier {
         _listBooking = response.data!;
 
         for (var i = 0; i < listBooking.length; i++) {
-          CalendarEventData<Booking> _evnt = CalendarEventData<Booking>(
+          CalendarEventData<Booking> evnt = CalendarEventData<Booking>(
               date: listBooking[i].date!,
               startTime: DateTime.parse(
                   '${MyUtils.formatDate(listBooking[i].date!)} ${listBooking[i].initialTime}:01'),
@@ -195,7 +196,7 @@ class CalendarBloc extends ChangeNotifier {
               event: listBooking[i],
               title: listBooking[i].serviceDescription!);
 
-          CalendarControllerProvider.of<Booking>(context).controller.add(_evnt);
+          CalendarControllerProvider.of<Booking>(context).controller.add(evnt);
         }
       }
       await _setError(response);

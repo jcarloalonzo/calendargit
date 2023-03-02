@@ -1,8 +1,9 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/widgets/icon_svg_buttom_appbar.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/config/palette.dart';
+import '../../core/config/size_text.dart';
+import 'icon_svg_buttom_appbar.dart';
+import 'my_text.dart';
 
 AppBar buildAppBar(
     {String? title,

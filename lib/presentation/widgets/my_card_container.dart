@@ -1,11 +1,8 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
+
 class MyCardContainer extends StatelessWidget {
-  final bool padding;
-  final Widget? child;
-  final Color backgroundColor;
-  final double elevation;
   const MyCardContainer(
       {Key? key,
       this.child,
@@ -13,6 +10,10 @@ class MyCardContainer extends StatelessWidget {
       this.elevation = 2,
       this.backgroundColor = Palette.white})
       : super(key: key);
+  final bool padding;
+  final Widget? child;
+  final Color backgroundColor;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class MyCardContainer extends StatelessWidget {
     //   child: child,
     // );
     return Padding(
-      padding: const EdgeInsets.only(top:16.0),
+      padding: const EdgeInsets.only(top: 16.0),
       child: Card(
         color: backgroundColor,
         elevation: elevation,

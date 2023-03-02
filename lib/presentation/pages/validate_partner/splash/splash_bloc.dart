@@ -1,7 +1,7 @@
-import 'package:calendario/data/preferences/preferences_user.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../data/models/entities/response_model.dart';
+import '../../../../data/preferences/preferences_user.dart';
 
 enum TypeLogin { login, home, register, token }
 
@@ -22,11 +22,11 @@ class SplashBloc with ChangeNotifier {
     return;
   }
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   //
-  bool _isVisible = false;
+  final bool _isVisible = false;
   bool get isVisible => _isVisible;
 
   Future init(

@@ -1,13 +1,14 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/home_model.dart';
-import 'package:calendario/presentation/bloc/home_bloc.dart';
-import 'package:calendario/presentation/widgets/my_card_container.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../../data/models/entities/home_model.dart';
+import '../../bloc/home_bloc.dart';
+import '../../widgets/my_card_container.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
 
 // class HomeCard extends StatelessWidget {
 //   final List<BookingHome> service;
@@ -217,12 +218,6 @@ import 'package:provider/provider.dart';
 //
 
 class ListCardHome extends StatelessWidget {
-  final String title;
-  final String subTitle;
-  final IconData icono;
-
-  final Color colorIcono;
-  final Function()? onTap;
   const ListCardHome({
     Key? key,
     required this.title,
@@ -231,10 +226,17 @@ class ListCardHome extends StatelessWidget {
     this.colorIcono = Colors.black,
     this.onTap,
   }) : super(key: key);
+  final String title;
+  final String subTitle;
+  final IconData icono;
+
+  final Color colorIcono;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         child: Row(
@@ -278,7 +280,6 @@ class ListCardHome extends StatelessWidget {
           ],
         ),
       ),
-      onTap: onTap,
     );
   }
 }
@@ -287,11 +288,11 @@ class ListCardHome extends StatelessWidget {
 //
 
 class CardHomeList extends StatelessWidget {
-  final Function()? onTap;
   const CardHomeList({
     Key? key,
     this.onTap,
   }) : super(key: key);
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -328,7 +329,7 @@ class CardHomeList extends StatelessWidget {
                     color: Palette.white,
                   ),
                   MyText(
-                    text: Jiffy().format("d MMMM yyyy"),
+                    text: Jiffy().format('d MMMM yyyy'),
                     fontWeight: FontWeight.w500,
                     color: Palette.white,
                   )
@@ -411,6 +412,7 @@ class _ContainerDataHoy extends StatelessWidget {
           ),
           if (bloc.length > 3)
             GestureDetector(
+              onTap: onTap,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
@@ -429,7 +431,6 @@ class _ContainerDataHoy extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: onTap,
             ),
           const MySizedBoxHeight(),
         ],
@@ -439,11 +440,11 @@ class _ContainerDataHoy extends StatelessWidget {
 }
 
 class _ItemListCardHome extends StatelessWidget {
-  final BookingHome obj;
   const _ItemListCardHome({
     Key? key,
     required this.obj,
   }) : super(key: key);
+  final BookingHome obj;
 
   @override
   Widget build(BuildContext context) {

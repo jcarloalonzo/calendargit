@@ -1,24 +1,13 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/extension.dart';
 import 'package:flutter/material.dart';
 
+import '../../extension.dart';
 
 typedef Validator = String? Function(String? value);
 
 enum DateTimeSelectionType { date, time }
 
 class DateTimeSelectorFormField extends StatefulWidget {
-  final Function(DateTime?)? onSelect;
-  final DateTimeSelectionType? type;
-  final FocusNode? focusNode;
-  final DateTime? minimumDateTime;
-  final Validator? validator;
-  final bool displayDefault;
-  final TextStyle? textStyle;
-  final void Function(DateTime date)? onSave;
-  final InputDecoration? decoration;
-  final TextEditingController controller;
-
   // ignore: use_key_in_widget_constructors
   const DateTimeSelectorFormField({
     this.onSelect,
@@ -32,6 +21,16 @@ class DateTimeSelectorFormField extends StatefulWidget {
     this.textStyle,
     required this.controller,
   });
+  final Function(DateTime?)? onSelect;
+  final DateTimeSelectionType? type;
+  final FocusNode? focusNode;
+  final DateTime? minimumDateTime;
+  final Validator? validator;
+  final bool displayDefault;
+  final TextStyle? textStyle;
+  final void Function(DateTime date)? onSave;
+  final InputDecoration? decoration;
+  final TextEditingController controller;
 
   @override
   _DateTimeSelectorFormFieldState createState() =>
@@ -56,12 +55,12 @@ class _DateTimeSelectorFormFieldState extends State<DateTimeSelectorFormField> {
     if (widget.displayDefault && widget.minimumDateTime != null) {
       if (widget.type == DateTimeSelectionType.date) {
         _textEditingController.text = widget.minimumDateTime
-                ?.dateToStringWithFormat(format: "dd/MM/yyyy") ??
-            "";
+                ?.dateToStringWithFormat(format: 'dd/MM/yyyy') ??
+            '';
       } else {
         _textEditingController.text =
             widget.minimumDateTime?.getTimeInFormat(TimeStampFormat.parse_12) ??
-                "";
+                '';
       }
     }
   }
@@ -78,7 +77,7 @@ class _DateTimeSelectorFormFieldState extends State<DateTimeSelectorFormField> {
     if (widget.type == DateTimeSelectionType.date) {
       date = await _showDateSelector();
       _textEditingController.text =
-          (date ?? _selectedDate).dateToStringWithFormat(format: "dd/MM/yyyy");
+          (date ?? _selectedDate).dateToStringWithFormat(format: 'dd/MM/yyyy');
     } else {
       date = await _showTimeSelector();
       _textEditingController.text =

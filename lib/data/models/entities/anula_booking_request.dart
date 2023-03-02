@@ -18,6 +18,14 @@ class AnulaBookingRequest {
     this.businessIdent,
     this.reason,
   });
+  factory AnulaBookingRequest.fromJson(Map<String, dynamic> json) =>
+      AnulaBookingRequest(
+        bookingId: json['bookingID'],
+        user: json['user'],
+        businessId: json['businessID'],
+        businessIdent: json['businessIdent'],
+        reason: json['reason'],
+      );
 
   int? bookingId;
   int? user;
@@ -25,20 +33,11 @@ class AnulaBookingRequest {
   String? businessIdent;
   String? reason;
 
-  factory AnulaBookingRequest.fromJson(Map<String, dynamic> json) =>
-      AnulaBookingRequest(
-        bookingId: json["bookingID"],
-        user: json["user"],
-        businessId: json["businessID"],
-        businessIdent: json["businessIdent"],
-        reason: json["reason"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "bookingID": bookingId,
-        "user": user,
-        "businessID": businessId,
-        "businessIdent": businessIdent,
-        "reason": reason,
+        'bookingID': bookingId,
+        'user': user,
+        'businessID': businessId,
+        'businessIdent': businessIdent,
+        'reason': reason,
       };
 }

@@ -1,12 +1,13 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
+
 class MyCustomLoading extends StatelessWidget {
-  final double tamano;
   const MyCustomLoading({
     Key? key,
     this.tamano = 50,
   }) : super(key: key);
+  final double tamano;
 
   @override
   Widget build(BuildContext context) {

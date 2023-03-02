@@ -1,31 +1,30 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_page.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_methods.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_card_container.dart';
-import 'package:calendario/presentation/widgets/my_dialogs.dart';
-import 'package:calendario/presentation/widgets/my_icon_buttom_circle.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../../data/models/entities/booking.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/my_alerts.dart';
+import '../../../widgets/my_background_with_buttons.dart';
 import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_card_container.dart';
+import '../../../widgets/my_dialogs.dart';
+import '../../../widgets/my_icon_buttom_circle.dart';
+import '../../../widgets/my_loading_super.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/mysizedbox.dart';
+import '../../../widgets/textfield_general.dart';
+import '../../agent/agent_reprogramming/agent_repro_page.dart';
+import '../../navigator/background_navigator.dart';
+import '../../schedule/schedule_methods.dart';
 
 class BookingDetailPage extends StatelessWidget {
-  static String routeName = "/BookingDetailPage";
+  BookingDetailPage({Key? key}) : super(key: key);
+  static String routeName = '/BookingDetailPage';
 
   final TextEditingController _observationController = TextEditingController();
-
-  BookingDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,9 @@ class BookingDetailPage extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
         child: Column(
           children: [
-            if (args.bookingStateId != 4 && args.bookingStateId != 3 && args.bookingStateId != 5)
+            if (args.bookingStateId != 4 &&
+                args.bookingStateId != 3 &&
+                args.bookingStateId != 5)
               Row(
                 children: [
                   Expanded(
@@ -117,7 +118,9 @@ class BookingDetailPage extends StatelessWidget {
                   ),
                 ],
               ),
-            if (args.bookingStateId != 4 && args.bookingStateId != 3 && args.bookingStateId != 5)
+            if (args.bookingStateId != 4 &&
+                args.bookingStateId != 3 &&
+                args.bookingStateId != 5)
               MyButtom(
                   text: 'Reprogramar',
                   color: Palette.blue2,
@@ -214,7 +217,7 @@ class BookingDetailPage extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                     MyText(
-                      text: "${args.initialTime} - ${args.finalTime}",
+                      text: '${args.initialTime} - ${args.finalTime}',
                       fontWeight: FontWeight.w400,
                       size: SizeText.text4,
                       color: Palette.black2,

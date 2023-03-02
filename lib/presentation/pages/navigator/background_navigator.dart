@@ -1,33 +1,34 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/bloc/calendar_bloc.dart';
-import 'package:calendario/presentation/bloc/home_bloc.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/account/acccount_page.dart';
-import 'package:calendario/presentation/pages/calendar/calendar_methods.dart';
-import 'package:calendario/presentation/pages/calendar/calendar_page.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_methods.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_page.dart';
-import 'package:calendario/presentation/widgets/appbar.dart';
-import 'package:calendario/presentation/widgets/drawer_menu.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/palette.dart';
+import '../../bloc/calendar_bloc.dart';
+import '../../bloc/home_bloc.dart';
+import '../../bloc/schedule_bloc.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/drawer_menu.dart';
+import '../../widgets/my_alerts.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
+import '../account/acccount_page.dart';
+import '../calendar/calendar_methods.dart';
+import '../calendar/calendar_page.dart';
+import '../schedule/schedule_methods.dart';
+import '../schedule/schedule_page.dart';
 //
 
 class BackGroundNavigator extends StatefulWidget {
-  static String routeName = "/backgroundNavigation";
+  const BackGroundNavigator({
+    Key? key,
+    this.tituloAppBar,
+    this.wgBody,
+    this.pageActual,
+  }) : super(key: key);
+  static String routeName = '/backgroundNavigation';
 
   final String? tituloAppBar;
   final Widget? wgBody;
   final String? pageActual;
-
-  const BackGroundNavigator({
-    this.tituloAppBar,
-    this.wgBody,
-    this.pageActual,
-  });
 
   @override
   _BackGroundNavigatorState createState() => _BackGroundNavigatorState();

@@ -1,25 +1,24 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/data/models/responses/to_register_schedule_free_response.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/agent/schedule_reservation_free/schedule_reservation_bloc.dart';
-import 'package:calendario/presentation/pages/agent/schedule_reservation_free/schedule_reservationfree_body.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../data/models/entities/booking.dart';
+import '../../../../data/models/responses/to_register_schedule_free_response.dart';
+import '../../../bloc/main_bloc.dart';
+import '../../../widgets/confirm_alternate.dart';
+import '../../../widgets/my_alerts.dart';
+import '../../../widgets/my_background_with_buttons.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_loading_super.dart';
+import 'schedule_reservation_bloc.dart';
+import 'schedule_reservationfree_body.dart';
 
 class ScheduleReservationFreePage extends StatelessWidget {
-  static String routeName = "/ScheduleReservationFreePage";
-
   const ScheduleReservationFreePage._();
+  static String routeName = '/ScheduleReservationFreePage';
 
   static Widget init(BuildContext context) {
     final blocLogin = Provider.of<MainBloc>(context, listen: false);

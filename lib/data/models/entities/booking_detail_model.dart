@@ -37,6 +37,35 @@ class BookingDetail {
     this.invoiceState,
     this.bookingInvoice,
   });
+  factory BookingDetail.fromJson(Map<String, dynamic> json) => BookingDetail(
+        bookingId: json['bookingID'],
+        businessId: json['businessID'],
+        officeId: json['officeID'],
+        bookingCode: json['bookingCode'],
+        serviceId: json['serviceID'],
+        serviceName: json['serviceName'],
+        date: (json['date']),
+        initialTime: json['initialTime'],
+        finalTime: json['finalTime'],
+        realFinalTime: json['realFinalTime'],
+        price: json['price'],
+        priceFinal: json['priceFinal'],
+        bookingPerson: BookingPerson.fromJson(json['bookingPerson']),
+        bookingClient: BookingClient.fromJson(json['bookingClient']),
+        observation: json['observation'],
+        bookingStateId: json['bookingStateID'],
+        bookingState: json['bookingState'],
+        authorizedUser: json['authorizedUser'],
+        authorizedDate: (json['authorizedDate']),
+        onlineApp: json['onlineApp'],
+        registerDate: (json['registerDate']),
+        registerUser: json['registerUser'],
+        completed: json['completed'],
+        invoiceState: json['invoiceState'],
+        bookingInvoice: (json['bookingInvoice'] != null)
+            ? BookingInvoice.fromJson(json['bookingInvoice'])
+            : null,
+      );
 
   int? bookingId;
   int? businessId;
@@ -64,62 +93,32 @@ class BookingDetail {
   bool? invoiceState;
   BookingInvoice? bookingInvoice;
 
-  factory BookingDetail.fromJson(Map<String, dynamic> json) => BookingDetail(
-        bookingId: json["bookingID"],
-        businessId: json["businessID"],
-        officeId: json["officeID"],
-        bookingCode: json["bookingCode"],
-        serviceId: json["serviceID"],
-        serviceName: json["serviceName"],
-        date: (json["date"]),
-        initialTime: json["initialTime"],
-        finalTime: json["finalTime"],
-        realFinalTime: json["realFinalTime"],
-        price: json["price"],
-        priceFinal: json["priceFinal"],
-        bookingPerson: BookingPerson.fromJson(json["bookingPerson"]),
-        bookingClient: BookingClient.fromJson(json["bookingClient"]),
-        observation: json["observation"],
-        bookingStateId: json["bookingStateID"],
-        bookingState: json["bookingState"],
-        authorizedUser: json["authorizedUser"],
-        authorizedDate: (json["authorizedDate"]),
-        onlineApp: json["onlineApp"],
-        registerDate: (json["registerDate"]),
-        registerUser: json["registerUser"],
-        completed: json["completed"],
-        invoiceState: json["invoiceState"],
-        bookingInvoice: (json["bookingInvoice"] != null)
-            ? BookingInvoice.fromJson(json["bookingInvoice"])
-            : null,
-      );
-
   Map<String, dynamic> toJson() => {
-        "bookingID": bookingId,
-        "businessID": businessId,
-        "officeID": officeId,
-        "bookingCode": bookingCode,
-        "serviceID": serviceId,
-        "serviceName": serviceName,
-        "date": date,
-        "initialTime": initialTime,
-        "finalTime": finalTime,
-        "realFinalTime": realFinalTime,
-        "price": price,
-        "priceFinal": priceFinal,
-        "bookingPerson": bookingPerson?.toJson(),
-        "bookingClient": bookingClient?.toJson(),
-        "observation": observation,
-        "bookingStateID": bookingStateId,
-        "bookingState": bookingState,
-        "authorizedUser": authorizedUser,
-        "authorizedDate": authorizedDate,
-        "onlineApp": onlineApp,
-        "registerDate": registerDate,
-        "registerUser": registerUser,
-        "completed": completed,
-        "invoiceState": invoiceState,
-        "bookingInvoice": bookingInvoice?.toJson(),
+        'bookingID': bookingId,
+        'businessID': businessId,
+        'officeID': officeId,
+        'bookingCode': bookingCode,
+        'serviceID': serviceId,
+        'serviceName': serviceName,
+        'date': date,
+        'initialTime': initialTime,
+        'finalTime': finalTime,
+        'realFinalTime': realFinalTime,
+        'price': price,
+        'priceFinal': priceFinal,
+        'bookingPerson': bookingPerson?.toJson(),
+        'bookingClient': bookingClient?.toJson(),
+        'observation': observation,
+        'bookingStateID': bookingStateId,
+        'bookingState': bookingState,
+        'authorizedUser': authorizedUser,
+        'authorizedDate': authorizedDate,
+        'onlineApp': onlineApp,
+        'registerDate': registerDate,
+        'registerUser': registerUser,
+        'completed': completed,
+        'invoiceState': invoiceState,
+        'bookingInvoice': bookingInvoice?.toJson(),
       };
 }
 
@@ -138,6 +137,20 @@ class BookingClient {
     this.bitrhday,
     this.userCodeUi,
   });
+  factory BookingClient.fromJson(Map<String, dynamic> json) => BookingClient(
+        bookingPersonId: json['bookingPersonID'],
+        bookingId: json['bookingID'],
+        documentTypeId: json['documentTypeID'],
+        identification: json['identification'],
+        name: json['name'],
+        surname: json['surname'],
+        secondSurname: json['secondSurname'],
+        phoneNumber: json['phoneNumber'],
+        emailAddress: json['emailAddress'],
+        sexId: json['sexID'],
+        bitrhday: (json['Bitrhday']),
+        userCodeUi: json['userCodeUI'],
+      );
 
   int? bookingPersonId;
   int? bookingId;
@@ -152,34 +165,19 @@ class BookingClient {
   String? bitrhday;
   String? userCodeUi;
 
-  factory BookingClient.fromJson(Map<String, dynamic> json) => BookingClient(
-        bookingPersonId: json["bookingPersonID"],
-        bookingId: json["bookingID"],
-        documentTypeId: json["documentTypeID"],
-        identification: json["identification"],
-        name: json["name"],
-        surname: json["surname"],
-        secondSurname: json["secondSurname"],
-        phoneNumber: json["phoneNumber"],
-        emailAddress: json["emailAddress"],
-        sexId: json["sexID"],
-        bitrhday: (json["Bitrhday"]),
-        userCodeUi: json["userCodeUI"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "bookingPersonID": bookingPersonId,
-        "bookingID": bookingId,
-        "documentTypeID": documentTypeId,
-        "identification": identification,
-        "name": name,
-        "surname": surname,
-        "secondSurname": secondSurname,
-        "phoneNumber": phoneNumber,
-        "emailAddress": emailAddress,
-        "sexID": sexId,
-        "Bitrhday": bitrhday,
-        "userCodeUI": userCodeUi,
+        'bookingPersonID': bookingPersonId,
+        'bookingID': bookingId,
+        'documentTypeID': documentTypeId,
+        'identification': identification,
+        'name': name,
+        'surname': surname,
+        'secondSurname': secondSurname,
+        'phoneNumber': phoneNumber,
+        'emailAddress': emailAddress,
+        'sexID': sexId,
+        'Bitrhday': bitrhday,
+        'userCodeUI': userCodeUi,
       };
 }
 
@@ -187,17 +185,30 @@ class BookingInvoice {
   BookingInvoice({
     this.invoiceId,
     this.invoice,
-    this.subAmount=0,
-    this.taxPorc=0,
-    this.taxAmount=0,
-    this.taxPorc1=0,
-    this.taxAmount1=0,
-    this.amount=0,
+    this.subAmount = 0,
+    this.taxPorc = 0,
+    this.taxAmount = 0,
+    this.taxPorc1 = 0,
+    this.taxAmount1 = 0,
+    this.amount = 0,
     this.typePayment,
-    this.payment=0,
-    this.dscto=0,
+    this.payment = 0,
+    this.dscto = 0,
     this.vuelto = 0,
   });
+  factory BookingInvoice.fromJson(Map<String, dynamic> json) => BookingInvoice(
+        invoiceId: json['invoiceID'],
+        invoice: json['invoice'],
+        subAmount: json['subAmount'],
+        taxPorc: json['taxPorc'],
+        taxAmount: json['taxAmount'],
+        taxPorc1: json['taxPorc1'],
+        taxAmount1: json['taxAmount1'],
+        amount: json['amount'],
+        typePayment: json['typePayment'],
+        payment: json['payment'],
+        dscto: json['dscto'],
+      );
 
   int? invoiceId;
   String? invoice;
@@ -212,32 +223,18 @@ class BookingInvoice {
   num? dscto;
   num? vuelto;
 
-  factory BookingInvoice.fromJson(Map<String, dynamic> json) => BookingInvoice(
-        invoiceId: json["invoiceID"],
-        invoice: json["invoice"],
-        subAmount: json["subAmount"],
-        taxPorc: json["taxPorc"],
-        taxAmount: json["taxAmount"],
-        taxPorc1: json["taxPorc1"],
-        taxAmount1: json["taxAmount1"],
-        amount: json["amount"],
-        typePayment: json["typePayment"],
-        payment: json["payment"],
-        dscto: json["dscto"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "invoiceID": invoiceId,
-        "invoice": invoice,
-        "subAmount": subAmount,
-        "taxPorc": taxPorc,
-        "taxAmount": taxAmount,
-        "taxPorc1": taxPorc1,
-        "taxAmount1": taxAmount1,
-        "amount": amount,
-        "typePayment": typePayment,
-        "payment": payment,
-        "dscto": dscto,
+        'invoiceID': invoiceId,
+        'invoice': invoice,
+        'subAmount': subAmount,
+        'taxPorc': taxPorc,
+        'taxAmount': taxAmount,
+        'taxPorc1': taxPorc1,
+        'taxAmount1': taxAmount1,
+        'amount': amount,
+        'typePayment': typePayment,
+        'payment': payment,
+        'dscto': dscto,
       };
 }
 
@@ -254,6 +251,18 @@ class BookingPerson {
     this.emailAddress,
     this.active,
   });
+  factory BookingPerson.fromJson(Map<String, dynamic> json) => BookingPerson(
+        personId: json['personID'],
+        personTypeId: json['personTypeID'],
+        documentTypeId: json['documentTypeID'],
+        documentNumber: json['documentNumber'],
+        name: json['name'],
+        surname: json['surname'],
+        secondSurname: json['secondSurname'],
+        phoneNumber: json['phoneNumber'],
+        emailAddress: json['emailAddress'],
+        active: json['active'],
+      );
 
   int? personId;
   int? personTypeId;
@@ -266,29 +275,16 @@ class BookingPerson {
   String? emailAddress;
   bool? active;
 
-  factory BookingPerson.fromJson(Map<String, dynamic> json) => BookingPerson(
-        personId: json["personID"],
-        personTypeId: json["personTypeID"],
-        documentTypeId: json["documentTypeID"],
-        documentNumber: json["documentNumber"],
-        name: json["name"],
-        surname: json["surname"],
-        secondSurname: json["secondSurname"],
-        phoneNumber: json["phoneNumber"],
-        emailAddress: json["emailAddress"],
-        active: json["active"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "personID": personId,
-        "personTypeID": personTypeId,
-        "documentTypeID": documentTypeId,
-        "documentNumber": documentNumber,
-        "name": name,
-        "surname": surname,
-        "secondSurname": secondSurname,
-        "phoneNumber": phoneNumber,
-        "emailAddress": emailAddress,
-        "active": active,
+        'personID': personId,
+        'personTypeID': personTypeId,
+        'documentTypeID': documentTypeId,
+        'documentNumber': documentNumber,
+        'name': name,
+        'surname': surname,
+        'secondSurname': secondSurname,
+        'phoneNumber': phoneNumber,
+        'emailAddress': emailAddress,
+        'active': active,
       };
 }

@@ -1,16 +1,15 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/validate_partner/splash/splash_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:calendario/presentation/pages/validate_partner/splash/splash_body.dart';
 
 import '../../../../core/config/only_portroit.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../data/models/entities/response_model.dart';
+import 'splash_bloc.dart';
+import 'splash_body.dart';
 
 class SplashPage extends StatelessWidget {
-  static String routeName = "/splashPage";
   const SplashPage._();
+  static String routeName = '/splashPage';
   static Widget init(
     BuildContext context,
   ) {
@@ -22,7 +21,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<MainBloc>(context);
+    final bloc = Provider.of<SplashBloc>(context);
 
     onlyPortroitOrientation();
 
@@ -31,7 +30,7 @@ class SplashPage extends StatelessWidget {
       onWillPop: () async {
         return false;
       },
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Palette.colorApp,
         body: SplashBody(),
       ),

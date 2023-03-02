@@ -1,18 +1,18 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_body.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_detail_page.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AgentReproPage extends StatefulWidget {
-  static String routeName = "/AgentReproPage";
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/confirm_alternate.dart';
+import '../../../widgets/my_background_with_buttons.dart';
+import '../../../widgets/my_buttom.dart';
+import 'agent_repro_body.dart';
+import 'agent_repro_detail_page.dart';
 
+class AgentReproPage extends StatefulWidget {
   const AgentReproPage({Key? key}) : super(key: key);
+  static String routeName = '/AgentReproPage';
 
   @override
   State<AgentReproPage> createState() => _AgentReproPageState();

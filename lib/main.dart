@@ -1,21 +1,19 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/routes/routes.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/presentation/bloc/agenda_bloc.dart';
-import 'package:calendario/presentation/bloc/agent_bloc.dart';
-import 'package:calendario/presentation/bloc/calendar_bloc.dart';
-import 'package:calendario/presentation/bloc/home_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/license/license_spa_page.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/pages/validate_partner/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
+import 'core/config/palette.dart';
+import 'core/routes/routes.dart';
 import 'data/models/entities/booking.dart';
+import 'data/preferences/preferences_user.dart';
+import 'presentation/bloc/agenda_bloc.dart';
+import 'presentation/bloc/agent_bloc.dart';
+import 'presentation/bloc/calendar_bloc.dart';
+import 'presentation/bloc/home_bloc.dart';
+import 'presentation/bloc/main_bloc.dart';
+import 'presentation/bloc/schedule_bloc.dart';
+import 'presentation/pages/validate_partner/login/login_page.dart';
 
 void main() async {
   Provider.debugCheckInvalidValueType = null;
@@ -47,9 +45,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final prefsUser = PreferencesUser();
-
   MyApp({Key? key}) : super(key: key);
+  final prefsUser = PreferencesUser();
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +109,8 @@ class MyApp extends StatelessWidget {
         //     ? BackGroundNavigator.routeName
         //     : LicenseSpaPage.routeName,
 
-        initialRoute: SplashPage.routeName,
+        // initialRoute: SplashPage.routeName,
+        initialRoute: LoginPage.routeName,
       ),
     );
   }

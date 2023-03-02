@@ -1,9 +1,7 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/data/providers/login_provider.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/response_model.dart';
 
 class MainBloc extends ChangeNotifier {
   LoginModel? _model;
@@ -15,7 +13,6 @@ class MainBloc extends ChangeNotifier {
 
   UserBusinessDto? _modelBusiness;
   UserBusinessDto? get modelBusiness => _modelBusiness;
-
 
   void init() async {
     print('init');

@@ -1,35 +1,37 @@
 // ignore_for_file: avoid_print
 import 'dart:convert';
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/anula_booking_request.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/data/models/entities/booking_detail_model.dart';
-import 'package:calendario/data/models/entities/complete_booking_request.dart';
-import 'package:calendario/data/models/entities/confirm_booking_request.dart';
-import 'package:calendario/data/models/entities/liquidation_model.dart';
-import 'package:calendario/data/models/entities/program_turn_model.dart';
-import 'package:calendario/data/models/entities/reprogram_request.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/entities/servicelist.dart';
-import 'package:calendario/data/models/entities/services_hours_model.dart';
+
 import 'package:http/http.dart' as http;
+
+import '../../core/config/config.dart';
+import '../models/entities/anula_booking_request.dart';
+import '../models/entities/booking.dart';
+import '../models/entities/booking_detail_model.dart';
+import '../models/entities/complete_booking_request.dart';
+import '../models/entities/confirm_booking_request.dart';
+import '../models/entities/liquidation_model.dart';
+import '../models/entities/program_turn_model.dart';
+import '../models/entities/reprogram_request.dart';
+import '../models/entities/response_model.dart';
+import '../models/entities/servicelist.dart';
+import '../models/entities/services_hours_model.dart';
 
 class APIServices {
   dynamic getHeader() {
     return {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     };
   }
 
   dynamic getHeaderToken({String? token}) {
     if (token != null) {
       return {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
       };
     } else {
       return {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       };
     }
   }
@@ -39,7 +41,6 @@ class APIServices {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     };
   }
-
 
   Future<ResponseModel<List<Booking>>> getBookingList(
       {required int businessID,
@@ -119,25 +120,25 @@ class APIServices {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "AuthorizedUser": obj.authorizedUser,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "officeID": obj.officeId,
-            "completed": obj.completed,
-            "invoice": obj.invoice,
-            "priceFinal": obj.priceFinal,
-            "comment": obj.comment,
-            "telephone": obj.telephone,
-            "emailAddress": obj.emailAddress,
-            "subAmount": obj.subAmount ?? 0,
-            "taxPorc": obj.taxPorc ?? 0,
-            "taxAmount": obj.taxAmount ?? 0,
-            "taxPorc1": obj.taxPorc1 ?? 0,
-            "taxAmount1": obj.taxAmount1 ?? 0,
-            "amount": obj.amount ?? 0,
-            "typePayment": obj.typePayment,
-            "payment": obj.payment ?? 0,
-            "dscto": obj.dscto ?? 0
+            'AuthorizedUser': obj.authorizedUser,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'officeID': obj.officeId,
+            'completed': obj.completed,
+            'invoice': obj.invoice,
+            'priceFinal': obj.priceFinal,
+            'comment': obj.comment,
+            'telephone': obj.telephone,
+            'emailAddress': obj.emailAddress,
+            'subAmount': obj.subAmount ?? 0,
+            'taxPorc': obj.taxPorc ?? 0,
+            'taxAmount': obj.taxAmount ?? 0,
+            'taxPorc1': obj.taxPorc1 ?? 0,
+            'taxAmount1': obj.taxAmount1 ?? 0,
+            'amount': obj.amount ?? 0,
+            'typePayment': obj.typePayment,
+            'payment': obj.payment ?? 0,
+            'dscto': obj.dscto ?? 0
           },
         ),
       );
@@ -357,12 +358,12 @@ class APIServices {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "User": obj.user,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "date": obj.date,
-            "initialTime": obj.initialTime,
-            "finalTime": obj.finalTime
+            'User': obj.user,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'date': obj.date,
+            'initialTime': obj.initialTime,
+            'finalTime': obj.finalTime
           },
         ),
       );
@@ -406,10 +407,10 @@ class APIServices {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "user": obj.user,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "reason": obj.reason
+            'user': obj.user,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'reason': obj.reason
           },
         ),
       );
@@ -511,10 +512,10 @@ class APIServices {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "AuthorizedUser": obj.authorizedUser,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "officeID": obj.officeId,
+            'AuthorizedUser': obj.authorizedUser,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'officeID': obj.officeId,
             // "completed": obj.completed,
             // "invoice": obj.invoice,
             // "priceFinal": obj.priceFinal,

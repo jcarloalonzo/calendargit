@@ -1,11 +1,12 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/liquidation_bloc.dart';
-import 'package:calendario/presentation/pages/liquidation/liquidation_widgets.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../bloc/liquidation_bloc.dart';
+import '../../widgets/my_text.dart';
+import 'liquidation_widgets.dart';
 
 class LiquidationBody extends StatelessWidget {
   const LiquidationBody({Key? key}) : super(key: key);

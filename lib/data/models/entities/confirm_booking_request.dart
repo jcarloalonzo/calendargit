@@ -32,8 +32,29 @@ class ConfirmBookingRequest {
     this.payment,
     this.dscto,
   });
+  factory ConfirmBookingRequest.fromJson(Map<String, dynamic> json) =>
+      ConfirmBookingRequest(
+        authorizedUser: json['AuthorizedUser'],
+        businessId: json['businessID'],
+        businessIdent: json['businessIdent'],
+        officeId: json['officeID'],
+        completed: json['completed'],
+        invoice: json['invoice'],
+        priceFinal: json['priceFinal'],
+        comment: json['comment'],
+        telephone: json['telephone'],
+        emailAddress: json['emailAddress'],
+        subAmount: json['subAmount'],
+        taxPorc: json['taxPorc'],
+        taxAmount: json['taxAmount'],
+        taxPorc1: json['taxPorc1'],
+        taxAmount1: json['taxAmount1'],
+        amount: json['amount'],
+        typePayment: json['typePayment'],
+        payment: json['payment'],
+        dscto: json['dscto'],
+      );
 
-  
   int? authorizedUser;
   int? businessId;
   String? businessIdent;
@@ -54,48 +75,25 @@ class ConfirmBookingRequest {
   num? payment;
   num? dscto;
 
-  factory ConfirmBookingRequest.fromJson(Map<String, dynamic> json) =>
-      ConfirmBookingRequest(
-        authorizedUser: json["AuthorizedUser"],
-        businessId: json["businessID"],
-        businessIdent: json["businessIdent"],
-        officeId: json["officeID"],
-        completed: json["completed"],
-        invoice: json["invoice"],
-        priceFinal: json["priceFinal"],
-        comment: json["comment"],
-        telephone: json["telephone"],
-        emailAddress: json["emailAddress"],
-        subAmount: json["subAmount"],
-        taxPorc: json["taxPorc"],
-        taxAmount: json["taxAmount"],
-        taxPorc1: json["taxPorc1"],
-        taxAmount1: json["taxAmount1"],
-        amount: json["amount"],
-        typePayment: json["typePayment"],
-        payment: json["payment"],
-        dscto: json["dscto"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "AuthorizedUser": authorizedUser,
-        "businessID": businessId,
-        "businessIdent": businessIdent,
-        "officeID": officeId,
-        "completed": completed,
-        "invoice": invoice,
-        "priceFinal": priceFinal,
-        "comment": comment,
-        "telephone": telephone,
-        "emailAddress": emailAddress,
-        "subAmount": subAmount,
-        "taxPorc": taxPorc,
-        "taxAmount": taxAmount,
-        "taxPorc1": taxPorc1,
-        "taxAmount1": taxAmount1,
-        "amount": amount,
-        "typePayment": typePayment,
-        "payment": payment,
-        "dscto": dscto,
+        'AuthorizedUser': authorizedUser,
+        'businessID': businessId,
+        'businessIdent': businessIdent,
+        'officeID': officeId,
+        'completed': completed,
+        'invoice': invoice,
+        'priceFinal': priceFinal,
+        'comment': comment,
+        'telephone': telephone,
+        'emailAddress': emailAddress,
+        'subAmount': subAmount,
+        'taxPorc': taxPorc,
+        'taxAmount': taxAmount,
+        'taxPorc1': taxPorc1,
+        'taxAmount1': taxAmount1,
+        'amount': amount,
+        'typePayment': typePayment,
+        'payment': payment,
+        'dscto': dscto,
       };
 }

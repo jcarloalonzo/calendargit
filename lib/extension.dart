@@ -7,42 +7,42 @@ extension DateUtils on DateTime {
   String get weekdayToFullString {
     switch (weekday) {
       case DateTime.monday:
-        return "Monday";
+        return 'Monday';
       case DateTime.tuesday:
-        return "Tuesday";
+        return 'Tuesday';
       case DateTime.wednesday:
-        return "Wednesday";
+        return 'Wednesday';
       case DateTime.thursday:
-        return "Thursday";
+        return 'Thursday';
       case DateTime.friday:
-        return "Friday";
+        return 'Friday';
       case DateTime.saturday:
-        return "Saturday";
+        return 'Saturday';
       case DateTime.sunday:
-        return "Sunday";
+        return 'Sunday';
       default:
-        return "Error";
+        return 'Error';
     }
   }
 
   String get weekdayToAbbreviatedString {
     switch (weekday) {
       case DateTime.monday:
-        return "M";
+        return 'M';
       case DateTime.tuesday:
-        return "T";
+        return 'T';
       case DateTime.wednesday:
-        return "W";
+        return 'W';
       case DateTime.thursday:
-        return "T";
+        return 'T';
       case DateTime.friday:
-        return "F";
+        return 'F';
       case DateTime.saturday:
-        return "S";
+        return 'S';
       case DateTime.sunday:
-        return "S";
+        return 'S';
       default:
-        return "Err";
+        return 'Err';
     }
   }
 
@@ -92,4 +92,3 @@ extension DateUtils on DateTime {
   bool compareTime(DateTime date) =>
       hour == date.hour && minute == date.minute && second == date.second;
 }
-

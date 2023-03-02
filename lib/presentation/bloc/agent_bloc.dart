@@ -1,10 +1,10 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/services/api_services.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/config.dart';
 import '../../data/models/entities/booking.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/services/api_services.dart';
 
 enum Typehorario { ayer, hoy, manana, semana, mes }
 
@@ -40,8 +40,7 @@ class AgentModelProvider extends ChangeNotifier {
 
   Future<void>? cleanCalendar(BuildContext c) {
     try {
-      var controller =
-          CalendarControllerProvider.of<Booking>(c).controller;
+      var controller = CalendarControllerProvider.of<Booking>(c).controller;
       List<CalendarEventData<Booking>> list = controller.events;
       for (var ev in list) {
         controller.remove(ev);
@@ -101,19 +100,19 @@ class AgentModelProvider extends ChangeNotifier {
       default:
     }
 
-    final _api = APIServices();
-    final _response = await _api.getBookingList(
+    final api = APIServices();
+    final response = await api.getBookingList(
         businessID: _businessID,
         personID: _personID,
         initialDate: initialDate,
         finalDate: finalDate,
         bookingStateID: 0);
 
-    if (_response.statusCode != 200) {
-      await _setError(_response);
+    if (response.statusCode != 200) {
+      await _setError(response);
       return;
     }
-    _servicelist = _response.data!;
+    _servicelist = response.data!;
 
     _charge = false;
     notifyListeners();
@@ -172,19 +171,19 @@ class AgentModelProvider extends ChangeNotifier {
       default:
     }
 
-    final _api = APIServices();
-    final _response = await _api.getBookingList(
+    final api = APIServices();
+    final response = await api.getBookingList(
         businessID: businessID,
         personID: personID,
         initialDate: initialDate,
         finalDate: finalDate,
         bookingStateID: 0);
 
-    if (_response.statusCode != 200) {
-      await _setError(_response);
+    if (response.statusCode != 200) {
+      await _setError(response);
       return;
     }
-    _servicelist = _response.data!;
+    _servicelist = response.data!;
 
     _charge = false;
     notifyListeners();
@@ -203,19 +202,19 @@ class AgentModelProvider extends ChangeNotifier {
     String initialDate = '2022-03-26';
     String finalDate = '2022-03-26';
 
-    final _api = APIServices();
-    final _response = await _api.getBookingList(
+    final api = APIServices();
+    final response = await api.getBookingList(
         businessID: businessID,
         personID: personID,
         initialDate: initialDate,
         finalDate: finalDate,
         bookingStateID: 0);
 
-    if (_response.statusCode != 200) {
-      await _setError(_response);
+    if (response.statusCode != 200) {
+      await _setError(response);
       return;
     }
-    _servicelist = _response.data!;
+    _servicelist = response.data!;
 
     _charge = false;
 
@@ -226,12 +225,12 @@ class AgentModelProvider extends ChangeNotifier {
     // _charge = true;
     notifyListeners();
 
-    final _api = APIServices();
-    final _response = await _api.validateToReprogram(bookingID: bookingID);
+    final api = APIServices();
+    final response = await api.validateToReprogram(bookingID: bookingID);
     _charge = false;
 
-    if (_response.statusCode != 200) {
-      await _setError(_response);
+    if (response.statusCode != 200) {
+      await _setError(response);
       return false;
     }
     // _servicelist = _response.data!;

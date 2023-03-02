@@ -1,19 +1,19 @@
-import 'package:calendario/presentation/pages/agent/agent_cancel/agent_cancel_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_complet/agent_complete_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_invoice/agent_invoice_one_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_invoice/agent_invoice_two_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_detail_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_page.dart';
-import 'package:calendario/presentation/pages/agent/schedule_reservation_free/schedule_reservationfree_page.dart';
-import 'package:calendario/presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
-import 'package:calendario/presentation/pages/calendar/calendar_page.dart';
-import 'package:calendario/presentation/pages/invoice/new_invoice_free/invoice_free_page.dart';
-import 'package:calendario/presentation/pages/license/license_spa_page.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/pages/validate_partner/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../presentation/pages/agent/agent_cancel/agent_cancel_page.dart';
+import '../../presentation/pages/agent/agent_complet/agent_complete_page.dart';
+import '../../presentation/pages/agent/agent_invoice/agent_invoice_one_page.dart';
+import '../../presentation/pages/agent/agent_invoice/agent_invoice_two_page.dart';
+import '../../presentation/pages/agent/agent_reprogramming/agent_repro_detail_page.dart';
+import '../../presentation/pages/agent/agent_reprogramming/agent_repro_page.dart';
+import '../../presentation/pages/agent/schedule_reservation_free/schedule_reservationfree_page.dart';
+import '../../presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
+import '../../presentation/pages/calendar/calendar_page.dart';
+import '../../presentation/pages/invoice/new_invoice_free/invoice_free_page.dart';
+import '../../presentation/pages/license/license_spa_page.dart';
+import '../../presentation/pages/navigator/background_navigator.dart';
 import '../../presentation/pages/validate_partner/login/login_page.dart';
+import '../../presentation/pages/validate_partner/splash/splash_page.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{

@@ -1,18 +1,17 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/widgets/my_dialogs.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
+import '../../core/config/size_text.dart';
+import '../../data/preferences/preferences_user.dart';
+import '../pages/navigator/background_navigator.dart';
 import '../pages/validate_partner/login/login_page.dart';
+import 'my_dialogs.dart';
+import 'my_text.dart';
+import 'mysizedbox.dart';
 
 class DrawerMenu extends StatelessWidget {
-  final prefsUser = PreferencesUser();
-
   DrawerMenu({Key? key}) : super(key: key);
+  final prefsUser = PreferencesUser();
 
   // final prefsUser = new PreferencesUser();
 
@@ -186,15 +185,15 @@ class _CabeceraDrower extends StatelessWidget {
 }
 
 class _CustomListTle extends StatelessWidget {
-  final String title;
-  final Function()? onTap;
-  final IconData icon;
   const _CustomListTle({
     Key? key,
     required this.title,
     this.onTap,
     required this.icon,
   }) : super(key: key);
+  final String title;
+  final Function()? onTap;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {

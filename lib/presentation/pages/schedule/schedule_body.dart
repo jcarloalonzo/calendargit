@@ -1,18 +1,18 @@
 import 'package:calendar_agenda/calendar_agenda.dart';
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_widgets.dart';
-import 'package:calendario/presentation/widgets/my_card_container.dart';
-import 'package:calendario/presentation/widgets/my_custom_loading.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
-import 'package:calendario/presentation/widgets/sin_datos_container.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../bloc/schedule_bloc.dart';
+import '../../widgets/my_card_container.dart';
+import '../../widgets/my_custom_loading.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
+import '../../widgets/sin_datos_container.dart';
+import 'schedule_widgets.dart';
 
 class ScheduleBody extends StatelessWidget {
   const ScheduleBody({Key? key}) : super(key: key);
@@ -25,10 +25,8 @@ class ScheduleBody extends StatelessWidget {
       children: [
         // ElevatedButton(
         //     onPressed: () {
-        //       MyDialogs.yesAbortDialog(
-        //           context: context,
-        //           title: 'qweqweqeqw',
-        //           body: 'qweqweqeqweqweqwe');
+        //       final prefs = PreferencesUser();
+        //       prefs.dispose();
         //     },
         //     child: const Text('text')),
         Container(
@@ -126,9 +124,9 @@ class _BodyListSchedule extends StatelessWidget {
 }
 
 class _CalendarSchedule extends StatelessWidget {
+  _CalendarSchedule();
   final CalendarAgendaController _calendarAgendaControllerNotAppBar =
       CalendarAgendaController();
-  _CalendarSchedule();
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<ScheduleBloc>(context, listen: true);
@@ -179,7 +177,7 @@ class _BuildCabecera extends StatelessWidget {
       child: Row(
         children: [
           MyText(
-            text: Jiffy(bloc.fechaSelected).format("d"),
+            text: Jiffy(bloc.fechaSelected).format('d'),
             color: Palette.white,
             size: 70,
             fontWeight: FontWeight.w700,
@@ -197,7 +195,7 @@ class _BuildCabecera extends StatelessWidget {
               const SizedBox(height: 5),
               MyText(
                 text: MyUtils.firstUpper(
-                    Jiffy(bloc.fechaSelected).format("MMMM yyyy")),
+                    Jiffy(bloc.fechaSelected).format('MMMM yyyy')),
                 color: Palette.white,
                 size: SizeText.text4 + 1,
                 fontWeight: FontWeight.w400,

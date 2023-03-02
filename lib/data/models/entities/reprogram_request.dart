@@ -20,6 +20,16 @@ class ReprogramRequest {
     this.initialTime,
     this.finalTime,
   });
+  factory ReprogramRequest.fromJson(Map<String, dynamic> json) =>
+      ReprogramRequest(
+        bookingId: json['bookingID'],
+        user: json['User'],
+        businessId: json['businessID'],
+        businessIdent: json['businessIdent'],
+        date: (json['date']),
+        initialTime: json['initialTime'],
+        finalTime: json['finalTime'],
+      );
 
   int? bookingId;
   int? user;
@@ -29,24 +39,13 @@ class ReprogramRequest {
   String? initialTime;
   String? finalTime;
 
-  factory ReprogramRequest.fromJson(Map<String, dynamic> json) =>
-      ReprogramRequest(
-        bookingId: json["bookingID"],
-        user: json["User"],
-        businessId: json["businessID"],
-        businessIdent: json["businessIdent"],
-        date: (json["date"]),
-        initialTime: json["initialTime"],
-        finalTime: json["finalTime"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "bookingID": bookingId,
-        "User": user,
-        "businessID": businessId,
-        "businessIdent": businessIdent,
-        "date": date,
-        "initialTime": initialTime,
-        "finalTime": finalTime,
+        'bookingID': bookingId,
+        'User': user,
+        'businessID': businessId,
+        'businessIdent': businessIdent,
+        'date': date,
+        'initialTime': initialTime,
+        'finalTime': finalTime,
       };
 }

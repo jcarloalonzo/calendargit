@@ -1,9 +1,4 @@
 class GetBookingListRequest {
-  int? businessID;
-  int? personID;
-  String? initialDate;
-  String? finalDate;
-  int? bookingStateID;
   GetBookingListRequest({
     this.businessID,
     this.personID,
@@ -11,16 +6,20 @@ class GetBookingListRequest {
     this.finalDate,
     this.bookingStateID,
   });
+  int? businessID;
+  int? personID;
+  String? initialDate;
+  String? finalDate;
+  int? bookingStateID;
 }
 
 class GetTurnRequest {
-  int? personID;
-  String? dateProgram;
-  int? serviceID;
   GetTurnRequest({
     this.personID,
     this.dateProgram,
     this.serviceID,
   });
+  int? personID;
+  String? dateProgram;
+  int? serviceID;
 }
-

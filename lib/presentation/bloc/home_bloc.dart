@@ -1,9 +1,10 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/data/models/entities/home_model.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/providers/booking_provider.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../core/config/Utils.dart';
+import '../../data/models/entities/home_model.dart';
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/providers/booking_provider.dart';
 
 class HomeBloc extends ChangeNotifier {
   LoginModel? _dataLogin;
@@ -61,16 +62,16 @@ class HomeBloc extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final _response = await APIBooking.getBookingHome(
+      final response = await APIBooking.getBookingHome(
           businessID: _dataLogin!.userBusinessDto![0].businessId!,
           personID: _dataLogin!.personId!,
           date: MyUtils.formatDate(DateTime.now()));
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (_response.statusCode == 200) {
-        _listBooking = _response.data!;
+      if (response.statusCode == 200) {
+        _listBooking = response.data!;
       }
-      await _setError(_response);
+      await _setError(response);
     } catch (e) {
       _tryCatchError(e);
     }

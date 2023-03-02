@@ -18,6 +18,14 @@ class CompleteBookingRequest {
     this.businessIdent,
     this.officeId,
   });
+  factory CompleteBookingRequest.fromJson(Map<String, dynamic> json) =>
+      CompleteBookingRequest(
+        bookingId: json['bookingID'],
+        authorizedUser: json['AuthorizedUser'],
+        businessId: json['businessID'],
+        businessIdent: json['businessIdent'],
+        officeId: json['officeID'],
+      );
 
   int? bookingId;
   int? authorizedUser;
@@ -25,20 +33,11 @@ class CompleteBookingRequest {
   String? businessIdent;
   int? officeId;
 
-  factory CompleteBookingRequest.fromJson(Map<String, dynamic> json) =>
-      CompleteBookingRequest(
-        bookingId: json["bookingID"],
-        authorizedUser: json["AuthorizedUser"],
-        businessId: json["businessID"],
-        businessIdent: json["businessIdent"],
-        officeId: json["officeID"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "bookingID": bookingId,
-        "AuthorizedUser": authorizedUser,
-        "businessID": businessId,
-        "businessIdent": businessIdent,
-        "officeID": officeId,
+        'bookingID': bookingId,
+        'AuthorizedUser': authorizedUser,
+        'businessID': businessId,
+        'businessIdent': businessIdent,
+        'officeID': officeId,
       };
 }

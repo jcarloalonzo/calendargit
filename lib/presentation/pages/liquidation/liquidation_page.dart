@@ -1,13 +1,13 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/bloc/liquidation_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/config/palette.dart';
+import '../../bloc/liquidation_bloc.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/my_background.dart';
 import 'liquidation_body.dart';
 
 class LiquidationPage extends StatelessWidget {

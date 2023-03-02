@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_body.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../data/models/entities/login_model.dart';
+import '../../../data/preferences/preferences_user.dart';
+import '../../bloc/main_bloc.dart';
+import '../../bloc/schedule_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/my_background.dart';
+import 'schedule_body.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({Key? key}) : super(key: key);

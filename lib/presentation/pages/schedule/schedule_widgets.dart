@@ -1,21 +1,22 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../../data/models/entities/booking.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/my_text.dart';
+import '../booking/booking_detail_page/booking_detail_page.dart';
+
 class ListCardItemSchedule extends StatelessWidget {
-  final Function()? onTap;
-  final Booking obj;
   const ListCardItemSchedule({
     Key? key,
     this.onTap,
     required this.obj,
   }) : super(key: key);
+  final Function()? onTap;
+  final Booking obj;
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +61,15 @@ class ListCardItemSchedule extends StatelessWidget {
                   ),
                   elevation: 2,
                   child: ClipPath(
+                    clipper: ShapeBorderClipper(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border(
                               left: BorderSide(
-                                  color: MyUtils.statusColor(obj.bookingStateId!),
+                                  color:
+                                      MyUtils.statusColor(obj.bookingStateId!),
                                   width: 8))),
                       child: Row(
                         children: [
@@ -101,9 +106,6 @@ class ListCardItemSchedule extends StatelessWidget {
                         ],
                       ),
                     ),
-                    clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
                   ),
                 ),
               ),
@@ -120,7 +122,6 @@ class ListCardItemSchedule extends StatelessWidget {
   //    // await ScheduleMethods.dialogEditSchedule( context, obj);
   //
   //
-
 }
 
 class NoCitasContainer extends StatelessWidget {
@@ -141,19 +142,15 @@ class NoCitasContainer extends StatelessWidget {
     );
   }
 }
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 class ItemTextColumn extends StatelessWidget {
-  final Function()? onTap;
-  final String title;
-  final Color colorIcon;
-  final IconData icono;
   const ItemTextColumn({
     Key? key,
     this.onTap,
@@ -161,6 +158,10 @@ class ItemTextColumn extends StatelessWidget {
     required this.colorIcon,
     required this.icono,
   }) : super(key: key);
+  final Function()? onTap;
+  final String title;
+  final Color colorIcon;
+  final IconData icono;
 
   @override
   Widget build(BuildContext context) {
@@ -185,11 +186,9 @@ class ItemTextColumn extends StatelessWidget {
   }
 }
 
-
-// 
-// 
-// 
-// 
-// 
-// 
- 
+//
+//
+//
+//
+//
+//

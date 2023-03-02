@@ -1,17 +1,17 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/license/license_spa_bloc.dart';
-import 'package:calendario/presentation/pages/license/license_spa_body.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
-class LicenseSpaPage extends StatelessWidget {
-  static String routeName = "/LicenseSpaPage";
+import '../../../core/config/palette.dart';
+import '../../../data/models/entities/response_model.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/my_background.dart';
+import 'license_spa_bloc.dart';
+import 'license_spa_body.dart';
 
+class LicenseSpaPage extends StatelessWidget {
   const LicenseSpaPage._();
+  static String routeName = '/LicenseSpaPage';
 
   static Widget init(
     BuildContext context,
@@ -29,7 +29,7 @@ class LicenseSpaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Jiffy.locale("es");
+    Jiffy.locale('es');
 
     final bloc = Provider.of<LicenseSpaBloc>(context);
     ResponseModel.handleError(bloc, context);

@@ -21,8 +21,7 @@ class Config {
     return regExp.hasMatch(email);
   }
 
-  static final numberFormat = NumberFormat("#,##0", "en_US");
-  
+  static final numberFormat = NumberFormat('#,##0', 'en_US');
 }
 
 final kToday = DateTime.now();

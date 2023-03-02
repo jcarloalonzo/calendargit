@@ -1,13 +1,13 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
- 
+
+import '../../core/config/palette.dart';
+
 class ConfirmAt {
+  ConfirmAt(
+      {required this.context, required this.action, required this.content});
   final BuildContext context;
   final Function action;
   final Widget content;
-
-  ConfirmAt(
-      {required this.context, required this.action, required this.content});
 
   Future<Widget?> confirmDialogBack(
       String headMsn, String? confirm, double height,
@@ -38,12 +38,12 @@ class ConfirmAt {
                       Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            borderRadius:const  BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
                             ),
                             //color: Colors.teal,
-                            border:   Border.all(color: Colors.black12)),
+                            border: Border.all(color: Colors.black12)),
                       ),
                       SizedBox(
                         height: 50,
@@ -56,7 +56,7 @@ class ConfirmAt {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18,
-                                  fontFamily: "Source Sans Pro",
+                                  fontFamily: 'Source Sans Pro',
                                 ),
                               )
                             ]),
@@ -81,45 +81,45 @@ class ConfirmAt {
                     ],
                   ),
                   content,
-                  if(confirm!=null)
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(_).pop();
-                      action();
-                    },
-                    child: Container(
-                      width: width * 0.5132,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Palette.primaryColor,
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 9),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (imageIcon != '')
-                            Image.asset(
-                              imageIcon,
-                              width: 30,
-                              color: Colors.white,
+                  if (confirm != null)
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(_).pop();
+                        action();
+                      },
+                      child: Container(
+                        width: width * 0.5132,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Palette.primaryColor,
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (imageIcon != '')
+                              Image.asset(
+                                imageIcon,
+                                width: 30,
+                                color: Colors.white,
+                              ),
+                            if (imageIcon != '')
+                              const SizedBox(
+                                width: 10.0,
+                              ),
+                            Text(
+                              confirm,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Source Sans Pro',
+                                  color: Colors.white),
+                              textAlign: TextAlign.center,
                             ),
-                          if (imageIcon != '')
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                          Text(
-                            confirm,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "Source Sans Pro",
-                                color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),

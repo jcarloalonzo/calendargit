@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, non_constant_identifier_names, avoid_print
 
-import 'package:calendario/data/models/entities/response_model.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../../data/models/entities/response_model.dart';
 
 class LicenseSpaBloc with ChangeNotifier {
 //

@@ -1,7 +1,8 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+
+import 'palette.dart';
 
 class MyUtils {
   static formatPrice(num price) => '\$. ${price.toStringAsFixed(2)}';
@@ -79,11 +80,11 @@ class MyUtils {
       lastDate: DateTime.now().add(const Duration(days: 60)),
     );
     if (picked != null) {
-      String _fechaTemp = DateFormat('yyyy-MM-dd').format(picked);
-      controller?.text = _fechaTemp;
+      String fechaTemp = DateFormat('yyyy-MM-dd').format(picked);
+      controller?.text = fechaTemp;
       // setState(() {});
 
-      return _fechaTemp;
+      return fechaTemp;
     }
     return '';
   }
@@ -108,14 +109,14 @@ class MyUtils {
       context: context,
       initialTime: TimeOfDay.now(),
       initialEntryMode: TimePickerEntryMode.dial,
-      confirmText: "Ok",
-      cancelText: "Cancelar",
-      helpText: "Seleccionar Horario",
+      confirmText: 'Ok',
+      cancelText: 'Cancelar',
+      helpText: 'Seleccionar Horario',
     );
     if (picked != null) {
-      String _fechaTemp = picked.format(context);
-      controller?.text = _fechaTemp;
-      return _fechaTemp;
+      String fechaTemp = picked.format(context);
+      controller?.text = fechaTemp;
+      return fechaTemp;
     }
     return '';
   }
@@ -159,13 +160,12 @@ class MyUtils {
 */
 
 class MaskedTextInputFormatter extends TextInputFormatter {
-  final String mask;
-  final String separator;
-
   MaskedTextInputFormatter({
     required this.mask,
     required this.separator,
   });
+  final String mask;
+  final String separator;
 
   @override
   TextEditingValue formatEditUpdate(

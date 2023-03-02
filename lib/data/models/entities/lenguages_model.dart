@@ -19,13 +19,13 @@ final lenguagesmodels = <LenguagesModel>[
     idioma: 'Español (PE)',
     img: 'assets/png/spanish.png',
     cod: 'es',
-    voz: "es-PE",
-    description: "Español Perú",
+    voz: 'es-PE',
+    description: 'Español Perú',
   ),
   LenguagesModel(
       idioma: 'English (US)',
       img: 'assets/png/usa.png',
       cod: 'en',
-      voz: "en-US",
-      description: "English United States"),
+      voz: 'en-US',
+      description: 'English United States'),
 ];

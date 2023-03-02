@@ -17,18 +17,17 @@ class ToRegisterScheduleFreeResponse {
     this.bookingId,
     this.bookingCode,
   });
+  factory ToRegisterScheduleFreeResponse.fromJson(Map<String, dynamic> json) =>
+      ToRegisterScheduleFreeResponse(
+        bookingId: json['BookingID'],
+        bookingCode: json['BookingCode'],
+      );
 
   int? bookingId;
   String? bookingCode;
 
-  factory ToRegisterScheduleFreeResponse.fromJson(Map<String, dynamic> json) =>
-      ToRegisterScheduleFreeResponse(
-        bookingId: json["BookingID"],
-        bookingCode: json["BookingCode"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "BookingID": bookingId,
-        "BookingCode": bookingCode,
+        'BookingID': bookingId,
+        'BookingCode': bookingCode,
       };
 }

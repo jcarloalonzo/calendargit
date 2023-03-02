@@ -1,13 +1,8 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
 
 class MyIconButtomCircle extends StatelessWidget {
-  final Function()? onTap;
-  final IconData icon;
-  final Color? colorIcon;
-  final Color? colorBackground;
-
   const MyIconButtomCircle({
     Key? key,
     this.onTap,
@@ -15,6 +10,10 @@ class MyIconButtomCircle extends StatelessWidget {
     this.colorIcon = Palette.white,
     this.colorBackground = Palette.black2,
   }) : super(key: key);
+  final Function()? onTap;
+  final IconData icon;
+  final Color? colorIcon;
+  final Color? colorBackground;
 
   @override
   Widget build(BuildContext context) {

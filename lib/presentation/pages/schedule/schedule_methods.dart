@@ -1,21 +1,22 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/dropdown_model.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/agent/agent_cancel/agent_cancel_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_complet/agent_complete_page.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_page.dart';
-import 'package:calendario/presentation/pages/schedule/schedule_widgets.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
 import '../../../data/models/entities/booking.dart';
+import '../../../data/models/entities/dropdown_model.dart';
+import '../../bloc/schedule_bloc.dart';
+import '../../widgets/my_alerts.dart';
+import '../../widgets/my_buttom.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
+import '../../widgets/textfield_general.dart';
+import '../agent/agent_cancel/agent_cancel_page.dart';
+import '../agent/agent_complet/agent_complete_page.dart';
+import '../agent/agent_reprogramming/agent_repro_page.dart';
+import 'schedule_widgets.dart';
 
 class ScheduleMethods {
   static Future<DialogsAlerts?> toInvoiceMethod(BuildContext context) {
@@ -564,11 +565,11 @@ class _MyDialogFilterState extends State<_MyDialogFilter> {
 }
 
 class _MyDialogCancelacionBooking extends StatefulWidget {
-  final String? body;
   const _MyDialogCancelacionBooking({
     Key? key,
     this.body,
   }) : super(key: key);
+  final String? body;
 
   @override
   State<_MyDialogCancelacionBooking> createState() =>
@@ -1003,16 +1004,6 @@ class _MyDialogSaveState extends State<_MyDialogSave> {
 }
 
 class _ItemTextWithTextField extends StatelessWidget {
-  final String title;
-  final TextEditingController? controller;
-  final bool isEnabled;
-  final double widthField;
-  final bool isPrice;
-  final bool isEditableColor;
-  final Function(String)? onChanged;
-  final Function()? onTapTextField;
-  final String? hintText;
-  final List<TextInputFormatter>? inputFormatters;
   const _ItemTextWithTextField({
     Key? key,
     required this.title,
@@ -1026,6 +1017,16 @@ class _ItemTextWithTextField extends StatelessWidget {
     this.hintText,
     this.inputFormatters,
   }) : super(key: key);
+  final String title;
+  final TextEditingController? controller;
+  final bool isEnabled;
+  final double widthField;
+  final bool isPrice;
+  final bool isEditableColor;
+  final Function(String)? onChanged;
+  final Function()? onTapTextField;
+  final String? hintText;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {

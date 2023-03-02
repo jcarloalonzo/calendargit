@@ -1,20 +1,19 @@
 import 'package:calendar_view/calendar_view.dart';
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/presentation/pages/agent/schedule_reservation_free/schedule_reservationfree_page.dart';
-import 'package:calendario/presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
-import 'package:calendario/presentation/widgets/my_dialogs.dart';
-
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
 import '../../../core/config/size_text.dart';
+import '../../../data/models/entities/booking.dart';
+import '../../widgets/my_dialogs.dart';
+import '../../widgets/my_text.dart';
+import '../agent/schedule_reservation_free/schedule_reservationfree_page.dart';
+import '../booking/booking_detail_page/booking_detail_page.dart';
 
 class CalendarBody extends StatelessWidget {
-  final GlobalKey<DayViewState>? state;
   const CalendarBody({Key? key, this.state}) : super(key: key);
+  final GlobalKey<DayViewState>? state;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,7 @@ class CalendarBody extends StatelessWidget {
               body:
                   '¿Desea realizar reserva a la hora: ${MyUtils.firstUpper(Jiffy(e).format("HH:mm"))}?');
           if (action == DialogAction.yes) {
-             Navigator.pushNamed(
-                context, ScheduleReservationFreePage.routeName,
+            Navigator.pushNamed(context, ScheduleReservationFreePage.routeName,
                 arguments: e.toString());
 
             // if (a != null)
@@ -80,7 +78,7 @@ class CalendarBody extends StatelessWidget {
             child: Row(
               children: [
                 MyText(
-                  text: Jiffy(e).format("d"),
+                  text: Jiffy(e).format('d'),
                   color: Palette.white,
                   size: 70,
                   fontWeight: FontWeight.w700,
@@ -97,7 +95,7 @@ class CalendarBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     MyText(
-                      text: MyUtils.firstUpper(Jiffy(e).format("MMMM yyyy")),
+                      text: MyUtils.firstUpper(Jiffy(e).format('MMMM yyyy')),
                       color: Palette.white,
                       size: SizeText.text4 + 1,
                       fontWeight: FontWeight.w400,
@@ -146,7 +144,6 @@ class CalendarBody extends StatelessWidget {
               ),
             ),
           );
-
         },
         showLiveTimeLineInAllDays: true,
         eventArranger:

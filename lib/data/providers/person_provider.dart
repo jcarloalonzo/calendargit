@@ -1,8 +1,10 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/entities/service.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+import '../../core/config/config.dart';
+import '../models/entities/response_model.dart';
+import '../models/entities/service.dart';
 
 class APIPerson {
   static Future<ResponseModel<List<Service>>> getListServicePerson(

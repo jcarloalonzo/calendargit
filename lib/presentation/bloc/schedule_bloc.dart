@@ -1,20 +1,20 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/data/models/entities/anula_booking_request.dart';
-import 'package:calendario/data/models/entities/complete_booking_request.dart';
-import 'package:calendario/data/models/entities/dropdown_model.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/program_turn_model.dart';
-import 'package:calendario/data/models/entities/reprogram_request.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/entities/services_hours_model.dart';
-import 'package:calendario/data/models/requests/booking_request.dart';
-import 'package:calendario/data/models/requests/generate_invoice_booking_request.dart';
-import 'package:calendario/data/models/responses/to_invoice_response.dart';
-import 'package:calendario/data/providers/booking_provider.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../core/config/Utils.dart';
+import '../../data/models/entities/anula_booking_request.dart';
 import '../../data/models/entities/booking.dart';
+import '../../data/models/entities/complete_booking_request.dart';
+import '../../data/models/entities/dropdown_model.dart';
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/program_turn_model.dart';
+import '../../data/models/entities/reprogram_request.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/models/entities/services_hours_model.dart';
+import '../../data/models/requests/booking_request.dart';
+import '../../data/models/requests/generate_invoice_booking_request.dart';
+import '../../data/models/responses/to_invoice_response.dart';
+import '../../data/providers/booking_provider.dart';
+import '../widgets/my_loading_super.dart';
 
 class ScheduleBloc extends ChangeNotifier {
   Booking? _bookingSeleccionado;
@@ -249,14 +249,14 @@ class ScheduleBloc extends ChangeNotifier {
     _isLoadingPageRepro = true;
     notifyListeners();
     try {
-      final _response =
+      final response =
           await APIBooking.personGetRangeDate(_dataLogin!.personId!);
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (_response.statusCode == 200) {
-        _rangeDatePerson = _response.data;
+      if (response.statusCode == 200) {
+        _rangeDatePerson = response.data;
       }
-      await _setErrorRepro(_response);
+      await _setErrorRepro(response);
     } catch (e) {
       await _tryCatchErrorRepro(e);
     }
@@ -280,13 +280,13 @@ class ScheduleBloc extends ChangeNotifier {
       obj.personID = _dataLogin!.personId;
       obj.dateProgram = _dateSelectedTurn;
 
-      final _response = await APIBooking.programGetTurn(obj: obj);
+      final response = await APIBooking.programGetTurn(obj: obj);
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (_response.statusCode == 200) {
-        _listProgramTurnModel = _response.data;
+      if (response.statusCode == 200) {
+        _listProgramTurnModel = response.data;
       }
-      await _setErrorRepro(_response);
+      await _setErrorRepro(response);
       return;
     } catch (e) {
       await _tryCatchErrorRepro(e);
@@ -319,15 +319,15 @@ class ScheduleBloc extends ChangeNotifier {
       final myLoading = MyLoading(context: ctx!);
       myLoading.createLoading();
 
-      final _response =
+      final response =
           await APIBooking.validateToReprogram(bookingID: bookingID);
       myLoading.dismiss();
 
       _isLoading = false;
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (_response.statusCode != 200) {
-        await _setError(_response);
+      if (response.statusCode != 200) {
+        await _setError(response);
         return false;
       }
       // _servicelist = _response.data!;
@@ -422,13 +422,13 @@ class ScheduleBloc extends ChangeNotifier {
     // obj.telephone = _bookingSeleccionado?.phoneNumber;
     // obj.emailAddress = _bookingSeleccionado?.emailAddress;
 
-    final _response = await APIBooking.completeBookingAPI(obj: obj);
+    final response = await APIBooking.completeBookingAPI(obj: obj);
     // var response = await completeBooking(obj);
-    _setErrorRepro(_response);
-    if (_response.statusCode != 200) {
+    _setErrorRepro(response);
+    if (response.statusCode != 200) {
       notifyListeners();
     }
-    return _response;
+    return response;
   }
 
   //
@@ -445,15 +445,15 @@ class ScheduleBloc extends ChangeNotifier {
     obj.reason = reason;
 
     // var response = await anulaBooking(obj);
-    final _response = await APIBooking.anulaBooking(obj: obj);
+    final response = await APIBooking.anulaBooking(obj: obj);
     // _response.statusCode = 300;
     // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
-    _setErrorRepro(_response);
+    _setErrorRepro(response);
     // _error = _response;
-    if (_response.statusCode != 200) {
+    if (response.statusCode != 200) {
       notifyListeners();
     }
-    return _response;
+    return response;
   }
 
 //
@@ -532,7 +532,7 @@ class ScheduleBloc extends ChangeNotifier {
     return u;
   }
 
-  String? _numeroTarjeta = "";
+  String? _numeroTarjeta = '';
   String? get numeroTarjeta => _numeroTarjeta;
   void setNumeroTarjeta(String? v) {
     _numeroTarjeta = v;
@@ -563,12 +563,12 @@ class ScheduleBloc extends ChangeNotifier {
       ListPaymentRequest(
         typePayment: _tipoPagoModelDropSelected?.cod.toString(),
         numberCard: _numeroTarjeta,
-        numerOperation: "",
+        numerOperation: '',
         amount: _pagoInvoice,
       ),
     ];
 
-    final _response = await APIBooking.generateInvoice(
+    final response = await APIBooking.generateInvoice(
         bookingID: _bookingSeleccionado!.bookingId!, obj: obj);
 
     // myLoading.dismiss();
@@ -577,14 +577,14 @@ class ScheduleBloc extends ChangeNotifier {
     // _response.statusCode = 300;
     // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
 
-    _setErrorRepro(_response);
+    _setErrorRepro(response);
 
-    if (_response.statusCode != 200) {
+    if (response.statusCode != 200) {
       // return null;
     }
     // _servicelist = _response.data!;
     notifyListeners();
-    return _response;
+    return response;
   }
 
 //

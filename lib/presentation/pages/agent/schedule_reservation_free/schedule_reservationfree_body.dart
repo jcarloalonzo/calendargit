@@ -1,15 +1,16 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/pages/agent/schedule_reservation_free/schedule_reservation_bloc.dart';
-import 'package:calendario/presentation/search/search_client.dart';
-import 'package:calendario/presentation/search/search_service.dart';
-import 'package:calendario/presentation/widgets/my_card_container.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../search/search_client.dart';
+import '../../../search/search_service.dart';
+import '../../../widgets/my_card_container.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/mysizedbox.dart';
+import '../../../widgets/textfield_general.dart';
+import 'schedule_reservation_bloc.dart';
 
 class ScheduleReservationFreeBody extends StatefulWidget {
   const ScheduleReservationFreeBody({

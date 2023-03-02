@@ -1,8 +1,10 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/requests/service_request.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+import '../../core/config/config.dart';
+import '../models/entities/response_model.dart';
+import '../models/requests/service_request.dart';
 
 class APIService {
   static Future<ResponseModel<num>> getPrice(

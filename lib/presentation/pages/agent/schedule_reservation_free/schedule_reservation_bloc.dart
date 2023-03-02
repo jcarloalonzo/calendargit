@@ -1,18 +1,18 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/data/models/entities/client_entity.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/requests/register_booking_request.dart';
-import 'package:calendario/data/models/requests/service_request.dart';
-import 'package:calendario/data/models/responses/to_register_schedule_free_response.dart';
-import 'package:calendario/data/providers/booking_provider.dart';
-import 'package:calendario/data/providers/client_provider.dart';
-import 'package:calendario/data/providers/person_provider.dart';
-import 'package:calendario/data/providers/service_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../../../../core/config/Utils.dart';
+import '../../../../data/models/entities/client_entity.dart';
+import '../../../../data/models/entities/login_model.dart';
+import '../../../../data/models/entities/response_model.dart';
 import '../../../../data/models/entities/service.dart';
+import '../../../../data/models/requests/register_booking_request.dart';
+import '../../../../data/models/requests/service_request.dart';
+import '../../../../data/models/responses/to_register_schedule_free_response.dart';
+import '../../../../data/providers/booking_provider.dart';
+import '../../../../data/providers/client_provider.dart';
+import '../../../../data/providers/person_provider.dart';
+import '../../../../data/providers/service_provider.dart';
 
 class ScheduleReservationBloc extends ChangeNotifier {
   ResponseModel? _error;

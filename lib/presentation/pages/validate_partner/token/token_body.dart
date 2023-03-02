@@ -1,15 +1,13 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/pages/validate_partner/register/register_page.dart';
-import 'package:calendario/presentation/pages/validate_partner/token/token_bloc.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../register/register_bloc.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/mysizedbox.dart';
+import '../register/register_page.dart';
+import 'token_bloc.dart';
 
 class TokenBody extends StatelessWidget {
   const TokenBody({
@@ -29,7 +27,7 @@ class TokenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<TokenBloc>(context, listen: true);
-    final _border = OutlineInputBorder(
+    final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
         color: Palette.colorApp,
@@ -64,26 +62,17 @@ class TokenBody extends StatelessWidget {
                   ),
                   const MySizedBoxHeight(kDouble: 20),
                   TextField(
-                    //
-                    //
                     controller: bloc.tokenController,
-
-                    //
-
                     cursorColor: Palette.colorApp,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Palette.colorApp,
                         fontSize: 18,
-                        fontWeight: FontWeight.w600
-                        // color: colorTextField,
-                        ),
+                        fontWeight: FontWeight.w600),
                     decoration: InputDecoration(
-                      border: _border,
-                      focusedBorder: _border,
-                      // contentPadding: EdgeInsets.zero,
+                      border: border,
+                      focusedBorder: border,
                       isDense: true,
-
                       labelStyle: const TextStyle(
                         color: Palette.colorApp,
                         fontSize: 39,

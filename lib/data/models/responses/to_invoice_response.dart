@@ -16,21 +16,20 @@ class ToInvoiceResponse {
     this.numberId,
     this.codeNumber,
   });
+  factory ToInvoiceResponse.fromJson(Map<String, dynamic> json) =>
+      ToInvoiceResponse(
+        invoiceId: json['InvoiceID'],
+        numberId: json['NumberID'],
+        codeNumber: json['CodeNumber'],
+      );
 
   int? invoiceId;
   String? numberId;
   String? codeNumber;
 
-  factory ToInvoiceResponse.fromJson(Map<String, dynamic> json) =>
-      ToInvoiceResponse(
-        invoiceId: json["InvoiceID"],
-        numberId: json["NumberID"],
-        codeNumber: json["CodeNumber"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "InvoiceID": invoiceId,
-        "NumberID": numberId,
-        "CodeNumber": codeNumber,
+        'InvoiceID': invoiceId,
+        'NumberID': numberId,
+        'CodeNumber': codeNumber,
       };
 }

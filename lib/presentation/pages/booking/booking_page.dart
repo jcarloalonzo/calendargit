@@ -1,11 +1,12 @@
-import 'package:calendario/presentation/bloc/booking_bloc.dart';
-import 'package:calendario/presentation/pages/booking/booking_body.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/contenedor_rectangle.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
+
+import '../../bloc/booking_bloc.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/contenedor_rectangle.dart';
+import '../../widgets/my_background.dart';
+import 'booking_body.dart';
 
 class BookingPage extends StatelessWidget {
   const BookingPage._();

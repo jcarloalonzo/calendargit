@@ -1,18 +1,16 @@
-import 'package:calendario/core/config/only_portroit.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_config.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/validate_partner/register/register_bloc.dart';
-import 'package:calendario/presentation/pages/validate_partner/register/register_body.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RegisterPage extends StatelessWidget {
-  static String routeName = "/registerPageLogin";
+import '../../../../core/config/only_portroit.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../data/models/entities/response_model.dart';
+import '../../../widgets/my_background.dart';
+import 'register_bloc.dart';
+import 'register_body.dart';
 
+class RegisterPage extends StatelessWidget {
   const RegisterPage._();
+  static String routeName = '/registerPageLogin';
   static Widget init(
     BuildContext context,
   ) {
@@ -26,21 +24,9 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = Provider.of<RegisterBloc>(context, listen: true);
 
-    if (bloc.error != null) {
-      if (bloc.error!.statusCode != 200) {
-        Future.delayed(Duration.zero, () async {
-          confirmAlternantError(
-              context: context,
-              errormodel: bloc.error!.error!,
-              statuscode: bloc.error!.statusCode!);
-          bloc.error = null;
-        });
-      }
-    }
-
     onlyPortroitOrientation();
-    SizeConfig().init(context);
 
+    ResponseModel.handleError(bloc, context);
     // ignore: prefer_const_constructors
     return SafeArea(
       child: const MyBackGround(

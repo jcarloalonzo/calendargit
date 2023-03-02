@@ -1,16 +1,17 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../widgets/my_text.dart';
+
 class TurnoItemCircle extends StatelessWidget {
-  final String title;
-  final Color? colorCircle;
   const TurnoItemCircle({
     Key? key,
     required this.title,
     this.colorCircle,
   }) : super(key: key);
+  final String title;
+  final Color? colorCircle;
 
   @override
   Widget build(BuildContext context) {

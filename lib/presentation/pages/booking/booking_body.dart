@@ -1,19 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/booking_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/confirm_at.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/Utils.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../bloc/booking_bloc.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/confirm_at.dart';
+import '../../widgets/my_buttom.dart';
+import '../../widgets/my_loading_super.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/textfield_general.dart';
+import '../navigator/background_navigator.dart';
 
 class BookingBody extends StatefulWidget {
   const BookingBody({Key? key}) : super(key: key);
@@ -142,7 +143,8 @@ class _BookingBodyState extends State<BookingBody> {
                 title: 'Precio',
                 isEnabled: false,
                 controller: TextEditingController(
-                    text: MyUtils.formatPrice(blocBooking.bookingDetail!.price!)),
+                    text:
+                        MyUtils.formatPrice(blocBooking.bookingDetail!.price!)),
               ),
             ),
             SizedBox(width: 56),
@@ -438,7 +440,7 @@ class _BookingBodyState extends State<BookingBody> {
     Future.delayed(Duration.zero, () async {
       ConfirmAlternant(context: context, action: () => _processconfirm(context))
           .confirmDialogBack(tittle, '¿Desea proceder con la confirmación?',
-              "   NO   ", "    SI   ", 120.00);
+              '   NO   ', '    SI   ', 120.00);
     });
   }
 
@@ -456,12 +458,13 @@ class _BookingBodyState extends State<BookingBody> {
         ConfirmAt(
                 context: context,
                 action: () {
-                  Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
+                  Navigator.popAndPushNamed(
+                      context, BackGroundNavigator.routeName);
                 },
                 content: const ContentSucess(
                   text: 'Gracias por confirmar la reserva.',
                 ))
-            .confirmDialogBack("Registro Exitoso", "Aceptar", 180,
+            .confirmDialogBack('Registro Exitoso', 'Aceptar', 180,
                 refresh: true);
       });
     }

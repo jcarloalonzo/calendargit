@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ContenedorRectangle extends StatelessWidget {
-  final Widget child;
   const ContenedorRectangle({Key? key, required this.child}) : super(key: key);
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

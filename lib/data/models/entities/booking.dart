@@ -30,6 +30,25 @@ class Booking {
     this.userCodeUi,
     this.price,
   });
+  factory Booking.fromJson(Map<String, dynamic> json) => Booking(
+        bookingId: json['BookingID'],
+        bookingCode: json['BookingCode'],
+        serviceId: json['ServiceID'],
+        serviceDescription: json['ServiceDescription'],
+        date: DateTime.parse(json['Date']),
+        initialTime: json['InitialTime'],
+        finalTime: json['FinalTime'],
+        bookingStateId: json['BookingStateID'],
+        bookingState: json['BookingState'],
+        observation: json['Observation'],
+        documentTypeId: json['DocumentTypeID'],
+        identification: json['Identification'],
+        name: json['Name'],
+        phoneNumber: json['PhoneNumber'],
+        emailAddress: json['EmailAddress'],
+        userCodeUi: json['UserCodeUI'],
+        price: json['price'],
+      );
 
   int? bookingId;
   String? bookingCode;
@@ -49,43 +68,23 @@ class Booking {
   String? userCodeUi;
   num? price;
 
-  factory Booking.fromJson(Map<String, dynamic> json) => Booking(
-        bookingId: json["BookingID"],
-        bookingCode: json["BookingCode"],
-        serviceId: json["ServiceID"],
-        serviceDescription: json["ServiceDescription"],
-        date: DateTime.parse(json["Date"]),
-        initialTime: json["InitialTime"],
-        finalTime: json["FinalTime"],
-        bookingStateId: json["BookingStateID"],
-        bookingState: json["BookingState"],
-        observation: json["Observation"],
-        documentTypeId: json["DocumentTypeID"],
-        identification: json["Identification"],
-        name: json["Name"],
-        phoneNumber: json["PhoneNumber"],
-        emailAddress: json["EmailAddress"],
-        userCodeUi: json["UserCodeUI"],
-        price: json["price"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "BookingID": bookingId,
-        "BookingCode": bookingCode,
-        "ServiceID": serviceId,
-        "ServiceDescription": serviceDescription,
-        "Date": date,
-        "InitialTime": initialTime,
-        "FinalTime": finalTime,
-        "BookingStateID": bookingStateId,
-        "BookingState": bookingState,
-        "Observation": observation,
-        "DocumentTypeID": documentTypeId,
-        "Identification": identification,
-        "Name": name,
-        "PhoneNumber": phoneNumber,
-        "EmailAddress": emailAddress,
-        "UserCodeUI": userCodeUi,
-        "price": price,
+        'BookingID': bookingId,
+        'BookingCode': bookingCode,
+        'ServiceID': serviceId,
+        'ServiceDescription': serviceDescription,
+        'Date': date,
+        'InitialTime': initialTime,
+        'FinalTime': finalTime,
+        'BookingStateID': bookingStateId,
+        'BookingState': bookingState,
+        'Observation': observation,
+        'DocumentTypeID': documentTypeId,
+        'Identification': identification,
+        'Name': name,
+        'PhoneNumber': phoneNumber,
+        'EmailAddress': emailAddress,
+        'UserCodeUI': userCodeUi,
+        'price': price,
       };
 }

@@ -1,20 +1,9 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
+import '../../core/config/size_text.dart';
+
 class MyButtom extends StatelessWidget {
-  final String text;
-  final Function()? onTap;
-  final Color? color;
-  final Color? colorText;
-  final String? textSize;
-  final double width;
-  final double? sizeText;
-  final IconData? icono;
-  final Color? colorIcono;
-  final double? sizeIcon;
-  final double height;
-  final bool isLoading;
   const MyButtom(
       {Key? key,
       required this.text,
@@ -30,13 +19,27 @@ class MyButtom extends StatelessWidget {
       this.height = 40,
       this.isLoading = false})
       : super(key: key);
+  final String text;
+  final Function()? onTap;
+  final Color? color;
+  final Color? colorText;
+  final String? textSize;
+  final double width;
+  final double? sizeText;
+  final IconData? icono;
+  final Color? colorIcono;
+  final double? sizeIcon;
+  final double height;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white, elevation: 2, backgroundColor: color,
+          foregroundColor: Colors.white,
+          elevation: 2,
+          backgroundColor: color,
           shadowColor: Palette.colorApp,
           minimumSize: Size(width, height),
           shape:
@@ -57,9 +60,9 @@ class MyButtom extends StatelessWidget {
             child: Center(
               child: (isLoading)
                   ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                      child:   CircularProgressIndicator(),
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(),
                     )
                   : Text(
                       text,

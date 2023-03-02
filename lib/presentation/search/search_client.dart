@@ -1,12 +1,12 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/data/models/entities/client_entity.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
-class SearchClient extends SearchDelegate {
-  final List<ClientEntity> list;
+import '../../core/config/palette.dart';
+import '../../data/models/entities/client_entity.dart';
+import '../widgets/my_text.dart';
 
+class SearchClient extends SearchDelegate {
   SearchClient(this.list);
+  final List<ClientEntity> list;
   @override
   List<Widget> buildActions(BuildContext context) {
     return [

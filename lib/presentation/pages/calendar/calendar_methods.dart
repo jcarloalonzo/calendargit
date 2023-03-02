@@ -1,13 +1,13 @@
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/dropdown_model.dart';
-import 'package:calendario/presentation/bloc/calendar_bloc.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../../data/models/entities/dropdown_model.dart';
+import '../../bloc/calendar_bloc.dart';
+import '../../widgets/my_alerts.dart';
+import '../../widgets/my_buttom.dart';
+import '../../widgets/my_text.dart';
 
 class CalendarMethods {
   static Future<DialogsAlerts?> filterMethodSchedule(BuildContext context) {

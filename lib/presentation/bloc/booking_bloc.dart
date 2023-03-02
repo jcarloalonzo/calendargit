@@ -1,9 +1,10 @@
-import 'package:calendario/data/models/entities/booking_detail_model.dart';
-import 'package:calendario/data/models/entities/confirm_booking_request.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/services/api_services.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../data/models/entities/booking_detail_model.dart';
+import '../../data/models/entities/confirm_booking_request.dart';
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/services/api_services.dart';
 
 class BookingBloc extends ChangeNotifier {
   bool _isLoading = false;

@@ -1,3 +1,10 @@
 {
-    "dart.flutterSdkPath": "C:\\Users\\Pedro\\fvm\\versions\\stable"
+    "dart.flutterSdkPath": "C:\\Users\\Pedro\\fvm\\versions\\stable",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+      },
+      "editor.formatOnSave": true,
+      "editor.bracketPairColorization.enabled": true
+      // "dart.previewFlutterUiGuides": true
 }

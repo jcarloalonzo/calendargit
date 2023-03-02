@@ -23,6 +23,21 @@ class ClientEntity {
     this.activate,
     this.userCodeUi,
   });
+  factory ClientEntity.fromJson(Map<String, dynamic> json) => ClientEntity(
+        clientId: json['clientID'],
+        documentTypeId: json['documentTypeID'],
+        identification: json['identification'],
+        legalName: json['legalName'],
+        name: json['name'],
+        surName: json['surName'],
+        secondSurName: json['secondSurName'],
+        sexId: json['sexID'],
+        birthday: json['birthday'],
+        phoneNumber: json['phoneNumber'],
+        emailAddress: json['emailAddress'],
+        activate: json['activate'],
+        userCodeUi: json['userCodeUI'],
+      );
 
   int? clientId;
   int? documentTypeId;
@@ -37,22 +52,4 @@ class ClientEntity {
   String? emailAddress;
   bool? activate;
   String? userCodeUi;
-
-  factory ClientEntity.fromJson(Map<String, dynamic> json) => ClientEntity(
-        clientId: json["clientID"],
-        documentTypeId: json["documentTypeID"],
-        identification:
-            json["identification"],
-        legalName: json["legalName"],
-        name: json["name"],
-        surName: json["surName"],
-        secondSurName: json["secondSurName"],
-        sexId: json["sexID"],
-        birthday: json["birthday"],
-        phoneNumber: json["phoneNumber"],
-        emailAddress:
-            json["emailAddress"],
-        activate: json["activate"],
-        userCodeUi: json["userCodeUI"],
-      );
 }

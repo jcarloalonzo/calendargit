@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:calendario/presentation/bloc/home_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
+import '../../bloc/home_bloc.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/my_background.dart';
 import 'home_body.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     Future.delayed(Duration.zero, () async {
-      await Jiffy.locale("es");
+      await Jiffy.locale('es');
 
       final blocLogin = Provider.of<MainBloc>(context, listen: false);
       final bloc = Provider.of<HomeBloc>(context, listen: false);

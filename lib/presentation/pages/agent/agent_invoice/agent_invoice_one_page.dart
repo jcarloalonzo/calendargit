@@ -1,23 +1,23 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/agent/agent_invoice/agent_invoice_two_page.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/confirm_at.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AgentInvoiceOnePage extends StatefulWidget {
-  static String routeName = "/agentInvoiceOnePage";
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/confirm_alternate.dart';
+import '../../../widgets/confirm_at.dart';
+import '../../../widgets/my_background_with_buttons.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_loading_super.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/textfield_general.dart';
+import '../../navigator/background_navigator.dart';
+import 'agent_invoice_two_page.dart';
 
+class AgentInvoiceOnePage extends StatefulWidget {
   const AgentInvoiceOnePage({Key? key}) : super(key: key);
+  static String routeName = '/agentInvoiceOnePage';
 
   @override
   State<AgentInvoiceOnePage> createState() => _AgentInvoiceOnePageState();
@@ -120,7 +120,7 @@ class _AgentInvoiceOnePageState extends State<AgentInvoiceOnePage> {
                     isEnabled: false,
                     controller: TextEditingController(
                         text:
-                            "${bloc.bookingSeleccionado?.initialTime} - ${bloc.bookingSeleccionado?.finalTime}"),
+                            '${bloc.bookingSeleccionado?.initialTime} - ${bloc.bookingSeleccionado?.finalTime}'),
                   ),
                 ),
               ],
@@ -208,7 +208,7 @@ class _AgentInvoiceOnePageState extends State<AgentInvoiceOnePage> {
     Future.delayed(Duration.zero, () async {
       ConfirmAlternant(context: context, action: () => _processconfirm(context))
           .confirmDialogBack(tittle, '¿Está seguro de completar la reserva?',
-              "   CANCELAR   ", "    SI   ", 120.00);
+              '   CANCELAR   ', '    SI   ', 120.00);
     });
   }
 
@@ -233,7 +233,7 @@ class _AgentInvoiceOnePageState extends State<AgentInvoiceOnePage> {
                 content: const ContentSucess(
                   text: 'Gracias por confirmar la reserva.',
                 ))
-            .confirmDialogBack("Registro Exitoso", "Aceptar", 180,
+            .confirmDialogBack('Registro Exitoso', 'Aceptar', 180,
                 refresh: true);
       });
     }

@@ -1,11 +1,12 @@
-import 'package:calendario/data/models/entities/anula_booking_request.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/models/entities/program_turn_model.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/entities/services_hours_model.dart';
-import 'package:calendario/data/services/api_services.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../data/models/entities/anula_booking_request.dart';
+import '../../data/models/entities/booking.dart';
+import '../../data/models/entities/login_model.dart';
+import '../../data/models/entities/program_turn_model.dart';
+import '../../data/models/entities/response_model.dart';
+import '../../data/models/entities/services_hours_model.dart';
+import '../../data/services/api_services.dart';
 
 class AgendaBloc extends ChangeNotifier {
   int? _personID = 0;

@@ -1,10 +1,10 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/data/providers/login_provider.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../core/config/Utils.dart';
+import '../../../../data/models/entities/login_model.dart';
 import '../../../../data/models/entities/response_model.dart';
+import '../../../../data/preferences/preferences_user.dart';
+import '../../../../data/providers/login_provider.dart';
 
 class LoginBloc with ChangeNotifier {
   ResponseModel? _error;
@@ -23,11 +23,11 @@ class LoginBloc with ChangeNotifier {
     return;
   }
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   //
-  bool _isVisible = false;
+  final bool _isVisible = false;
   bool get isVisible => _isVisible;
 
   Future init(
@@ -65,7 +65,7 @@ class LoginBloc with ChangeNotifier {
       return false;
     }
 
-    if (password.length <= 7) {
+    if (password.length <= 5) {
       setError('La contraseña debe ser mayor a 6 caracteres');
       return false;
     }
@@ -81,7 +81,7 @@ class LoginBloc with ChangeNotifier {
       if (!valida) return null;
       notifyListeners();
       final response = await APILogin.getValidateLogin(
-          emailAdress: user, passToken: password!);
+          emailAdress: user, passToken: password);
 
       notifyListeners();
       if (response.error != null) {

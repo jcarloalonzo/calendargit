@@ -18,6 +18,13 @@ class Service {
     this.shortDescription,
     this.time,
   });
+  factory Service.fromJson(Map<String, dynamic> json) => Service(
+        serviceId: json['serviceID'],
+        serviceCode: json['serviceCode'],
+        description: json['description'],
+        shortDescription: json['shortDescription'],
+        time: json['time'],
+      );
 
   int? serviceId;
   String? serviceCode;
@@ -25,19 +32,11 @@ class Service {
   String? shortDescription;
   String? time;
 
-  factory Service.fromJson(Map<String, dynamic> json) => Service(
-        serviceId: json["serviceID"],
-        serviceCode: json["serviceCode"],
-        description: json["description"],
-        shortDescription: json["shortDescription"],
-        time: json["time"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "serviceID": serviceId,
-        "serviceCode": serviceCode,
-        "description": description,
-        "shortDescription": shortDescription,
-        "time": time,
+        'serviceID': serviceId,
+        'serviceCode': serviceCode,
+        'description': description,
+        'shortDescription': shortDescription,
+        'time': time,
       };
 }

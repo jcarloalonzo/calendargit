@@ -1,15 +1,15 @@
-import 'package:calendario/presentation/bloc/calendar_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/calendar/calendar_body.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CalendarPage extends StatefulWidget {
-  static String routeName = "/CalendarPage";
+import '../../bloc/calendar_bloc.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/confirm_alternate.dart';
+import '../../widgets/my_background.dart';
+import 'calendar_body.dart';
 
+class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
+  static String routeName = '/CalendarPage';
 
   @override
   State<CalendarPage> createState() => _CalendarPageState();

@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../widgets/my_text.dart';
 
 // ignore_for_file: must_call_super
 

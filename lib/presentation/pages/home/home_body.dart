@@ -1,12 +1,13 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/home/home_widgets.dart';
-import 'package:calendario/presentation/pages/invoice/new_invoice_free/invoice_free_page.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
+import '../invoice/new_invoice_free/invoice_free_page.dart';
+import 'home_widgets.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({
@@ -70,14 +71,13 @@ class _ListCardHomeColumn extends StatelessWidget {
         //   onTap: () => Navigator.pushNamed(
         //       context, ScheduleReservationFreePage.routeName),
         // ),
-      
+
         ListCardHome(
           title: 'Emitir Invoice',
           subTitle: 'Puedes emitir un invoice rápido',
           icono: Icons.request_quote_outlined,
           colorIcono: Palette.red,
-          onTap: () => Navigator.pushNamed(
-              context, InvoiceFreePage.routeName),
+          onTap: () => Navigator.pushNamed(context, InvoiceFreePage.routeName),
         ),
       ],
     );

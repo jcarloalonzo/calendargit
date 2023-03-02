@@ -1,7 +1,8 @@
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/config/size_text.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/mysizedbox.dart';
 
 class AccountBody extends StatelessWidget {
   const AccountBody({

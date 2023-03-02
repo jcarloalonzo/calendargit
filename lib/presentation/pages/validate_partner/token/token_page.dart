@@ -1,10 +1,10 @@
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/presentation/pages/validate_partner/token/token_bloc.dart';
-import 'package:calendario/presentation/pages/validate_partner/token/token_body.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../data/models/entities/response_model.dart';
+import '../../../widgets/my_background.dart';
+import 'token_bloc.dart';
+import 'token_body.dart';
 
 class TokenPage extends StatelessWidget {
   const TokenPage._();

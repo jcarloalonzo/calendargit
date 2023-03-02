@@ -1,20 +1,18 @@
-import 'package:calendario/core/config/only_portroit.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_config.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/login_model.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/presentation/bloc/agenda_bloc.dart';
-import 'package:calendario/presentation/bloc/main_bloc.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/pages/validate_partner/register/register_bloc.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/config/only_portroit.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_config.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../../data/preferences/preferences_user.dart';
+import '../../../bloc/agenda_bloc.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_loading_super.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/textfield_general.dart';
+import 'register_bloc.dart';
 
 class RegisterBody extends StatelessWidget {
   const RegisterBody({Key? key}) : super(key: key);

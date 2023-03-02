@@ -1,15 +1,8 @@
-import 'package:calendario/core/config/size_text.dart';
 import 'package:flutter/material.dart';
 
-class MyText extends StatelessWidget {
-  final String text;
-  final FontWeight fontWeight;
-  final double size;
-  final Color color;
-  final TextAlign textAlign;
-  final int maxLines;
-  final TextOverflow textOverFLow;
+import '../../core/config/size_text.dart';
 
+class MyText extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const MyText({
     this.text = '',
@@ -20,6 +13,13 @@ class MyText extends StatelessWidget {
     this.maxLines = 1,
     this.textOverFLow = TextOverflow.ellipsis,
   });
+  final String text;
+  final FontWeight fontWeight;
+  final double size;
+  final Color color;
+  final TextAlign textAlign;
+  final int maxLines;
+  final TextOverflow textOverFLow;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,7 @@ class MyText extends StatelessWidget {
       text,
       textAlign: textAlign,
       overflow: textOverFLow,
-
       maxLines: maxLines,
-
       softWrap: true,
       style: TextStyle(
         // height:1.5,

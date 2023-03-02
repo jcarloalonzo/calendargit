@@ -1,21 +1,21 @@
 import 'package:calendar_agenda/calendar_agenda.dart';
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/program_turn_model.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/agent/agent_reprogramming/agent_repro_widget.dart';
-import 'package:calendario/presentation/widgets/contenedor_rectangle.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/mysizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../../data/models/entities/program_turn_model.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/contenedor_rectangle.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/mysizedbox.dart';
+import 'agent_repro_widget.dart';
+
 class AgentReproBody extends StatelessWidget {
+  AgentReproBody({Key? key}) : super(key: key);
   final CalendarAgendaController _calendarAgendaControllerNotAppBar =
       CalendarAgendaController();
-
-  AgentReproBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -153,16 +153,15 @@ class AgentReproBody extends StatelessWidget {
 }
 
 class _ProgramTurnContainer extends StatelessWidget {
-  final ProgamTurnModel programTurn;
-  final Function()? onTap;
-  final Color? colorCard;
-
   const _ProgramTurnContainer({
     Key? key,
     required this.programTurn,
     this.onTap,
     this.colorCard = Palette.green3,
   }) : super(key: key);
+  final ProgamTurnModel programTurn;
+  final Function()? onTap;
+  final Color? colorCard;
 
   @override
   Widget build(BuildContext context) {

@@ -1,21 +1,11 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/config/palette.dart';
+import 'my_text.dart';
+
 class TextFieldGeneral extends StatelessWidget {
-  final String hintext;
-  final Icon? prefixIcon;
-  final Widget? suffixIcon;
-  final ValueChanged<String>? onChanged;
-  final bool? obscureText;
-  final int? maxLength;
-  final FocusNode? focusNode;
-  final TextInputAction textInputAction;
-  final TextInputType textInputType;
-  final EdgeInsetsGeometry margin;
-  final TextEditingController? controller;
   const TextFieldGeneral(
       {Key? key,
       required this.hintext,
@@ -30,6 +20,17 @@ class TextFieldGeneral extends StatelessWidget {
       this.suffixIcon,
       this.controller})
       : super(key: key);
+  final String hintext;
+  final Icon? prefixIcon;
+  final Widget? suffixIcon;
+  final ValueChanged<String>? onChanged;
+  final bool? obscureText;
+  final int? maxLength;
+  final FocusNode? focusNode;
+  final TextInputAction textInputAction;
+  final TextInputType textInputType;
+  final EdgeInsetsGeometry margin;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -69,10 +70,6 @@ class TextFieldGeneral extends StatelessWidget {
 }
 
 class WidgetInfoText extends StatelessWidget {
-  final String label;
-  final String value;
-  final bool iconcheck;
-  final VoidCallback? trailing;
   const WidgetInfoText(
       {Key? key,
       required this.label,
@@ -80,6 +77,10 @@ class WidgetInfoText extends StatelessWidget {
       this.iconcheck = false,
       this.trailing})
       : super(key: key);
+  final String label;
+  final String value;
+  final bool iconcheck;
+  final VoidCallback? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class WidgetInfoText extends StatelessWidget {
           fontSize: 20,
           color: Color(0xff2A2A2A),
           fontWeight: FontWeight.w700,
-          fontFamily: "Source Sans Pro",
+          fontFamily: 'Source Sans Pro',
         ),
       ),
       subtitle: iconcheck
@@ -102,7 +103,7 @@ class WidgetInfoText extends StatelessWidget {
                     fontSize: 15,
                     color: Color(0xff666666),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Source Sans Pro",
+                    fontFamily: 'Source Sans Pro',
                   ),
                 ),
                 const SizedBox(width: 5),
@@ -116,7 +117,7 @@ class WidgetInfoText extends StatelessWidget {
                     fontSize: 15,
                     color: Color(0xff666666),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Source Sans Pro",
+                    fontFamily: 'Source Sans Pro',
                   ),
                 ),
       trailing: trailing == null
@@ -133,14 +134,13 @@ class WidgetInfoText extends StatelessWidget {
 }
 
 class WidgetInfoTextField extends StatelessWidget {
+  const WidgetInfoTextField(
+      {Key? key, required this.label, this.helper, this.action, this.change})
+      : super(key: key);
   final String label;
   final String? helper;
   final TextInputAction? action;
   final Function(String)? change;
-
-  const WidgetInfoTextField(
-      {Key? key, required this.label, this.helper, this.action, this.change})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +152,7 @@ class WidgetInfoTextField extends StatelessWidget {
           fontSize: 20,
           color: Colors.black,
           fontWeight: FontWeight.w700,
-          fontFamily: "Source Sans Pro",
+          fontFamily: 'Source Sans Pro',
         ),
       ),
       subtitle: TextField(
@@ -177,30 +177,6 @@ class WidgetInfoTextField extends StatelessWidget {
 }
 
 class MyTextFieldContainer extends StatelessWidget {
-  final String? title;
-  final String? svgPath;
-  final Function(String)? onSubmitted;
-  final Function(String)? onChanged;
-  final Function()? onTap;
-  final Function()? onTapTextField;
-  final TextEditingController? controller;
-  final bool isEnabled;
-  final TextAlign textAlign;
-  final TextInputType textInputType;
-  final String? hintText;
-  final Color backgroundColor;
-  final bool isImportantFormRed;
-  final Widget? suffixIcon;
-  final double widthContainer;
-  final Color colorTextField;
-  final TextInputAction action;
-  final int maxLength;
-  final Widget? prefix;
-  final String? prefixText;
-  final int maxLines;
-  final int minLines;
-  final bool isObscure;
-  final List<TextInputFormatter>? inputFormatters;
   const MyTextFieldContainer({
     Key? key,
     this.title,
@@ -228,6 +204,30 @@ class MyTextFieldContainer extends StatelessWidget {
     this.isObscure = false,
     this.inputFormatters,
   }) : super(key: key);
+  final String? title;
+  final String? svgPath;
+  final Function(String)? onSubmitted;
+  final Function(String)? onChanged;
+  final Function()? onTap;
+  final Function()? onTapTextField;
+  final TextEditingController? controller;
+  final bool isEnabled;
+  final TextAlign textAlign;
+  final TextInputType textInputType;
+  final String? hintText;
+  final Color backgroundColor;
+  final bool isImportantFormRed;
+  final Widget? suffixIcon;
+  final double widthContainer;
+  final Color colorTextField;
+  final TextInputAction action;
+  final int maxLength;
+  final Widget? prefix;
+  final String? prefixText;
+  final int maxLines;
+  final int minLines;
+  final bool isObscure;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {

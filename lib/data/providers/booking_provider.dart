@@ -1,19 +1,21 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/anula_booking_request.dart';
-import 'package:calendario/data/models/entities/booking.dart';
-import 'package:calendario/data/models/entities/complete_booking_request.dart';
-import 'package:calendario/data/models/entities/home_model.dart';
-import 'package:calendario/data/models/entities/program_turn_model.dart';
-import 'package:calendario/data/models/entities/reprogram_request.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:calendario/data/models/entities/services_hours_model.dart';
-import 'package:calendario/data/models/requests/booking_request.dart';
-import 'package:calendario/data/models/requests/generate_invoice_booking_request.dart';
-import 'package:calendario/data/models/requests/register_booking_request.dart';
-import 'package:calendario/data/models/responses/to_invoice_response.dart';
-import 'package:calendario/data/models/responses/to_register_schedule_free_response.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+import '../../core/config/config.dart';
+import '../models/entities/anula_booking_request.dart';
+import '../models/entities/booking.dart';
+import '../models/entities/complete_booking_request.dart';
+import '../models/entities/home_model.dart';
+import '../models/entities/program_turn_model.dart';
+import '../models/entities/reprogram_request.dart';
+import '../models/entities/response_model.dart';
+import '../models/entities/services_hours_model.dart';
+import '../models/requests/booking_request.dart';
+import '../models/requests/generate_invoice_booking_request.dart';
+import '../models/requests/register_booking_request.dart';
+import '../models/responses/to_invoice_response.dart';
+import '../models/responses/to_register_schedule_free_response.dart';
 
 class APIBooking {
   static Future<ResponseModel<List<BookingHome>>> getBookingHome(
@@ -71,7 +73,6 @@ class APIBooking {
             ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
     } catch (error) {
       responseData.statusCode = 500;
@@ -112,7 +113,6 @@ class APIBooking {
             ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
       return responseData;
     } catch (e) {
@@ -146,7 +146,6 @@ class APIBooking {
         //     ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
       return responseData;
     } catch (e) {
@@ -179,7 +178,6 @@ class APIBooking {
             ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
       return responseData;
     } catch (e) {
@@ -204,12 +202,12 @@ class APIBooking {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "User": obj.user,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "date": obj.date,
-            "initialTime": obj.initialTime,
-            "finalTime": obj.finalTime
+            'User': obj.user,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'date': obj.date,
+            'initialTime': obj.initialTime,
+            'finalTime': obj.finalTime
           },
         ),
       );
@@ -226,7 +224,6 @@ class APIBooking {
             ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
       return responseData;
     } catch (e) {
@@ -251,10 +248,10 @@ class APIBooking {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "AuthorizedUser": obj.authorizedUser,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "officeID": obj.officeId,
+            'AuthorizedUser': obj.authorizedUser,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'officeID': obj.officeId,
           },
         ),
       );
@@ -275,7 +272,6 @@ class APIBooking {
             ResponseErrorModel.fromJson(json.decode(resp.body));
         // responseData.error = ResponseErrorModel(
         //     code: decodeData['Code'], message: decodeData['Message']);
-
       }
       return responseData;
     } catch (e) {
@@ -298,10 +294,10 @@ class APIBooking {
         // body: confirmBookingRequestToJson(obj),
         body: jsonEncode(
           <String, dynamic>{
-            "user": obj.user,
-            "businessID": obj.businessId,
-            "businessIdent": obj.businessIdent,
-            "reason": obj.reason
+            'user': obj.user,
+            'businessID': obj.businessId,
+            'businessIdent': obj.businessIdent,
+            'reason': obj.reason
           },
         ),
       );
@@ -369,9 +365,12 @@ class APIBooking {
     }
   }
 
-  static Future<ResponseModel<ToRegisterScheduleFreeResponse>> registerScheduleFree(
-      {required RegisterBookingRequest obj, required int businessID}) async {
-    ResponseModel<ToRegisterScheduleFreeResponse> responseData = ResponseModel<ToRegisterScheduleFreeResponse>();
+  static Future<ResponseModel<ToRegisterScheduleFreeResponse>>
+      registerScheduleFree(
+          {required RegisterBookingRequest obj,
+          required int businessID}) async {
+    ResponseModel<ToRegisterScheduleFreeResponse> responseData =
+        ResponseModel<ToRegisterScheduleFreeResponse>();
     try {
       // final url = '${urlWebServer.toString()}api/Company/Register';
       final url = '${Config.urlWebCliente}v1/booking/register/$businessID';
@@ -390,7 +389,8 @@ class APIBooking {
       //PENDIENTE CAMBIAR STATUS CODE A TODOS LOS APIS
       responseData.statusCode = resp.statusCode;
       if (resp.statusCode == 200) {
-        responseData.data = ToRegisterScheduleFreeResponse.fromJson(json.decode(resp.body));
+        responseData.data =
+            ToRegisterScheduleFreeResponse.fromJson(json.decode(resp.body));
 
         // responseData.data = ToInvoiceResponse.fromJson(json.decode(resp.body));
       } else {

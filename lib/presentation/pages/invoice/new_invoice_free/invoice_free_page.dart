@@ -1,13 +1,16 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/pages/invoice/new_invoice_free/invoice_free_detail.dart';
-import 'package:calendario/presentation/pages/invoice/new_invoice_free/invoice_free_general.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/config/palette.dart';
+import '../../../widgets/my_text.dart';
+import 'invoice_free_detail.dart';
+import 'invoice_free_general.dart';
 
 // final loginServices = Provider.of<LoginService>(context, listen: false);
 // loginServices.loginUserDataModelResponseApi
 class InvoiceFreePage extends StatefulWidget {
-  static String routeName = "/InvoiceFreePage";
+  const InvoiceFreePage({Key? key}) : super(key: key);
+
+  static String routeName = '/InvoiceFreePage';
 
   @override
   State<InvoiceFreePage> createState() => _InvoiceFreePageState();
@@ -30,8 +33,7 @@ class _InvoiceFreePageState extends State<InvoiceFreePage> {
         // await facturaService.initNewInvoice(
         //     loginOBJ: loginService.loginUserDataModelResponseApi);
       });
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   @override
@@ -86,10 +88,10 @@ class _InvoiceFreePageState extends State<InvoiceFreePage> {
             indicatorSize: TabBarIndicatorSize.tab,
             tabs: [
               Tab(
-                text: "General".toUpperCase(),
+                text: 'General'.toUpperCase(),
               ),
               Tab(
-                text: "Detalle".toUpperCase(),
+                text: 'Detalle'.toUpperCase(),
               ),
             ],
           ),

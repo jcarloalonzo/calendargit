@@ -1,8 +1,10 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/data/models/entities/client_entity.dart';
-import 'package:calendario/data/models/entities/response_model.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+import '../../core/config/config.dart';
+import '../models/entities/client_entity.dart';
+import '../models/entities/response_model.dart';
 
 class APIClient {
   static Future<ResponseModel<List<ClientEntity>>> getClient(
@@ -15,9 +17,9 @@ class APIClient {
       final resp = await http.get(
         Uri.parse(url),
       );
-      print(resp.body);
+      (resp.body);
       final decodeData = json.decode(resp.body);
-      print(decodeData);
+      (decodeData);
 
       if (resp.statusCode == 200) {
         responseData.data = (json.decode(resp.body) as List)

@@ -1,13 +1,9 @@
-import 'package:calendario/core/config/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class IconSvgButtomAppbar extends StatelessWidget {
-  final String svg;
-  final Function()? onPress;
-  final Color colorSvg;
-  final double sizeSvg;
+import '../../core/config/palette.dart';
 
+class IconSvgButtomAppbar extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const IconSvgButtomAppbar({
     required this.svg,
@@ -15,6 +11,10 @@ class IconSvgButtomAppbar extends StatelessWidget {
     this.colorSvg = Palette.blue2,
     this.sizeSvg = 20.0,
   });
+  final String svg;
+  final Function()? onPress;
+  final Color colorSvg;
+  final double sizeSvg;
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -27,4 +27,3 @@ class IconSvgButtomAppbar extends StatelessWidget {
         onPressed: onPress);
   }
 }
- 

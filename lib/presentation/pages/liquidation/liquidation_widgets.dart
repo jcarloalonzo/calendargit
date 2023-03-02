@@ -1,15 +1,15 @@
-import 'package:calendario/core/config/config.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/data/models/entities/liquidation_model.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
-class LiquidationBodyDetails extends StatelessWidget {
-  final List<LiquidationDetails> detail;
+import '../../../core/config/config.dart';
+import '../../../core/config/palette.dart';
+import '../../../core/config/size_text.dart';
+import '../../../data/models/entities/liquidation_model.dart';
+import '../../widgets/my_text.dart';
 
+class LiquidationBodyDetails extends StatelessWidget {
   const LiquidationBodyDetails({Key? key, required this.detail})
       : super(key: key);
+  final List<LiquidationDetails> detail;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,9 @@ class LiquidationBodyDetails extends StatelessWidget {
 }
 
 class _LineDetailLiquidation extends StatelessWidget {
-  final LiquidationDetails model;
-
   const _LineDetailLiquidation({Key? key, required this.model})
       : super(key: key);
+  final LiquidationDetails model;
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +75,15 @@ class _LineDetailLiquidation extends StatelessWidget {
 }
 
 class LiquidationBottom extends StatelessWidget {
-  final num amountCash;
-  final num amountTC;
-  final num amountZE;
-
   const LiquidationBottom(
       {Key? key,
       required this.amountCash,
       required this.amountTC,
       required this.amountZE})
       : super(key: key);
+  final num amountCash;
+  final num amountTC;
+  final num amountZE;
 
   @override
   Widget build(BuildContext context) {

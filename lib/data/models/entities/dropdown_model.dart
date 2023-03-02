@@ -1,4 +1,4 @@
-import 'package:calendario/presentation/bloc/agent_bloc.dart';
+import '../../../presentation/bloc/agent_bloc.dart';
 
 class LenguagesModel {
   LenguagesModel({this.idioma, this.img, this.cod = ''});

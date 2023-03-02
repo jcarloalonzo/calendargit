@@ -1,9 +1,8 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/data/preferences/preferences_user.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../core/config/Utils.dart';
 import '../../../../data/models/entities/response_model.dart';
+import '../../../../data/preferences/preferences_user.dart';
 
 class TokenBloc with ChangeNotifier {
   ResponseModel? _error;
@@ -26,7 +25,7 @@ class TokenBloc with ChangeNotifier {
   bool get isLoading => _isLoading;
 
   //
-  bool _isVisible = false;
+  final bool _isVisible = false;
   bool get isVisible => _isVisible;
 
   Future init(
@@ -44,9 +43,9 @@ class TokenBloc with ChangeNotifier {
   TextEditingController tokenController = TextEditingController();
 
   Future<bool> validar() async {
-    final _token = tokenController.text;
+    final token = tokenController.text;
 
-    if (MyUtils.stringIsnullOrEmpty(_token)) {
+    if (MyUtils.stringIsnullOrEmpty(token)) {
       // throw 'error';
       setError('Debe ingresar el token en el campo de texto');
       return false;
@@ -56,7 +55,7 @@ class TokenBloc with ChangeNotifier {
     notifyListeners();
     await Future.delayed(const Duration(seconds: 2), () {});
 
-    registrarToken(_token);
+    registrarToken(token);
 
     _isLoading = false;
     notifyListeners();

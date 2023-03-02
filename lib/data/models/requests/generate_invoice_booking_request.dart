@@ -27,6 +27,22 @@ class GenerateInvoiceBookingRequest {
     this.amount,
     this.listPayment,
   });
+  factory GenerateInvoiceBookingRequest.fromJson(Map<String, dynamic> json) =>
+      GenerateInvoiceBookingRequest(
+        user: json['User'],
+        businessId: json['businessID'],
+        businessIdent: json['businessIdent'],
+        officeId: json['officeID'],
+        subAmount: json['subAmount'],
+        taxPorc: json['taxPorc'],
+        taxAmount: json['taxAmount'],
+        taxPorc1: json['taxPorc1'],
+        taxAmount1: json['taxAmount1'],
+        dscto: json['dscto'],
+        amount: json['amount'],
+        listPayment: List<ListPaymentRequest>.from(
+            json['listPayment'].map((x) => ListPaymentRequest.fromJson(x))),
+      );
 
   int? user;
   int? businessId;
@@ -41,36 +57,19 @@ class GenerateInvoiceBookingRequest {
   num? amount;
   List<ListPaymentRequest>? listPayment;
 
-  factory GenerateInvoiceBookingRequest.fromJson(Map<String, dynamic> json) =>
-      GenerateInvoiceBookingRequest(
-        user: json["User"],
-        businessId: json["businessID"],
-        businessIdent: json["businessIdent"],
-        officeId: json["officeID"],
-        subAmount: json["subAmount"],
-        taxPorc: json["taxPorc"],
-        taxAmount: json["taxAmount"],
-        taxPorc1: json["taxPorc1"],
-        taxAmount1: json["taxAmount1"],
-        dscto: json["dscto"],
-        amount: json["amount"],
-        listPayment: List<ListPaymentRequest>.from(
-            json["listPayment"].map((x) => ListPaymentRequest.fromJson(x))),
-      );
-
   Map<String, dynamic> toJson() => {
-        "User": user,
-        "businessID": businessId,
-        "businessIdent": businessIdent,
-        "officeID": officeId,
-        "subAmount": subAmount,
-        "taxPorc": taxPorc,
-        "taxAmount": taxAmount,
-        "taxPorc1": taxPorc1,
-        "taxAmount1": taxAmount1,
-        "dscto": dscto,
-        "amount": amount,
-        "listPayment": List<dynamic>.from(listPayment!.map((x) => x.toJson())),
+        'User': user,
+        'businessID': businessId,
+        'businessIdent': businessIdent,
+        'officeID': officeId,
+        'subAmount': subAmount,
+        'taxPorc': taxPorc,
+        'taxAmount': taxAmount,
+        'taxPorc1': taxPorc1,
+        'taxAmount1': taxAmount1,
+        'dscto': dscto,
+        'amount': amount,
+        'listPayment': List<dynamic>.from(listPayment!.map((x) => x.toJson())),
       };
 }
 
@@ -81,24 +80,23 @@ class ListPaymentRequest {
     this.numerOperation,
     this.amount,
   });
+  factory ListPaymentRequest.fromJson(Map<String, dynamic> json) =>
+      ListPaymentRequest(
+        typePayment: json['typePayment'],
+        numberCard: json['numberCard'],
+        numerOperation: json['numerOperation'],
+        amount: json['amount'],
+      );
 
   String? typePayment;
   String? numberCard;
   String? numerOperation;
   num? amount;
 
-  factory ListPaymentRequest.fromJson(Map<String, dynamic> json) =>
-      ListPaymentRequest(
-        typePayment: json["typePayment"],
-        numberCard: json["numberCard"],
-        numerOperation: json["numerOperation"],
-        amount: json["amount"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "typePayment": typePayment,
-        "numberCard": numberCard,
-        "numerOperation": numerOperation,
-        "amount": amount,
+        'typePayment': typePayment,
+        'numberCard': numberCard,
+        'numerOperation': numerOperation,
+        'amount': amount,
       };
 }

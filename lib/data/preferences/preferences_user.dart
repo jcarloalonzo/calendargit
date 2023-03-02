@@ -7,13 +7,11 @@ const String _prefs_token = 'TOKEN';
 const String _prefs_usuario = 'USUARIO';
 
 class PreferencesUser {
-  static final PreferencesUser _instancia = PreferencesUser._internal();
-
   factory PreferencesUser() {
     return _instancia;
   }
-
   PreferencesUser._internal();
+  static final PreferencesUser _instancia = PreferencesUser._internal();
 
   SharedPreferences? _prefs;
 

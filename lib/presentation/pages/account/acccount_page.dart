@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:calendario/presentation/pages/account/account_body.dart';
-import 'package:calendario/presentation/widgets/my_background.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/my_background.dart';
+import 'account_body.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);

@@ -17,6 +17,16 @@ class BookingHome {
     this.bookingState,
     this.name,
   });
+  factory BookingHome.fromJson(Map<String, dynamic> json) => BookingHome(
+        bookingId: json['BookingID'],
+        bookingCode: json['BookingCode'],
+        serviceDescription: json['ServiceDescription'],
+        date: DateTime.parse(json['Date']),
+        initialTime: json['InitialTime'],
+        finalTime: json['FinalTime'],
+        bookingState: json['BookingState'],
+        name: json['Name'],
+      );
 
   int bookingId;
   String bookingCode;
@@ -27,25 +37,14 @@ class BookingHome {
   String? bookingState;
   String? name;
 
-  factory BookingHome.fromJson(Map<String, dynamic> json) => BookingHome(
-        bookingId: json["BookingID"],
-        bookingCode: json["BookingCode"],
-        serviceDescription: json["ServiceDescription"],
-        date: DateTime.parse(json["Date"]),
-        initialTime: json["InitialTime"],
-        finalTime: json["FinalTime"],
-        bookingState: json["BookingState"],
-        name: json["Name"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "BookingID": bookingId,
-        "BookingCode": bookingCode,
-        "ServiceDescription": serviceDescription,
-        "Date": date.toIso8601String(),
-        "InitialTime": initialTime,
-        "FinalTime": finalTime,
-        "BookingState": bookingState,
-        "Name": name,
+        'BookingID': bookingId,
+        'BookingCode': bookingCode,
+        'ServiceDescription': serviceDescription,
+        'Date': date.toIso8601String(),
+        'InitialTime': initialTime,
+        'FinalTime': finalTime,
+        'BookingState': bookingState,
+        'Name': name,
       };
 }

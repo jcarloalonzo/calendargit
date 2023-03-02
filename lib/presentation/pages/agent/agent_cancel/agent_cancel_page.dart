@@ -1,25 +1,25 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_alerts.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_dialogs.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/confirm_alternate.dart';
+import '../../../widgets/my_alerts.dart';
+import '../../../widgets/my_background_with_buttons.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_dialogs.dart';
+import '../../../widgets/my_loading_super.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/textfield_general.dart';
+import '../../navigator/background_navigator.dart';
+
 class AgentCancelDetailPage extends StatelessWidget {
-  static String routeName = "/AgentCancelDetailPage";
+  AgentCancelDetailPage({Key? key}) : super(key: key);
+  static String routeName = '/AgentCancelDetailPage';
 
   final TextEditingController _motivoController = TextEditingController();
-
-  AgentCancelDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +89,9 @@ class AgentCancelDetailPage extends StatelessWidget {
                     title: 'Fecha',
                     isEnabled: false,
                     controller: TextEditingController(
-                        text:
-                            (MyUtils.formatDate(bloc.bookingSeleccionado!.date!))
-                                .toString()),
+                        text: (MyUtils.formatDate(
+                                bloc.bookingSeleccionado!.date!))
+                            .toString()),
                   ),
                 ),
               ],

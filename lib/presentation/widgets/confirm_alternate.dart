@@ -1,12 +1,13 @@
-import 'package:calendario/data/models/entities/response_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/models/entities/response_model.dart';
+
 class ConfirmAlternant {
+  ConfirmAlternant(
+      {required this.context, required this.action, this.back = true});
   final BuildContext context;
   final Function action;
   final bool back;
-  ConfirmAlternant(
-      {required this.context, required this.action, this.back = true});
 
   Future<Widget?> confirmDialogBack(String headMsn, String msn, String confirm,
       String cancel, double heigth) {
@@ -14,7 +15,7 @@ class ConfirmAlternant {
     final textStyleOption = TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: sizeOption,
-      fontFamily: "Source Sans Pro",
+      fontFamily: 'Source Sans Pro',
     );
     // final padding = EdgeInsets.symmetric(horizontal: 15);
 
@@ -48,7 +49,7 @@ class ConfirmAlternant {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        fontFamily: "Source Sans Pro"),
+                                        fontFamily: 'Source Sans Pro'),
                                   )
                                 ]),
                           ),
@@ -139,16 +140,15 @@ class ConfirmAlternant {
 }
 
 class ContentSucess extends StatelessWidget {
-  final String text;
-
   const ContentSucess({Key? key, required this.text}) : super(key: key);
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     const styleSubText = TextStyle(
       fontSize: 12,
       color: Color(0xff666666),
-      fontFamily: "Roboto",
+      fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
     );
     return Expanded(
@@ -184,7 +184,7 @@ ConfirmAlternant confirmAlternantError(
         statuscode == 500
             ? 'Ha ocurrido un error inesperado o el servidor no responde. Por favor, ponte en contacto con nosotros para ayudarte.'
             : '${errormodel.message}. Si crees que esto es un error, por favor solicita ayuda.',
-        "",
-        "ACEPTAR",
+        '',
+        'ACEPTAR',
         180.0);
 }

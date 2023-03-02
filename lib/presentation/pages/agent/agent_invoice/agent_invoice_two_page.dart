@@ -1,23 +1,23 @@
-import 'package:calendario/core/config/Utils.dart';
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/core/config/size_text.dart';
-import 'package:calendario/presentation/bloc/agenda_bloc.dart';
-import 'package:calendario/presentation/bloc/schedule_bloc.dart';
-import 'package:calendario/presentation/pages/navigator/background_navigator.dart';
-import 'package:calendario/presentation/widgets/confirm_alternate.dart';
-import 'package:calendario/presentation/widgets/confirm_at.dart';
-import 'package:calendario/presentation/widgets/my_loading_super.dart';
-import 'package:calendario/presentation/widgets/my_background_with_buttons.dart';
-import 'package:calendario/presentation/widgets/my_buttom.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
-import 'package:calendario/presentation/widgets/textfield_general.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AgentInvoiceTwoPage extends StatefulWidget {
-  static String routeName = "/agentInvoiceTwoPage";
+import '../../../../core/config/Utils.dart';
+import '../../../../core/config/palette.dart';
+import '../../../../core/config/size_text.dart';
+import '../../../bloc/agenda_bloc.dart';
+import '../../../bloc/schedule_bloc.dart';
+import '../../../widgets/confirm_alternate.dart';
+import '../../../widgets/confirm_at.dart';
+import '../../../widgets/my_background_with_buttons.dart';
+import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_loading_super.dart';
+import '../../../widgets/my_text.dart';
+import '../../../widgets/textfield_general.dart';
+import '../../navigator/background_navigator.dart';
 
+class AgentInvoiceTwoPage extends StatefulWidget {
   const AgentInvoiceTwoPage({Key? key}) : super(key: key);
+  static String routeName = '/agentInvoiceTwoPage';
 
   @override
   State<AgentInvoiceTwoPage> createState() => _AgentInvoiceTwoPageState();
@@ -163,9 +163,9 @@ class _AgentInvoiceTwoPageState extends State<AgentInvoiceTwoPage> {
                   child: MyTextFieldContainer(
                     title: 'Pago',
                     controller: TextEditingController(
-                        text:
-                            MyUtils.formatPrice(bloc.bookingSeleccionado!.price!)
-                                .toString()),
+                        text: MyUtils.formatPrice(
+                                bloc.bookingSeleccionado!.price!)
+                            .toString()),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -311,7 +311,7 @@ class _AgentInvoiceTwoPageState extends State<AgentInvoiceTwoPage> {
     Future.delayed(Duration.zero, () async {
       ConfirmAlternant(context: context, action: () => _processconfirm(context))
           .confirmDialogBack(tittle, '¿Está seguro de completar la reserva?',
-              "   CANCELAR   ", "    SI   ", 120.00);
+              '   CANCELAR   ', '    SI   ', 120.00);
     });
   }
 
@@ -336,7 +336,7 @@ class _AgentInvoiceTwoPageState extends State<AgentInvoiceTwoPage> {
                 content: const ContentSucess(
                   text: 'Gracias por confirmar la reserva.',
                 ))
-            .confirmDialogBack("Registro Exitoso", "Aceptar", 180,
+            .confirmDialogBack('Registro Exitoso', 'Aceptar', 180,
                 refresh: true);
       });
     }

@@ -1,17 +1,18 @@
-import 'package:calendario/core/config/palette.dart';
-import 'package:calendario/presentation/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/palette.dart';
+import 'my_text.dart';
+
 class CustomAppBar extends StatelessWidget {
-  final String title;
-  final List<Widget>? listaIcons;
-  final bool centerTitle;
   const CustomAppBar({
     Key? key,
     this.title = '',
     this.listaIcons,
     this.centerTitle = true,
   }) : super(key: key);
+  final String title;
+  final List<Widget>? listaIcons;
+  final bool centerTitle;
 
   @override
   Widget build(BuildContext context) {

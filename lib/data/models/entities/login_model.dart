@@ -21,6 +21,18 @@ class LoginModel {
     this.name,
     this.userBusinessDto,
   });
+  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
+        userId: json['UserID'],
+        personId: json['PersonID'],
+        personTypeId: json['PersonTypeID'],
+        documentTypeId: json['DocumentTypeID'],
+        documentNumber: json['DocumentNumber'],
+        phoneNumber: json['PhoneNumber'],
+        emailAddress: json['EmailAddress'],
+        name: json['Name'],
+        userBusinessDto: List<UserBusinessDto>.from(
+            json['UserBusinessDTO'].map((x) => UserBusinessDto.fromJson(x))),
+      );
 
   int? userId;
   int? personId;
@@ -32,29 +44,16 @@ class LoginModel {
   String? name;
   List<UserBusinessDto>? userBusinessDto;
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-        userId: json["UserID"],
-        personId: json["PersonID"],
-        personTypeId: json["PersonTypeID"],
-        documentTypeId: json["DocumentTypeID"],
-        documentNumber: json["DocumentNumber"],
-        phoneNumber: json["PhoneNumber"],
-        emailAddress: json["EmailAddress"],
-        name: json["Name"],
-        userBusinessDto: List<UserBusinessDto>.from(
-            json["UserBusinessDTO"].map((x) => UserBusinessDto.fromJson(x))),
-      );
-
   Map<String, dynamic> toJson() => {
-        "UserID": userId,
-        "PersonID": personId,
-        "PersonTypeID": personTypeId,
-        "DocumentTypeID": documentTypeId,
-        "DocumentNumber": documentNumber,
-        "PhoneNumber": phoneNumber,
-        "EmailAddress": emailAddress,
-        "Name": name,
-        "UserBusinessDTO":
+        'UserID': userId,
+        'PersonID': personId,
+        'PersonTypeID': personTypeId,
+        'DocumentTypeID': documentTypeId,
+        'DocumentNumber': documentNumber,
+        'PhoneNumber': phoneNumber,
+        'EmailAddress': emailAddress,
+        'Name': name,
+        'UserBusinessDTO':
             List<dynamic>.from(userBusinessDto!.map((x) => x.toJson())),
       };
 }
@@ -75,6 +74,22 @@ class UserBusinessDto {
     this.storageType,
     this.descriptionStorage,
   });
+  factory UserBusinessDto.fromJson(Map<String, dynamic> json) =>
+      UserBusinessDto(
+        businessId: json['BusinessID'],
+        identification: json['Identification'],
+        businessTypeId: json['BusinessTypeID'],
+        businessName: json['BusinessName'],
+        legalName: json['LegalName'],
+        officeId: json['OfficeID'],
+        officeCode: json['OfficeCode'],
+        officeType: json['OfficeType'],
+        descriptionOffice: json['DescriptionOffice'],
+        storageId: json['StorageID'],
+        storageCode: json['StorageCode'],
+        storageType: json['StorageType'],
+        descriptionStorage: json['DescriptionStorage'],
+      );
 
   int? businessId;
   String? identification;
@@ -90,36 +105,19 @@ class UserBusinessDto {
   int? storageType;
   String? descriptionStorage;
 
-  factory UserBusinessDto.fromJson(Map<String, dynamic> json) =>
-      UserBusinessDto(
-        businessId: json["BusinessID"],
-        identification: json["Identification"],
-        businessTypeId: json["BusinessTypeID"],
-        businessName: json["BusinessName"],
-        legalName: json["LegalName"],
-        officeId: json["OfficeID"],
-        officeCode: json["OfficeCode"],
-        officeType: json["OfficeType"],
-        descriptionOffice: json["DescriptionOffice"],
-        storageId: json["StorageID"],
-        storageCode: json["StorageCode"],
-        storageType: json["StorageType"],
-        descriptionStorage: json["DescriptionStorage"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "BusinessID": businessId,
-        "Identification": identification,
-        "BusinessTypeID": businessTypeId,
-        "BusinessName": businessName,
-        "LegalName": legalName,
-        "OfficeID": officeId,
-        "OfficeCode": officeCode,
-        "OfficeType": officeType,
-        "DescriptionOffice": descriptionOffice,
-        "StorageID": storageId,
-        "StorageCode": storageCode,
-        "StorageType": storageType,
-        "DescriptionStorage": descriptionStorage,
+        'BusinessID': businessId,
+        'Identification': identification,
+        'BusinessTypeID': businessTypeId,
+        'BusinessName': businessName,
+        'LegalName': legalName,
+        'OfficeID': officeId,
+        'OfficeCode': officeCode,
+        'OfficeType': officeType,
+        'DescriptionOffice': descriptionOffice,
+        'StorageID': storageId,
+        'StorageCode': storageCode,
+        'StorageType': storageType,
+        'DescriptionStorage': descriptionStorage,
       };
 }

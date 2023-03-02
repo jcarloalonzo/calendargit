@@ -26,6 +26,22 @@ class RegisterBookingRequest {
     this.registerUser,
     this.client,
   });
+  factory RegisterBookingRequest.fromJson(Map<String, dynamic> json) =>
+      RegisterBookingRequest(
+        officeId: json['officeID'],
+        serviceId: json['serviceID'],
+        personId: json['personID'],
+        clientId: json['clientID'],
+        observation: json['observation'],
+        price: json['price'],
+        date: (json['date']),
+        initialTime: json['initialTime'],
+        finalTime: json['finalTime'],
+        bookingStateId: json['bookingStateID'],
+        onlineApp: json['onlineApp'],
+        registerUser: json['registerUser'],
+        client: ClientBookingRequest.fromJson(json['client']),
+      );
 
   int? officeId;
   int? serviceId;
@@ -41,37 +57,20 @@ class RegisterBookingRequest {
   int? registerUser;
   ClientBookingRequest? client;
 
-  factory RegisterBookingRequest.fromJson(Map<String, dynamic> json) =>
-      RegisterBookingRequest(
-        officeId: json["officeID"],
-        serviceId: json["serviceID"],
-        personId: json["personID"],
-        clientId: json["clientID"],
-        observation: json["observation"],
-        price: json["price"],
-        date: (json["date"]),
-        initialTime: json["initialTime"],
-        finalTime: json["finalTime"],
-        bookingStateId: json["bookingStateID"],
-        onlineApp: json["onlineApp"],
-        registerUser: json["registerUser"],
-        client: ClientBookingRequest.fromJson(json["client"]),
-      );
-
   Map<String, dynamic> toJson() => {
-        "officeID": officeId,
-        "serviceID": serviceId,
-        "personID": personId,
-        "clientID": clientId,
-        "observation": observation,
-        "price": price,
-        "date": date,
-        "initialTime": initialTime,
-        "finalTime": finalTime,
-        "bookingStateID": bookingStateId,
-        "onlineApp": onlineApp,
-        "registerUser": registerUser,
-        "client": client?.toJson(),
+        'officeID': officeId,
+        'serviceID': serviceId,
+        'personID': personId,
+        'clientID': clientId,
+        'observation': observation,
+        'price': price,
+        'date': date,
+        'initialTime': initialTime,
+        'finalTime': finalTime,
+        'bookingStateID': bookingStateId,
+        'onlineApp': onlineApp,
+        'registerUser': registerUser,
+        'client': client?.toJson(),
       };
 }
 
@@ -87,6 +86,18 @@ class ClientBookingRequest {
     this.sexId,
     this.userCodeUi,
   });
+  factory ClientBookingRequest.fromJson(Map<String, dynamic> json) =>
+      ClientBookingRequest(
+        documentTypeId: json['documentTypeID'],
+        identification: json['identification'],
+        name: json['name'],
+        surName: json['surName'],
+        secondSurname: json['SecondSurname'],
+        phoneNumber: json['phoneNumber'],
+        emailAddress: json['emailAddress'],
+        sexId: json['sexID'],
+        userCodeUi: json['userCodeUI'],
+      );
 
   int? documentTypeId;
   String? identification;
@@ -98,28 +109,15 @@ class ClientBookingRequest {
   String? sexId;
   String? userCodeUi;
 
-  factory ClientBookingRequest.fromJson(Map<String, dynamic> json) =>
-      ClientBookingRequest(
-        documentTypeId: json["documentTypeID"],
-        identification: json["identification"],
-        name: json["name"],
-        surName: json["surName"],
-        secondSurname: json["SecondSurname"],
-        phoneNumber: json["phoneNumber"],
-        emailAddress: json["emailAddress"],
-        sexId: json["sexID"],
-        userCodeUi: json["userCodeUI"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "documentTypeID": documentTypeId,
-        "identification": identification,
-        "name": name,
-        "surName": surName,
-        "SecondSurname": secondSurname,
-        "phoneNumber": phoneNumber,
-        "emailAddress": emailAddress,
-        "sexID": sexId,
-        "userCodeUI": userCodeUi,
+        'documentTypeID': documentTypeId,
+        'identification': identification,
+        'name': name,
+        'surName': surName,
+        'SecondSurname': secondSurname,
+        'phoneNumber': phoneNumber,
+        'emailAddress': emailAddress,
+        'sexID': sexId,
+        'userCodeUI': userCodeUi,
       };
 }
