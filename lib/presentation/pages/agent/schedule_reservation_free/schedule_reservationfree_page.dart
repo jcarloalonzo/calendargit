@@ -74,7 +74,7 @@ class ScheduleReservationFreePage extends StatelessWidget {
   void _processReserve(BuildContext context, String date) async {
     final bloc = Provider.of<ScheduleReservationBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
 
     var response = await bloc.registerScheduleFree(date: date);

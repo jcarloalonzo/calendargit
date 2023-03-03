@@ -448,7 +448,7 @@ class _BookingBodyState extends State<BookingBody> {
     final bloc = Provider.of<BookingBloc>(context, listen: false);
     final blocLogin = Provider.of<MainBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
 
     var response = await bloc.confirmButtom(blocLogin.model!);

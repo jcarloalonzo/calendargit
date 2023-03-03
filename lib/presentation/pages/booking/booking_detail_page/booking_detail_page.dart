@@ -125,7 +125,7 @@ class BookingDetailPage extends StatelessWidget {
                   text: 'Reprogramar',
                   color: Palette.blue2,
                   onTap: () async {
-                    // final myLoading = MyLoading(context: context);
+                    // final myLoading = MyLoading( context);
                     // myLoading.createLoading();
 
                     bloc.initProgram(bookingObj: args);
@@ -323,7 +323,7 @@ class BookingDetailPage extends StatelessWidget {
   void _processsInvoice(BuildContext context, Booking booking) async {
     final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
 
     bloc.initProgram(bookingObj: booking);
 
@@ -360,7 +360,7 @@ class BookingDetailPage extends StatelessWidget {
   void _processCancelate(BuildContext context) async {
     final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
 
     var response = await bloc.anularBooking(
@@ -383,7 +383,7 @@ class BookingDetailPage extends StatelessWidget {
   void _processconfirm(BuildContext context, Booking booking) async {
     final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
 
     var response = await bloc.completeBooking();

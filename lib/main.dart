@@ -13,7 +13,7 @@ import 'presentation/bloc/calendar_bloc.dart';
 import 'presentation/bloc/home_bloc.dart';
 import 'presentation/bloc/main_bloc.dart';
 import 'presentation/bloc/schedule_bloc.dart';
-import 'presentation/pages/validate_partner/login/login_page.dart';
+import 'presentation/pages/validate_partner/splash/splash_page.dart';
 
 void main() async {
   Provider.debugCheckInvalidValueType = null;
@@ -109,8 +109,8 @@ class MyApp extends StatelessWidget {
         //     ? BackGroundNavigator.routeName
         //     : LicenseSpaPage.routeName,
 
-        // initialRoute: SplashPage.routeName,
-        initialRoute: LoginPage.routeName,
+        initialRoute: SplashPage.routeName,
+        // initialRoute: LoginPage.routeName,
       ),
     );
   }

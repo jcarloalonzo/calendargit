@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // ============================
 
 class MyLoading {
-  MyLoading({required this.context});
+  MyLoading(this.context);
 
   final BuildContext context;
 

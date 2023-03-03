@@ -7,7 +7,6 @@ import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_config.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../../data/preferences/preferences_user.dart';
-import '../../../bloc/agenda_bloc.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
@@ -70,11 +69,9 @@ class RegisterBody extends StatelessWidget {
   }
 
   Future<void> _buttomlogin(BuildContext context) async {
-    final prefsUser = PreferencesUser();
+    final prefs = PreferencesUser();
 
-    final agendaBloc = Provider.of<AgendaBloc>(context, listen: false);
-
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
     // await bloc.confirmLogin();
     myLoading.dismiss();

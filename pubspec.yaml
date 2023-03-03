@@ -28,6 +28,7 @@ dependencies:
   jiffy: ^5.0.0
   shared_preferences: ^2.0.13
   share_plus: ^6.3.0
+  flutter_barcode_scanner: ^2.0.0
 
 
   

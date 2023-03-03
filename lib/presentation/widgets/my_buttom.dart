@@ -16,7 +16,7 @@ class MyButtom extends StatelessWidget {
       this.icono,
       this.colorIcono = Palette.white,
       this.sizeIcon = 15,
-      this.height = 40,
+      this.height = 55,
       this.isLoading = false})
       : super(key: key);
   final String text;

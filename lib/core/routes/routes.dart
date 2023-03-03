@@ -20,7 +20,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     LoginPage.routeName: (context) => LoginPage.init(context),
     SplashPage.routeName: (context) => SplashPage.init(context),
     AgentReproPage.routeName: (context) => const AgentReproPage(),
-    InvoiceFreePage.routeName: (context) => InvoiceFreePage(),
+    InvoiceFreePage.routeName: (context) => const InvoiceFreePage(),
     // AgendaDetails.routeName: (context) => const AgendaDetails(),
     // NavigationPage.routeName: (BuildContext context) => const NavigationPage(),
     BackGroundNavigator.routeName: (BuildContext context) =>

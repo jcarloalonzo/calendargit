@@ -22,7 +22,7 @@ class AgentReproDetailPage extends StatelessWidget {
   void _processconfirm(BuildContext context) async {
     final bloc = Provider.of<ScheduleBloc>(context, listen: false);
     final blocLogin = Provider.of<MainBloc>(context, listen: false);
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
     var response = await bloc.reprogramBookingService(blocLogin.model!);
     if (response.statusCode == 200) {

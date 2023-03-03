@@ -316,7 +316,7 @@ class ScheduleBloc extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final myLoading = MyLoading(context: ctx!);
+      final myLoading = MyLoading(ctx!);
       myLoading.createLoading();
 
       final response =
@@ -544,7 +544,7 @@ class ScheduleBloc extends ChangeNotifier {
 
     notifyListeners();
 
-    // final myLoading = MyLoading(context: ctx!);
+    // final myLoading = MyLoading( ctx!);
     // myLoading.createLoading();
 
     GenerateInvoiceBookingRequest obj = GenerateInvoiceBookingRequest();

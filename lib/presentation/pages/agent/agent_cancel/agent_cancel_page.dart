@@ -184,7 +184,7 @@ class AgentCancelDetailPage extends StatelessWidget {
   void _processconfirm(BuildContext context) async {
     final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
 
     var response = await bloc.anularBooking(reason: _motivoController.text);

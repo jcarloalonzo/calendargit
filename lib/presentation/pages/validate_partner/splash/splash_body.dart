@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 import '../../../../core/config/palette.dart';
 import '../../../bloc/main_bloc.dart';
 import '../../navigator/background_navigator.dart';
+import '../create_company/create_company_page.dart';
 import '../login/login_page.dart';
-import '../register/register_page.dart';
 import '../token/token_page.dart';
 import 'splash_bloc.dart';
 
@@ -37,8 +37,10 @@ class _SplashBodyState extends State<SplashBody> {
             MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
         return;
       case TypeLogin.register:
+        // Navigator.of(context).pushReplacement(
+        // MaterialPageRoute(builder: (ctx) => RegisterPage.init(ctx)));
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (ctx) => RegisterPage.init(ctx)));
+            MaterialPageRoute(builder: (ctx) => CreateCompanyPage.init(ctx)));
         return;
       case TypeLogin.home:
         Navigator.pushNamedAndRemoveUntil(

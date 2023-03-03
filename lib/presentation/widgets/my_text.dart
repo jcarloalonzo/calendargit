@@ -12,6 +12,7 @@ class MyText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
     this.textOverFLow = TextOverflow.ellipsis,
+    this.letterSpacing = 0.3,
   });
   final String text;
   final FontWeight fontWeight;
@@ -19,6 +20,7 @@ class MyText extends StatelessWidget {
   final Color color;
   final TextAlign textAlign;
   final int maxLines;
+  final double letterSpacing;
   final TextOverflow textOverFLow;
 
   @override
@@ -31,6 +33,7 @@ class MyText extends StatelessWidget {
       softWrap: true,
       style: TextStyle(
         // height:1.5,
+        letterSpacing: letterSpacing,
 // inherit: true,
         fontFamily: 'Roboto',
         fontSize: (size),

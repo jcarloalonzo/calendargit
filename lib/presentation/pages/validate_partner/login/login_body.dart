@@ -82,7 +82,7 @@ class LoginBody extends StatelessWidget {
 
     final agendaBloc = Provider.of<AgendaBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context: context);
+    final myLoading = MyLoading(context);
     myLoading.createLoading();
     final response = await bloc.confirmLogin();
     myLoading.dismiss();

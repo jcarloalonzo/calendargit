@@ -1,12 +1,18 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../widgets/my_buttom.dart';
+import '../../../widgets/my_circle_icon_buttom.dart';
+import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/mysizedbox.dart';
-import '../register/register_page.dart';
+import '../create_company/create_company_page.dart';
+import '../login/login_page.dart';
+import '../splash/splash_bloc.dart';
 import 'token_bloc.dart';
 
 class TokenBody extends StatelessWidget {
@@ -14,13 +20,26 @@ class TokenBody extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  void _validar(BuildContext context) async {
+  void _validar(BuildContext context, String token) async {
+    final myLoading = MyLoading(context);
     final bloc = Provider.of<TokenBloc>(context, listen: false);
+    myLoading.createLoading();
+    // TypeLogin? valida = await bloc.validateToken('F55921ECA0');
+    TypeLogin? valida = await bloc.validateToken(token);
 
-    bool valida = await bloc.validar();
-    if (valida) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (ctx) => RegisterPage.init(ctx)));
+    myLoading.dismiss();
+
+    if (!context.mounted) return;
+    switch (valida) {
+      case TypeLogin.register:
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (ctx) => CreateCompanyPage.init(ctx)));
+        return;
+      case TypeLogin.login:
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
+        break;
+      default:
     }
   }
 
@@ -46,8 +65,17 @@ class TokenBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const MyText(
+                    text: 'Bienvenido',
+                    letterSpacing: 1,
+                    textAlign: TextAlign.center,
+                    color: Palette.colorApp,
+                    size: 50,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  const MySizedBoxHeight(kDouble: 15),
+                  const MyText(
                     text:
-                        'Bienvenid@, por favor ingresa tu clave de invitación para poder continuar.',
+                        'Por favor ingresa tu clave de invitación para poder continuar.',
                     maxLines: 4,
                     fontWeight: FontWeight.w600,
                     textAlign: TextAlign.center,
@@ -55,10 +83,30 @@ class TokenBody extends StatelessWidget {
                     size: SizeText.text3,
                   ),
                   const MySizedBoxHeight(kDouble: 20),
-                  const Icon(
-                    Icons.admin_panel_settings_outlined,
-                    size: 150,
-                    color: Palette.colorApp,
+                  Center(
+                    child: Stack(
+                      children: [
+                        const Icon(
+                          Icons.phone_android,
+                          size: 180,
+                          color: Palette.colorApp,
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: MyCircleIconButtom(
+                            icon: Icons.qr_code,
+                            onTap: () async {
+                              String? qr = await bloc.getQR();
+                              if (qr == null) return;
+                              // ignore: use_build_context_synchronously
+                              if (!context.mounted) return;
+                              return _validar(context, qr);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const MySizedBoxHeight(kDouble: 20),
                   TextField(
@@ -82,8 +130,7 @@ class TokenBody extends StatelessWidget {
                   const MySizedBoxHeight(kDouble: 20),
                   MyButtom(
                     text: 'Continuar',
-                    height: 50,
-                    onTap: () => _validar(context),
+                    onTap: () => _validar(context, bloc.tokenController.text),
                   ),
                   const MySizedBoxHeight(kDouble: 20),
                 ],

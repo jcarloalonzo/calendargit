@@ -8,4 +8,6 @@ class SizeText {
   static const double text3 = 19;
   static const double text2 = 22;
   static const double text1 = 26;
+  static const double text0 = 30;
+  static const double textLarge = 40;
 }
