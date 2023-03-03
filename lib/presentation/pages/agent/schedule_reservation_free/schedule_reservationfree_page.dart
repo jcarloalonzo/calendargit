@@ -26,7 +26,7 @@ class ScheduleReservationFreePage extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) =>
-              ScheduleReservationBloc()..initPage(login: blocLogin.model),
+              ScheduleReservationBloc()..initPage(login: blocLogin.login),
         ),
       ],
       child: const ScheduleReservationFreePage._(),

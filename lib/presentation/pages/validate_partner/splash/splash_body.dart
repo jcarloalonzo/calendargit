@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
+import '../../../../data/models/entities/login_model.dart';
+import '../../../../data/preferences/preferences_user.dart';
 import '../../../bloc/main_bloc.dart';
 import '../../navigator/background_navigator.dart';
 import '../create_company/create_company_page.dart';
@@ -20,13 +22,11 @@ class SplashBody extends StatefulWidget {
 
 class _SplashBodyState extends State<SplashBody> {
   void _init() async {
+    final prefs = PreferencesUser();
     final mainBloc = context.read<MainBloc>();
     final bloc = context.read<SplashBloc>();
     final result = await bloc.validateSession();
-
-    await Future.delayed(const Duration(seconds: 2), () {});
     print(result);
-
     switch (result) {
       case TypeLogin.token:
         Navigator.of(context).pushReplacement(
@@ -37,12 +37,12 @@ class _SplashBodyState extends State<SplashBody> {
             MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
         return;
       case TypeLogin.register:
-        // Navigator.of(context).pushReplacement(
-        // MaterialPageRoute(builder: (ctx) => RegisterPage.init(ctx)));
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (ctx) => CreateCompanyPage.init(ctx)));
         return;
       case TypeLogin.home:
+        final user = prefs.user;
+        mainBloc.login = LoginResponse.loginModelFromJson(user!);
         Navigator.pushNamedAndRemoveUntil(
             context, BackGroundNavigator.routeName, (route) => false);
         return;

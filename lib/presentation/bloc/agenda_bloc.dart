@@ -175,7 +175,7 @@ class AgendaBloc extends ChangeNotifier {
   //
 
   Future<ResponseModel<bool>> anularBookingService(
-      {required LoginModel loginModel, required String reason}) async {
+      {required LoginResponse loginModel, required String reason}) async {
     AnulaBookingRequest objRQ = AnulaBookingRequest();
 
     objRQ.bookingId = _bookingSeleccionado?.bookingId;
@@ -208,7 +208,7 @@ class AgendaBloc extends ChangeNotifier {
 //
 
   // Future<ResponseModel<bool>> completeBookingService(
-  //     {required LoginModel loginModel,
+  //     {required LoginResponse loginModel,
   //     required String comentario,
   //     required String priceFinal}) async {
   //   CompleteBookingRequest obj = CompleteBookingRequest();

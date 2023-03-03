@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
       final blocLogin = Provider.of<MainBloc>(context, listen: false);
       final bloc = Provider.of<HomeBloc>(context, listen: false);
-      await bloc.initPage(login: blocLogin.model);
+      await bloc.initPage(login: blocLogin.login);
     });
   }
 

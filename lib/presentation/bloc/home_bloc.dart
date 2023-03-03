@@ -7,8 +7,8 @@ import '../../data/models/entities/response_model.dart';
 import '../../data/providers/booking_provider.dart';
 
 class HomeBloc extends ChangeNotifier {
-  LoginModel? _dataLogin;
-  LoginModel? get dataLogin => _dataLogin;
+  LoginResponse? _dataLogin;
+  LoginResponse? get dataLogin => _dataLogin;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -51,7 +51,7 @@ class HomeBloc extends ChangeNotifier {
     return;
   }
 
-  Future<void> initPage({LoginModel? login}) async {
+  Future<void> initPage({LoginResponse? login}) async {
     if (_dataLogin == null) {
       if (login != null) {
         _dataLogin = login;

@@ -19,7 +19,6 @@ class RegisterBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<RegisterBloc>(context, listen: true);
-    final prefsUser = PreferencesUser();
 
     onlyPortroitOrientation();
     SizeConfig().init(context);

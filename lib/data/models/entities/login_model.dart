@@ -4,13 +4,8 @@
 
 import 'dart:convert';
 
-LoginModel loginModelFromJson(String str) =>
-    LoginModel.fromJson(json.decode(str));
-
-String loginModelToJson(LoginModel data) => json.encode(data.toJson());
-
-class LoginModel {
-  LoginModel({
+class LoginResponse {
+  LoginResponse({
     this.userId,
     this.personId,
     this.personTypeId,
@@ -21,7 +16,7 @@ class LoginModel {
     this.name,
     this.userBusinessDto,
   });
-  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
+  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         userId: json['UserID'],
         personId: json['PersonID'],
         personTypeId: json['PersonTypeID'],
@@ -33,6 +28,14 @@ class LoginModel {
         userBusinessDto: List<UserBusinessDto>.from(
             json['UserBusinessDTO'].map((x) => UserBusinessDto.fromJson(x))),
       );
+  static LoginResponse loginModelFromJson(String str) =>
+      LoginResponse.fromJson(json.decode(str));
+
+  static String loginModelToJson(LoginResponse data) =>
+      json.encode(data.toJson());
+
+  //
+  //
 
   int? userId;
   int? personId;

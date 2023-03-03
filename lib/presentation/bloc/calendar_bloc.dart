@@ -110,8 +110,8 @@ class CalendarBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  LoginModel? _dataLogin;
-  LoginModel? get dataLogin => _dataLogin;
+  LoginResponse? _dataLogin;
+  LoginResponse? get dataLogin => _dataLogin;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   List<Booking> _listBooking = [];
@@ -138,7 +138,7 @@ class CalendarBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  initPage({LoginModel? login, required BuildContext context}) async {
+  initPage({LoginResponse? login, required BuildContext context}) async {
     if (_dataLogin == null) {
       if (login != null) {
         _dataLogin = login;

@@ -76,10 +76,12 @@ class DrawerMenu extends StatelessWidget {
                         body: '¿Está seguro que desea cerrar la sesión?');
 
                     if (action == DialogAction.yes) {
-                      prefsUser.dispose();
+                      prefsUser.logout();
 
-                      Navigator.pushReplacementNamed(
-                          context, LoginPage.routeName);
+                      if (context.mounted) {
+                        Navigator.pushReplacementNamed(
+                            context, LoginPage.routeName);
+                      }
                     }
 
                     //

@@ -51,24 +51,15 @@ class SplashBloc with ChangeNotifier {
   Future<TypeLogin> validateSession() async {
     final prefs = PreferencesUser();
     String? token = prefs.token;
-    String? user = prefs.userLoginResponse;
-    print(token);
-
+    String? user = prefs.user;
     if (token == null) return TypeLogin.token;
-
     ValidateTokenResponse? validatetoken = await validateToken(token);
     if (validatetoken == null) return TypeLogin.error;
     if (!(validatetoken.isRegister!)) return TypeLogin.register;
-
     BusinessResponse? business = await businessByToken(token);
     if (business == null) return TypeLogin.error;
-
     if (user == null) return TypeLogin.login;
     return TypeLogin.home;
-    //
-    //
-
-    // * está registrado true-
   }
 
   Future<ValidateTokenResponse?> validateToken(String token) async {

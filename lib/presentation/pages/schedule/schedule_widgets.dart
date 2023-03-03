@@ -20,7 +20,7 @@ class ListCardItemSchedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<MainBloc>(context, listen: true).model;
+    final bloc = Provider.of<MainBloc>(context, listen: true).login;
 
     return IntrinsicHeight(
       child: Row(

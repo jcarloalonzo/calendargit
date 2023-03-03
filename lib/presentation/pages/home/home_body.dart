@@ -31,7 +31,7 @@ class HomeBody extends StatelessWidget {
                 size: SizeText.text3,
               ),
               MyText(
-                text: blocLogin.model?.name ?? '',
+                text: blocLogin.login?.name ?? '',
                 fontWeight: FontWeight.w600,
                 color: Palette.blue3,
                 size: SizeText.text3,

@@ -20,7 +20,7 @@ class LiquidationPage extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => LiquidationBloc()
             ..init(
-                userID: blocLogin.model!.userId!,
+                userID: blocLogin.login!.userId!,
                 businessID: blocLogin.modelBusiness!.businessId!,
                 liqDate: DateTime.now()),
         ),

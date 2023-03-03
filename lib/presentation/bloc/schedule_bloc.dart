@@ -60,8 +60,8 @@ class ScheduleBloc extends ChangeNotifier {
   }
 //
 
-  LoginModel? _dataLogin;
-  LoginModel? get dataLogin => _dataLogin;
+  LoginResponse? _dataLogin;
+  LoginResponse? get dataLogin => _dataLogin;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -143,7 +143,7 @@ class ScheduleBloc extends ChangeNotifier {
     return null;
   }
 
-  initPage({LoginModel? login}) async {
+  initPage({LoginResponse? login}) async {
     if (_dataLogin == null) {
       if (login != null) {
         _dataLogin = login;
@@ -370,7 +370,7 @@ class ScheduleBloc extends ChangeNotifier {
   }
 
   Future<ResponseModel<bool>> reprogramBookingService(
-      LoginModel loginModel) async {
+      LoginResponse loginModel) async {
     ReprogramRequest objRQ = ReprogramRequest();
 
     objRQ.bookingId = _bookingSeleccionado?.bookingId;

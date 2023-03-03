@@ -4,10 +4,10 @@ import '../../data/models/entities/login_model.dart';
 import '../../data/models/entities/response_model.dart';
 
 class MainBloc extends ChangeNotifier {
-  LoginModel? _model;
-  LoginModel? get model => _model;
-  set model(LoginModel? ob) {
-    _model = ob;
+  LoginResponse? _login;
+  LoginResponse? get login => _login;
+  set login(LoginResponse? ob) {
+    _login = ob;
     notifyListeners();
   }
 

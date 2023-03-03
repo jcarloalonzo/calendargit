@@ -7,7 +7,7 @@ import '../../../../core/config/size_config.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../../data/models/entities/login_model.dart';
 import '../../../../data/preferences/preferences_user.dart';
-import '../../../bloc/agenda_bloc.dart';
+import '../../../bloc/main_bloc.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
@@ -21,7 +21,6 @@ class LoginBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<LoginBloc>(context, listen: true);
-    final prefsUser = PreferencesUser();
 
     onlyPortroitOrientation();
     SizeConfig().init(context);
@@ -77,28 +76,21 @@ class LoginBody extends StatelessWidget {
 
   Future<void> _buttomlogin(BuildContext context) async {
     final bloc = Provider.of<LoginBloc>(context, listen: false);
+    final mainBloc = context.read<MainBloc>();
 
-    final prefsUser = PreferencesUser();
-
-    final agendaBloc = Provider.of<AgendaBloc>(context, listen: false);
-
+    final prefs = PreferencesUser();
     final myLoading = MyLoading(context);
     myLoading.createLoading();
-    final response = await bloc.confirmLogin();
+    final response = await bloc.login();
     myLoading.dismiss();
-
     if (response == null) return;
+    String login = LoginResponse.loginModelToJson(response);
+    prefs.user = login;
 
-    String data = (loginModelToJson(response));
-
-    prefsUser.userLoginResponse = data;
-
-    //
-    //
-
-    // Navigator.of(context).pushNamedAndRemoveUntil(
-    //     NavigationPage.routeName, (Route<dynamic> route) => false,
-    //     arguments: true);
+// * SETEANDO LOGIN EN MAINBLOC
+    mainBloc.login = response;
+    // ignore: use_build_context_synchronously
+    if (!context.mounted) return;
     Navigator.pushNamedAndRemoveUntil(
         context, BackGroundNavigator.routeName, (route) => false);
   }

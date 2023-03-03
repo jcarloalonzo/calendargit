@@ -80,14 +80,8 @@ class CreateCompanyBody extends StatelessWidget {
                 myLoading.dismiss();
                 if (!valida) return;
                 if (!context.mounted) return;
-
-                //
-
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
-
-                print(valida);
-                print('🎀🎀🎀🎀🎀');
               },
             ),
           ],

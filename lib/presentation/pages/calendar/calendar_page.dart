@@ -24,7 +24,7 @@ class _CalendarPageState extends State<CalendarPage> {
       final blocLogin = Provider.of<MainBloc>(context, listen: false);
       final bloc = Provider.of<CalendarBloc>(context, listen: false);
 
-      await bloc.initPage(login: blocLogin.model, context: context);
+      await bloc.initPage(login: blocLogin.login, context: context);
     });
   }
 

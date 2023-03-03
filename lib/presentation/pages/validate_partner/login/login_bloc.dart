@@ -73,23 +73,20 @@ class LoginBloc with ChangeNotifier {
     return true;
   }
 
-  Future<LoginModel?> confirmLogin() async {
+  Future<LoginResponse?> login() async {
     try {
       final user = userController.text;
       final password = passwordController.text;
       bool valida = validador();
       if (!valida) return null;
-      notifyListeners();
+
       final response = await APILogin.getValidateLogin(
           emailAdress: user, passToken: password);
-
-      notifyListeners();
       if (response.error != null) {
         error = response;
         notifyListeners();
         return null;
       }
-      notifyListeners();
       return response.data!;
     } catch (e) {
       setError(e.toString());

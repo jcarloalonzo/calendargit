@@ -217,7 +217,7 @@ class BookingBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<ResponseModel<bool>> confirmButtom(LoginModel loginModel) async {
+  Future<ResponseModel<bool>> confirmButtom(LoginResponse loginModel) async {
     ConfirmBookingRequest objRQ = ConfirmBookingRequest();
     objRQ.authorizedUser = loginModel.userId;
     objRQ.businessId = loginModel.userBusinessDto?[0].businessId;

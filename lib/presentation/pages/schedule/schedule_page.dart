@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/models/entities/login_model.dart';
 import '../../../data/preferences/preferences_user.dart';
 import '../../bloc/main_bloc.dart';
 import '../../bloc/schedule_bloc.dart';
@@ -24,15 +23,15 @@ class _SchedulePageState extends State<SchedulePage> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       final loginBloc = Provider.of<MainBloc>(context, listen: false);
-      if (loginBloc.model == null) {
-        if (prefsUser.userLoginResponse != null) {
-          var a = loginModelFromJson(prefsUser.userLoginResponse!);
-          final loginBloc = Provider.of<MainBloc>(context, listen: false);
-          loginBloc.model = a;
-        }
-      }
+      // if (loginBloc.login == null) {
+      //   if (prefsUser.user != null) {
+      //     var a = LoginResponse.loginModelFromJson(prefsUser.user!);
+      //     final loginBloc = Provider.of<MainBloc>(context, listen: false);
+      //     loginBloc.login = a;
+      //   }
+      // }
       final bloc = Provider.of<ScheduleBloc>(context, listen: false);
-      await bloc.initPage(login: loginBloc.model);
+      await bloc.initPage(login: loginBloc.login);
     });
     super.initState();
   }

@@ -451,7 +451,7 @@ class _BookingBodyState extends State<BookingBody> {
     final myLoading = MyLoading(context);
     myLoading.createLoading();
 
-    var response = await bloc.confirmButtom(blocLogin.model!);
+    var response = await bloc.confirmButtom(blocLogin.login!);
 
     if (response.statusCode == 200) {
       Future.delayed(Duration.zero, () {

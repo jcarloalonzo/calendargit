@@ -21,11 +21,11 @@ class PreferencesUser {
   }
 
   // //GET y SET
-  String? get userLoginResponse {
+  String? get user {
     return _prefs?.getString(_prefs_usuario);
   }
 
-  set userLoginResponse(String? value) {
+  set user(String? value) {
     _prefs?.setString(_prefs_usuario, value!);
   }
 
@@ -47,6 +47,10 @@ class PreferencesUser {
   }
 
   // //GET y SET de la ultima página
+
+  logout() {
+    _prefs!.remove(_prefs_usuario);
+  }
 
   dispose() {
     _prefs!.remove(_prefs_usuario);

@@ -40,8 +40,8 @@ class ScheduleReservationBloc extends ChangeNotifier {
 
   bool get isLoadingPage => _isLoadingPage;
 
-  LoginModel? _dataLogin;
-  LoginModel? get dataLogin => _dataLogin;
+  LoginResponse? _dataLogin;
+  LoginResponse? get dataLogin => _dataLogin;
 
   String? _date;
   String? get date => _date;
@@ -82,7 +82,7 @@ class ScheduleReservationBloc extends ChangeNotifier {
     notifyListeners();
   }
 
-  initPage({LoginModel? login}) async {
+  initPage({LoginResponse? login}) async {
     _serviceSelected = null;
     _listService = [];
 

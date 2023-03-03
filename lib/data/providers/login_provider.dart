@@ -7,9 +7,9 @@ import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
 
 class APILogin {
-  static Future<ResponseModel<LoginModel>> getValidateLogin(
+  static Future<ResponseModel<LoginResponse>> getValidateLogin(
       {required String emailAdress, required String passToken}) async {
-    ResponseModel<LoginModel> responseData = ResponseModel<LoginModel>();
+    ResponseModel<LoginResponse> responseData = ResponseModel<LoginResponse>();
     try {
       final url =
           '${Config.urlWebCliente}User/ValidateLogin?EmailAddress=$emailAdress&PassToken=$passToken';
@@ -17,7 +17,7 @@ class APILogin {
         Uri.parse(url),
       );
       if (response.statusCode == 200) {
-        responseData.data = LoginModel.fromJson(json.decode(response.body));
+        responseData.data = LoginResponse.fromJson(json.decode(response.body));
       } else {
         responseData.statusCode = response.statusCode;
         responseData.error =

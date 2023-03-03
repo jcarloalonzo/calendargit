@@ -24,7 +24,7 @@ class AgentReproDetailPage extends StatelessWidget {
     final blocLogin = Provider.of<MainBloc>(context, listen: false);
     final myLoading = MyLoading(context);
     myLoading.createLoading();
-    var response = await bloc.reprogramBookingService(blocLogin.model!);
+    var response = await bloc.reprogramBookingService(blocLogin.login!);
     if (response.statusCode == 200) {
       Future.delayed(Duration.zero, () async {
         final action = await MyAlerts.sucess(context: context);
