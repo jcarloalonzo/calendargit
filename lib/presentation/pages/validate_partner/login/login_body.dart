@@ -80,8 +80,17 @@ class LoginBody extends StatelessWidget {
 
     final prefs = PreferencesUser();
     final myLoading = MyLoading(context);
+
+    //
+    if (mainBloc.business == null) {
+      bloc.setError('No se encontro empresa, consulte con su administador.');
+      return;
+    }
+    final business = mainBloc.business;
+    //
+
     myLoading.createLoading();
-    final response = await bloc.login();
+    final response = await bloc.login(business!.businessId!);
     myLoading.dismiss();
     if (response == null) return;
     String login = LoginResponse.loginModelToJson(response);

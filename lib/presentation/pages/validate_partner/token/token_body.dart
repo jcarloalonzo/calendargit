@@ -5,12 +5,15 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_text.dart';
+import '../../../../data/models/responses/business_response.dart';
+import '../../../../data/preferences/preferences_user.dart';
+import '../../../bloc/main_bloc.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_circle_icon_buttom.dart';
 import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/mysizedbox.dart';
-import '../create_company/create_company_page.dart';
+import '../create_company/request_company/request_company_page.dart';
 import '../login/login_page.dart';
 import '../splash/splash_bloc.dart';
 import 'token_bloc.dart';
@@ -23,6 +26,9 @@ class TokenBody extends StatelessWidget {
   void _validar(BuildContext context, String token) async {
     final myLoading = MyLoading(context);
     final bloc = Provider.of<TokenBloc>(context, listen: false);
+    final mainBloc = context.read<MainBloc>();
+    final prefs = PreferencesUser();
+
     myLoading.createLoading();
     // TypeLogin? valida = await bloc.validateToken('F55921ECA0');
     TypeLogin? valida = await bloc.validateToken(token);
@@ -33,9 +39,13 @@ class TokenBody extends StatelessWidget {
     switch (valida) {
       case TypeLogin.register:
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (ctx) => CreateCompanyPage.init(ctx)));
+            MaterialPageRoute(builder: (ctx) => RequestCompanyPage.init(ctx)));
         return;
       case TypeLogin.login:
+        final business = prefs.business;
+        mainBloc.business =
+            BusinessResponse.businessResponseFromJson(business!);
+
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
         break;
@@ -110,6 +120,7 @@ class TokenBody extends StatelessWidget {
                   ),
                   const MySizedBoxHeight(kDouble: 20),
                   TextField(
+                    textCapitalization: TextCapitalization.characters,
                     controller: bloc.tokenController,
                     cursorColor: Palette.colorApp,
                     textAlign: TextAlign.center,

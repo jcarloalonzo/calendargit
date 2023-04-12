@@ -14,6 +14,7 @@ import '../../presentation/pages/license/license_spa_page.dart';
 import '../../presentation/pages/navigator/background_navigator.dart';
 import '../../presentation/pages/validate_partner/login/login_page.dart';
 import '../../presentation/pages/validate_partner/splash/splash_page.dart';
+import '../../presentation/pages/validate_partner/unallowed_company/unallowed_company_page.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
@@ -49,5 +50,8 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     // AgentPage.routeName: (BuildContext context) => const AgentPage(),
     ScheduleReservationFreePage.routeName: (BuildContext context) =>
         ScheduleReservationFreePage.init(context),
+
+    UnallowedCompanyPage.routeName: (BuildContext context) =>
+        UnallowedCompanyPage.init(context),
   };
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/config/palette.dart';
 import 'my_text.dart';
@@ -180,7 +179,6 @@ class MyTextFieldContainer extends StatelessWidget {
   const MyTextFieldContainer({
     Key? key,
     this.title,
-    this.svgPath,
     this.onSubmitted,
     this.onChanged,
     this.controller,
@@ -202,10 +200,10 @@ class MyTextFieldContainer extends StatelessWidget {
     this.maxLines = 1,
     this.minLines = 1,
     this.isObscure = false,
+    this.isPassword = false,
     this.inputFormatters,
   }) : super(key: key);
   final String? title;
-  final String? svgPath;
   final Function(String)? onSubmitted;
   final Function(String)? onChanged;
   final Function()? onTap;
@@ -228,7 +226,7 @@ class MyTextFieldContainer extends StatelessWidget {
   final int minLines;
   final bool isObscure;
   final List<TextInputFormatter>? inputFormatters;
-
+  final bool isPassword;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -241,10 +239,11 @@ class MyTextFieldContainer extends StatelessWidget {
             Radius.circular(5),
           ),
         ),
-        // height: 50,
+        height: (title != null) ? null : 69,
         width: widthContainer,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (title != null)
               Container(
@@ -268,6 +267,49 @@ class MyTextFieldContainer extends StatelessWidget {
                   ],
                 ),
               ),
+            // TextField(
+            //   inputFormatters: inputFormatters,
+            //   maxLength: (maxLength > 0) ? maxLength : null,
+            //   maxLengthEnforcement: (maxLength > 0)
+            //       ? MaxLengthEnforcement.enforced
+            //       : MaxLengthEnforcement.none,
+            //   keyboardType: textInputType,
+            //   onTap: onTapTextField,
+            //   enabled: isEnabled,
+            //   maxLines: maxLines,
+            //   minLines: minLines,
+            //   textAlign: textAlign,
+            //   style: TextStyle(
+            //     fontFamily: 'Roboto',
+            //     fontWeight: FontWeight.w700,
+            //     fontSize: 14,
+            //     color: colorTextField,
+            //   ),
+            //   decoration: InputDecoration(
+            //     isDense: true,
+            //     counterStyle: const TextStyle(
+            //       height: 0.5,
+            //       color: Palette.primaryColor,
+            //       fontSize: 8,
+            //     ),
+            //     border: InputBorder.none,
+            //     hintText: hintText,
+            //     filled: true,
+            //     // fillColor: backgroundColor,
+            //     fillColor: Colors.transparent,
+
+            //     hintStyle: GoogleFonts.roboto(
+            //         fontWeight: FontWeight.w400,
+            //         color: const Color(0xff9098B1)),
+            //     prefixText: prefixText,
+            //     prefix: prefix,
+            //     suffixIcon: suffixIcon,
+            //   ),
+            //   onSubmitted: onSubmitted,
+            //   onChanged: onChanged,
+            //   controller: controller,
+            //   textInputAction: action,
+            // ),
             TextField(
               inputFormatters: inputFormatters,
               maxLength: (maxLength > 0) ? maxLength : null,
@@ -276,10 +318,15 @@ class MyTextFieldContainer extends StatelessWidget {
                   : MaxLengthEnforcement.none,
               keyboardType: textInputType,
               onTap: onTapTextField,
+              obscureText: isPassword,
               enabled: isEnabled,
               maxLines: maxLines,
               minLines: minLines,
               textAlign: textAlign,
+              onChanged: onChanged,
+              controller: controller,
+              onSubmitted: onSubmitted,
+              textInputAction: action,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w700,
@@ -287,36 +334,16 @@ class MyTextFieldContainer extends StatelessWidget {
                 color: colorTextField,
               ),
               decoration: InputDecoration(
-                isDense: true,
-                counterStyle: const TextStyle(
-                  height: 0.5,
-                  color: Palette.primaryColor,
-                  fontSize: 8,
-                ),
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10),
+                //   borderSide: BorderSide.none,
+                // ),
                 border: InputBorder.none,
-                hintText: hintText,
-                filled: true,
-                // fillColor: backgroundColor,
                 fillColor: Colors.transparent,
 
-                hintStyle: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff9098B1)),
-                // prefixIcon: (svgPath != null)
-                //     ? IconSvgButtomAppbar(
-                //         svg: svgPath!,
-                //         sizeSvg: 30,
-                //         colorSvg: const Color(0xff223263),
-                //       )
-                //     : null,
-                prefixText: prefixText,
-                prefix: prefix,
+                filled: true,
                 suffixIcon: suffixIcon,
               ),
-              onSubmitted: onSubmitted,
-              onChanged: onChanged,
-              controller: controller,
-              textInputAction: action,
             ),
           ],
         ),

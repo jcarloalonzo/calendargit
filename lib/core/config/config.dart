@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 class Config {
   // ============================
-  //  URI
+  //  URIhttps://api.empeli.com/Store/api/
   // ============================
   static const String urlWebCliente = 'https://api.empeli.com/store/api/';
   static const String urlLoginClient = 'https://api.empeli.com/Client/api/';

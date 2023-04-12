@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import '../../../../core/config/Utils.dart';
 import '../../../../data/models/entities/login_model.dart';
 import '../../../../data/models/entities/response_model.dart';
+import '../../../../data/models/requests/login_request.dart';
 import '../../../../data/preferences/preferences_user.dart';
-import '../../../../data/providers/login_provider.dart';
+import '../../../../data/provider/provider_data.dart';
 
 class LoginBloc with ChangeNotifier {
   ResponseModel? _error;
@@ -66,22 +67,25 @@ class LoginBloc with ChangeNotifier {
     }
 
     if (password.length <= 5) {
-      setError('La contraseña debe ser mayor a 6 caracteres');
+      setError('La contraseña debe ser igual o mayor a 6 caracteres');
       return false;
     }
 
     return true;
   }
 
-  Future<LoginResponse?> login() async {
+  Future<LoginResponse?> login(int businessID) async {
     try {
       final user = userController.text;
       final password = passwordController.text;
       bool valida = validador();
       if (!valida) return null;
-
-      final response = await APILogin.getValidateLogin(
-          emailAdress: user, passToken: password);
+      LoginRequest request = LoginRequest(
+        businessId: businessID,
+        emailAddress: user,
+        passToken: password,
+      );
+      final response = await ProviderData.login(request);
       if (response.error != null) {
         error = response;
         notifyListeners();

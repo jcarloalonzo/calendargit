@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../core/config/Utils.dart';
-import '../../../../data/models/entities/response_model.dart';
-import '../../../../data/models/requests/create_company_request.dart';
-import '../../../../data/models/responses/business_response.dart';
-import '../../../../data/models/responses/company_by_token_response.dart';
-import '../../../../data/preferences/preferences_user.dart';
-import '../../../../data/provider/provider_data.dart';
+import '../../../../../core/config/Utils.dart';
+import '../../../../../data/models/entities/response_model.dart';
+import '../../../../../data/models/requests/create_company_request.dart';
+import '../../../../../data/models/responses/business_response.dart';
+import '../../../../../data/models/responses/company_by_token_response.dart';
+import '../../../../../data/preferences/preferences_user.dart';
+import '../../../../../data/provider/provider_data.dart';
 
-class CreateCompanyBloc with ChangeNotifier {
+class RequestCompanyBloc with ChangeNotifier {
   ResponseModel? _error;
   ResponseModel? get error => _error;
   set error(ResponseModel? value) {
@@ -44,8 +44,8 @@ class CreateCompanyBloc with ChangeNotifier {
   TextEditingController legalNameController = TextEditingController();
   TextEditingController webPageController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController adressController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController phoneContactController = TextEditingController();
   TextEditingController nameContactController = TextEditingController();
 //
 //
@@ -54,6 +54,7 @@ class CreateCompanyBloc with ChangeNotifier {
   TextEditingController tokenController = TextEditingController();
 
   CompanyByTokenResponse? _companySearched;
+  CompanyByTokenResponse? get companySearched => _companySearched;
 
   Future getData() async {
     final prefsUser = PreferencesUser();
@@ -76,7 +77,8 @@ class CreateCompanyBloc with ChangeNotifier {
       webPageController.text = company?.webSite ?? '';
       emailController.text = company?.companyContact?[0].emailAdress ?? '';
       phoneController.text = company?.companyContact?[0].phoneNumber ?? '';
-      adressController.text = company?.companyAddress?[0].adress ?? '';
+      phoneContactController.text =
+          company?.companyContact?[0].phoneNumber ?? '';
       nameContactController.text = company?.companyContact?[0].name ?? '';
       notifyListeners();
       //
@@ -106,15 +108,45 @@ class CreateCompanyBloc with ChangeNotifier {
     notifyListeners();
   }
 
+  CreateCompanyRequest? getRequestCompany() {
+    try {
+      String nameCompany = nameCompanyController.text;
+      String legalName = legalNameController.text;
+      String webPage = webPageController.text;
+      String phoneCompany = phoneController.text;
+
+      String emailContact = emailController.text;
+      String phoneContact = phoneContactController.text;
+      String nameContact = nameContactController.text;
+
+      CreateCompanyRequest request = CreateCompanyRequest(
+        identification: _companySearched?.identification,
+        businessTypeId: 1,
+        businessName: nameCompany,
+        emailAddress: emailContact,
+        legalName: legalName,
+        phoneNumber: phoneCompany,
+        contactPhoneNumber: phoneContact,
+        contactPersonName: nameContact,
+        codeuid: _companySearched?.codeUid,
+        active: true,
+      );
+
+      return request;
+    } catch (e) {
+      setError(e.toString());
+      return null;
+    }
+  }
+
   Future<bool> createCompany() async {
     final prefs = PreferencesUser();
     try {
       String nameCompany = nameCompanyController.text;
       String legalName = legalNameController.text;
-      String webPage = webPageController.text;
+      // String webPage = webPageController.text;
       String email = emailController.text;
       String phone = phoneController.text;
-      String adress = adressController.text;
       String nameContact = nameContactController.text;
 
       CreateCompanyRequest request = CreateCompanyRequest(
@@ -169,8 +201,8 @@ class CreateCompanyBloc with ChangeNotifier {
     webPageController.dispose();
     emailController.dispose();
     phoneController.dispose();
-    adressController.dispose();
     nameContactController.dispose();
+    phoneContactController.dispose();
     super.dispose();
   }
 }

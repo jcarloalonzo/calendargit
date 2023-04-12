@@ -6,7 +6,7 @@ import '../../../../data/models/responses/validate_token_response.dart';
 import '../../../../data/preferences/preferences_user.dart';
 import '../../../../data/provider/provider_data.dart';
 
-enum TypeLogin { login, home, register, token, error }
+enum TypeLogin { login, home, register, token, unallowed, error }
 
 class SplashBloc with ChangeNotifier {
   ResponseModel? _error;
@@ -55,6 +55,7 @@ class SplashBloc with ChangeNotifier {
     if (token == null) return TypeLogin.token;
     ValidateTokenResponse? validatetoken = await validateToken(token);
     if (validatetoken == null) return TypeLogin.error;
+    if (!validatetoken.allowLicense!) return TypeLogin.unallowed;
     if (!(validatetoken.isRegister!)) return TypeLogin.register;
     BusinessResponse? business = await businessByToken(token);
     if (business == null) return TypeLogin.error;

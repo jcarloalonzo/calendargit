@@ -5,12 +5,14 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
 import '../../../../data/models/entities/login_model.dart';
+import '../../../../data/models/responses/business_response.dart';
 import '../../../../data/preferences/preferences_user.dart';
 import '../../../bloc/main_bloc.dart';
 import '../../navigator/background_navigator.dart';
-import '../create_company/create_company_page.dart';
+import '../create_company/request_company/request_company_page.dart';
 import '../login/login_page.dart';
 import '../token/token_page.dart';
+import '../unallowed_company/unallowed_company_page.dart';
 import 'splash_bloc.dart';
 
 class SplashBody extends StatefulWidget {
@@ -33,12 +35,16 @@ class _SplashBodyState extends State<SplashBody> {
             MaterialPageRoute(builder: (ctx) => TokenPage.init(ctx)));
         return;
       case TypeLogin.login:
+        final business = prefs.business;
+        mainBloc.business =
+            BusinessResponse.businessResponseFromJson(business!);
+
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (ctx) => LoginPage.init(ctx)));
         return;
       case TypeLogin.register:
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (ctx) => CreateCompanyPage.init(ctx)));
+            MaterialPageRoute(builder: (ctx) => RequestCompanyPage.init(ctx)));
         return;
       case TypeLogin.home:
         final user = prefs.user;
@@ -46,7 +52,14 @@ class _SplashBodyState extends State<SplashBody> {
         Navigator.pushNamedAndRemoveUntil(
             context, BackGroundNavigator.routeName, (route) => false);
         return;
+      case TypeLogin.unallowed:
+        Navigator.pushNamedAndRemoveUntil(
+            context, UnallowedCompanyPage.routeName, (route) => false);
+        return;
       default:
+        Navigator.pushNamedAndRemoveUntil(
+            context, UnallowedCompanyPage.routeName, (route) => false);
+        return;
     }
 
     // final loginBloc = Provider.of<MainBloc>(context, listen: false);
