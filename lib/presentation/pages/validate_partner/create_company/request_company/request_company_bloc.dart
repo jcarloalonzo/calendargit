@@ -37,7 +37,7 @@ class RequestCompanyBloc with ChangeNotifier {
   ) async {
     //
     //
-    getData();
+    await getData();
   }
 
   TextEditingController nameCompanyController = TextEditingController();
@@ -75,11 +75,11 @@ class RequestCompanyBloc with ChangeNotifier {
       nameCompanyController.text = company?.companyName ?? '';
       legalNameController.text = company?.companyName ?? '';
       webPageController.text = company?.webSite ?? '';
-      emailController.text = company?.companyContact?[0].emailAdress ?? '';
-      phoneController.text = company?.companyContact?[0].phoneNumber ?? '';
+      emailController.text = company?.companyContact[0].emailAdress ?? '';
+      phoneController.text = company?.companyContact[0].phoneNumber ?? '';
       phoneContactController.text =
-          company?.companyContact?[0].phoneNumber ?? '';
-      nameContactController.text = company?.companyContact?[0].name ?? '';
+          company?.companyContact[0].phoneNumber ?? '';
+      nameContactController.text = company?.companyContact[0].name ?? '';
       notifyListeners();
       //
       //

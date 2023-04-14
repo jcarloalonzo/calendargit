@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../data/models/entities/category.dart';
 import '../../../../../data/models/entities/response_model.dart';
+import '../../../../../data/models/entities/services_response.dart';
 import '../../../../../data/models/requests/create_company_request.dart';
 import '../../../../../data/models/responses/business_response.dart';
 import '../../../../../data/models/responses/company_by_token_response.dart';
@@ -33,8 +34,9 @@ class CategoriesSubscriptionBloc with ChangeNotifier {
 
   CompanyByTokenResponse? _company;
   CompanyByTokenResponse? get company => _company;
-  CreateCompanyRequest? _request;
-  CreateCompanyRequest? get request => _request;
+  //
+  late CreateCompanyRequest _request;
+  CreateCompanyRequest get request => _request;
 
   Future init(
     BuildContext context, {
@@ -82,13 +84,66 @@ class CategoriesSubscriptionBloc with ChangeNotifier {
       return null;
     }
   }
+
+  Future<List<ServicesResponse>> getServicesByCategories() async {
+    try {
+      List<EsIdRequest> request = _categoriesSelected
+          .map((e) => EsIdRequest(id: e.categoryId))
+          .toList();
+      final response = await ProviderData.servicesByCategories(request);
+      if (response.error != null) {
+        error = response;
+        notifyListeners();
+        return [];
+      }
+
+      return response.data!;
+
+      // notifyListeners();
+    } catch (e) {
+      setError('Ocurrio un error, por favor contacta con tu administrador');
+      return [];
+    }
+  }
+
 //
+  bool exists(Category item) {
+    final response =
+        _categoriesSelected.indexWhere((e) => e.categoryId == item.categoryId);
+    if (response == -1) return false;
+    return true;
+  }
+
+  onTapChip(Category item) {
+    if (exists(item)) {
+      _categoriesSelected.remove(item);
+    } else {
+      _categoriesSelected.add(item);
+    }
+    notifyListeners();
+  }
+
+  CreateCompanyRequest? getRequestCompany() {
+    try {
+      List<EsIdRequest> listCategories = _categoriesSelected
+          .map((e) => EsIdRequest(id: e.categoryId))
+          .toList();
+
+      _request.categoriesIds = listCategories;
+
+      return request;
+    } catch (e) {
+      setError(e.toString());
+      return null;
+    }
+  }
+
 //
 
   Future<bool> register() async {
     final prefs = PreferencesUser();
     try {
-      final response = await ProviderData.createCompany(request!);
+      final response = await ProviderData.createCompany(request);
       if (response.error != null) {
         error = response;
         notifyListeners();
@@ -96,7 +151,7 @@ class CategoriesSubscriptionBloc with ChangeNotifier {
       }
 
       final sincronization =
-          await ProviderData.sincronizationToken(request!.codeuid!);
+          await ProviderData.sincronizationToken(request.codeuid!);
       if (sincronization.error != null) {
         error = response;
         notifyListeners();

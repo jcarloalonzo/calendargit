@@ -6,28 +6,35 @@ import 'dart:convert';
 
 class CompanyByTokenResponse {
   CompanyByTokenResponse({
-    this.companyId,
-    this.businessId,
-    this.typeCustomerId,
+    required this.companyId,
+    required this.businessId,
+    required this.businessName,
+    this.emailAddress,
+    this.phoneNumber,
+    required this.typeCustomerId,
     this.identification,
     this.name,
     this.lastName,
     this.codeUid,
     this.companyName,
     this.webSite,
-    this.client,
-    this.provider,
-    this.automatic,
-    this.taxLiable,
+    required this.client,
+    required this.provider,
+    required this.automatic,
+    required this.taxLiable,
     this.codeIc,
-    this.state,
-    this.companyAddress,
-    this.companyContact,
+    required this.state,
+    required this.allowLicense,
+    this.companyAddress = const [],
+    this.companyContact = const [],
   });
   factory CompanyByTokenResponse.fromJson(Map<String, dynamic> json) =>
       CompanyByTokenResponse(
         companyId: json['CompanyID'],
         businessId: json['BusinessID'],
+        businessName: json['BusinessName'],
+        emailAddress: json['EmailAddress'],
+        phoneNumber: json['PhoneNumber'],
         typeCustomerId: json['TypeCustomerID'],
         identification: json['Identification'],
         name: json['Name'],
@@ -41,6 +48,7 @@ class CompanyByTokenResponse {
         taxLiable: json['TaxLiable'],
         codeIc: json['CodeIC'],
         state: json['state'],
+        allowLicense: json['AllowLicense'],
         companyAddress: json['CompanyAddress'] == null
             ? []
             : List<CompanyAddress>.from(
@@ -57,27 +65,34 @@ class CompanyByTokenResponse {
   static String companyByTokenResponseToJson(CompanyByTokenResponse data) =>
       json.encode(data.toJson());
 
-  int? companyId;
-  int? businessId;
-  int? typeCustomerId;
+  int companyId;
+  int businessId;
+  String businessName;
+  String? emailAddress;
+  String? phoneNumber;
+  int typeCustomerId;
   String? identification;
   String? name;
   String? lastName;
   String? codeUid;
   String? companyName;
   String? webSite;
-  bool? client;
-  bool? provider;
-  bool? automatic;
-  bool? taxLiable;
+  bool client;
+  bool provider;
+  bool automatic;
+  bool taxLiable;
   String? codeIc;
-  bool? state;
-  List<CompanyAddress>? companyAddress;
-  List<CompanyContact>? companyContact;
+  bool state;
+  bool allowLicense;
+  List<CompanyAddress> companyAddress;
+  List<CompanyContact> companyContact;
 
   Map<String, dynamic> toJson() => {
         'CompanyID': companyId,
         'BusinessID': businessId,
+        'BusinessName': businessName,
+        'EmailAddress': emailAddress,
+        'PhoneNumber': phoneNumber,
         'TypeCustomerID': typeCustomerId,
         'Identification': identification,
         'Name': name,
@@ -91,12 +106,13 @@ class CompanyByTokenResponse {
         'TaxLiable': taxLiable,
         'CodeIC': codeIc,
         'state': state,
+        'AllowLicense': allowLicense,
         'CompanyAddress': companyAddress == null
             ? []
-            : List<dynamic>.from(companyAddress!.map((x) => x.toJson())),
+            : List<dynamic>.from(companyAddress.map((x) => x.toJson())),
         'CompanyContact': companyContact == null
             ? []
-            : List<dynamic>.from(companyContact!.map((x) => x.toJson())),
+            : List<dynamic>.from(companyContact.map((x) => x.toJson())),
       };
 }
 

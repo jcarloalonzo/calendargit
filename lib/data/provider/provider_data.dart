@@ -4,6 +4,7 @@ import '../api/api.dart';
 import '../models/entities/category.dart';
 import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
+import '../models/entities/services_response.dart';
 import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/responses/business_response.dart';
@@ -50,6 +51,12 @@ class ProviderData {
 
   static Future<ResponseModel<List<Category>>> listCategories() async {
     final response = await API.listCategories();
+    return response;
+  }
+
+  static Future<ResponseModel<List<ServicesResponse>>> servicesByCategories(
+      List<EsIdRequest> ids) async {
+    final response = await API.servicesByCategories(ids);
     return response;
   }
 }

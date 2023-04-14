@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../../../../data/models/entities/response_model.dart';
+import '../../../../../data/models/entities/services_response.dart';
 import '../../../../../data/models/requests/create_company_request.dart';
 import '../../../../../data/models/responses/business_response.dart';
 import '../../../../../data/models/responses/company_by_token_response.dart';
@@ -33,62 +33,71 @@ class ServicesSubscriptionBloc with ChangeNotifier {
 
   CompanyByTokenResponse? _company;
   CompanyByTokenResponse? get company => _company;
-  CreateCompanyRequest? _request;
-  CreateCompanyRequest? get request => _request;
 
+  late CreateCompanyRequest _request;
+  CreateCompanyRequest get request => _request;
+
+  late List<ServicesResponse> _services;
+  List<ServicesResponse> get services => _services;
+  late List<ServicesResponse> _servicesSelected;
+  List<ServicesResponse> get servicesSelected => _servicesSelected;
   Future init(
     BuildContext context, {
     required CompanyByTokenResponse companyO,
     required CreateCompanyRequest requestO,
+    required List<ServicesResponse> servicesOb,
   }) async {
     //
+    _services = servicesOb;
+    _servicesSelected = [];
     _request = requestO;
     _company = companyO;
 
     //
-    _categories = [];
+    notifyListeners();
     //
   }
 
 //
-  late List<Category> _categories;
-  List<Category> get categories => _categories;
 
 //
 
-  Future getCategories() async {
-    try {
-      _isLoading = true;
-      notifyListeners();
-      final response = await ProviderData.listCategories();
-      _isLoading = false;
-      if (response.error != null) {
-        error = response;
-        notifyListeners();
-        return null;
-      }
-
-      notifyListeners();
-    } catch (e) {
-      setError('Ocurrio un error, por favor contacta con tu administrador');
-      return null;
-    }
+  bool exists(ServicesResponse item) {
+    final response =
+        _servicesSelected.indexWhere((e) => e.serviceId == item.serviceId);
+    if (response == -1) return false;
+    return true;
   }
-//
-//
+
+  onTapChip(ServicesResponse item) {
+    if (exists(item)) {
+      _servicesSelected.remove(item);
+    } else {
+      _servicesSelected.add(item);
+    }
+    notifyListeners();
+  }
 
   Future<bool> register() async {
     final prefs = PreferencesUser();
     try {
-      final response = await ProviderData.createCompany(request!);
+      List<EsIdRequest> listServices =
+          _servicesSelected.map((e) => EsIdRequest(id: e.serviceId)).toList();
+
+      _request.servicesIds = listServices;
+      print(request.toRawJson());
+      // return false;
+      final response = await ProviderData.createCompany(request);
       if (response.error != null) {
         error = response;
         notifyListeners();
         return false;
       }
 
+      //
+
       final sincronization =
-          await ProviderData.sincronizationToken(request!.codeuid!);
+          await ProviderData.sincronizationToken(request.codeuid!);
       if (sincronization.error != null) {
         error = response;
         notifyListeners();

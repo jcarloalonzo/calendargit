@@ -66,11 +66,6 @@ class LoginBloc with ChangeNotifier {
       return false;
     }
 
-    if (password.length <= 5) {
-      setError('La contraseña debe ser igual o mayor a 6 caracteres');
-      return false;
-    }
-
     return true;
   }
 

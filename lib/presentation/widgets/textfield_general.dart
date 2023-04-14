@@ -202,6 +202,7 @@ class MyTextFieldContainer extends StatelessWidget {
     this.isObscure = false,
     this.isPassword = false,
     this.inputFormatters,
+    this.textCapitalization = TextCapitalization.none,
   }) : super(key: key);
   final String? title;
   final Function(String)? onSubmitted;
@@ -227,6 +228,7 @@ class MyTextFieldContainer extends StatelessWidget {
   final bool isObscure;
   final List<TextInputFormatter>? inputFormatters;
   final bool isPassword;
+  final TextCapitalization textCapitalization;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -267,49 +269,6 @@ class MyTextFieldContainer extends StatelessWidget {
                   ],
                 ),
               ),
-            // TextField(
-            //   inputFormatters: inputFormatters,
-            //   maxLength: (maxLength > 0) ? maxLength : null,
-            //   maxLengthEnforcement: (maxLength > 0)
-            //       ? MaxLengthEnforcement.enforced
-            //       : MaxLengthEnforcement.none,
-            //   keyboardType: textInputType,
-            //   onTap: onTapTextField,
-            //   enabled: isEnabled,
-            //   maxLines: maxLines,
-            //   minLines: minLines,
-            //   textAlign: textAlign,
-            //   style: TextStyle(
-            //     fontFamily: 'Roboto',
-            //     fontWeight: FontWeight.w700,
-            //     fontSize: 14,
-            //     color: colorTextField,
-            //   ),
-            //   decoration: InputDecoration(
-            //     isDense: true,
-            //     counterStyle: const TextStyle(
-            //       height: 0.5,
-            //       color: Palette.primaryColor,
-            //       fontSize: 8,
-            //     ),
-            //     border: InputBorder.none,
-            //     hintText: hintText,
-            //     filled: true,
-            //     // fillColor: backgroundColor,
-            //     fillColor: Colors.transparent,
-
-            //     hintStyle: GoogleFonts.roboto(
-            //         fontWeight: FontWeight.w400,
-            //         color: const Color(0xff9098B1)),
-            //     prefixText: prefixText,
-            //     prefix: prefix,
-            //     suffixIcon: suffixIcon,
-            //   ),
-            //   onSubmitted: onSubmitted,
-            //   onChanged: onChanged,
-            //   controller: controller,
-            //   textInputAction: action,
-            // ),
             TextField(
               inputFormatters: inputFormatters,
               maxLength: (maxLength > 0) ? maxLength : null,
@@ -327,6 +286,7 @@ class MyTextFieldContainer extends StatelessWidget {
               controller: controller,
               onSubmitted: onSubmitted,
               textInputAction: action,
+              textCapitalization: textCapitalization,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w700,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Palette {
+  Palette._();
   static const Color primaryColor = Color(0xFF40BFFF);
 
   static const Color blue = Color(0xFF3A4178);

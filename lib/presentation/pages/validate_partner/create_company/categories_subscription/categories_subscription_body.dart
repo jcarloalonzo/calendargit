@@ -3,13 +3,15 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/config/palette.dart';
 import '../../../../../core/config/size_text.dart';
-import '../../../../../data/models/responses/business_response.dart';
-import '../../../../../data/preferences/preferences_user.dart';
-import '../../../../bloc/main_bloc.dart';
+import '../../../../../data/models/entities/services_response.dart';
+import '../../../../../data/models/requests/create_company_request.dart';
 import '../../../../widgets/my_buttom.dart';
 import '../../../../widgets/my_text.dart';
-import '../../login/login_page.dart';
+import '../../../../widgets/mysizedbox.dart';
+import '../../../../widgets/show_loader.dart';
+import '../services_subscription/services_subscription_page.dart';
 import 'categories_subscription_bloc.dart';
+import 'components/container_chip.dart';
 
 class CategoriesSubscriptionBody extends StatelessWidget {
   const CategoriesSubscriptionBody({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class CategoriesSubscriptionBody extends StatelessWidget {
     final bloc = Provider.of<CategoriesSubscriptionBloc>(context, listen: true);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -35,76 +37,68 @@ class CategoriesSubscriptionBody extends StatelessWidget {
             maxLines: 3,
             color: Palette.colorApp,
           ),
-          MyButtom(
-            text: 'text',
-            onTap: () async {
-              await bloc.getCategories();
-            },
-          ),
+          const MySizedBoxHeight(),
           Expanded(
-              child: Wrap(
-            children: bloc.categories.map((category) {
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        // color: isSelected ? Palette.primaryColor : Colors.grey,
-                        color: Palette.colorApp,
-                        width: 2),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      MyText(
-                        text: category.description,
-                        // color: isSelected ? Palette.primaryColor : Colors.grey,
-                        color: Palette.colorApp,
-                        fontWeight: FontWeight.w600,
-                        size: SizeText.text4,
-                      ),
-                      const SizedBox(width: 8),
-                      const MyText(
-                        text: 'x',
-                        color: Palette.primaryColor,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }).toList(),
+              child: SingleChildScrollView(
+            child: Wrap(
+              children: bloc.categories.map((category) {
+                return ContainerChip(
+                  category.description,
+                  isSelected: bloc.exists(category),
+                  onTap: () => bloc.onTapChip(category),
+                );
+              }).toList(),
+            ),
           )),
           MyButtom(
-            text: 'REGISTRAR',
+            text: bloc.categoriesSelected.isEmpty ? 'Registrar' : 'Continuar',
             onTap: () async {
               try {
-                final prefs = PreferencesUser();
-                final mainBloc = context.read<MainBloc>();
+                List<ServicesResponse> services = await Loader.showLoader(
+                    context, bloc.getServicesByCategories());
 
-                bool? valida = await bloc.register();
-
-                if (!valida) return;
-                // if (request == null) return;
+                if (services.isEmpty) {
+                  //
+                  //
+                  return;
+                }
                 if (!context.mounted) return;
 
-                final business = prefs.business;
+                CreateCompanyRequest? request = bloc.getRequestCompany();
+                if (request == null) return;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ServicesSubscriptionPage.init(
+                        context,
+                        company: bloc.company!,
+                        request: request,
+                        services: services,
+                      ),
+                    ));
 
-                mainBloc.business =
-                    BusinessResponse.businessResponseFromJson(business!);
+                // final prefs = PreferencesUser();
+                // final mainBloc = context.read<MainBloc>();
 
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (ctx) => LoginPage.init(
-                      ctx,
-                    ),
-                  ),
-                  (route) => false,
-                );
+                // bool? valida = await bloc.register();
+
+                // if (!valida) return;
+                // // if (request == null) return;
+                // if (!context.mounted) return;
+
+                // final business = prefs.business;
+
+                // mainBloc.business =
+                //     BusinessResponse.businessResponseFromJson(business!);
+
+                // Navigator.of(context).pushAndRemoveUntil(
+                //   MaterialPageRoute(
+                //     builder: (ctx) => LoginPage.init(
+                //       ctx,
+                //     ),
+                //   ),
+                //   (route) => false,
+                // );
               } catch (e) {
                 bloc.setError(e.toString());
                 return;

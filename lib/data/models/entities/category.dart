@@ -12,7 +12,6 @@ class Category {
     required this.activate,
     required this.online,
     required this.categoryService,
-    required this.registerUser,
   });
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         categoryId: json['categoryID'],
@@ -21,7 +20,6 @@ class Category {
         activate: json['activate'],
         online: json['online'],
         categoryService: json['categoryService'],
-        registerUser: json['registerUser'],
       );
 
   factory Category.fromRawJson(String str) =>
@@ -33,7 +31,6 @@ class Category {
   bool activate;
   bool online;
   bool categoryService;
-  bool registerUser;
 
   String toRawJson() => json.encode(toJson());
 
@@ -44,6 +41,5 @@ class Category {
         'activate': activate,
         'online': online,
         'categoryService': categoryService,
-        'registerUser': registerUser,
       };
 }

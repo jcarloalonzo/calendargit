@@ -110,4 +110,11 @@ class EsIdRequest {
   Map<String, dynamic> toJson() => {
         'ID': id,
       };
+
+  static List<EsIdRequest> esIdRequestFromJson(String str) =>
+      List<EsIdRequest>.from(
+          json.decode(str).map((x) => EsIdRequest.fromJson(x)));
+
+  static String esIdRequestToJson(List<EsIdRequest> data) =>
+      json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 }

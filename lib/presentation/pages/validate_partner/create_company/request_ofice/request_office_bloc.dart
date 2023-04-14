@@ -46,7 +46,7 @@ class RequestOfficeBloc with ChangeNotifier {
 
     nameOfficeController.text = '';
     phoneOfficeController.text = '';
-    addressOfficeController.text = _company?.companyAddress?[0].adress ?? '';
+    addressOfficeController.text = _company?.companyAddress[0].adress ?? '';
     //
   }
 

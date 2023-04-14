@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../../core/config/only_portroit.dart';
 import '../../../../../core/config/palette.dart';
 import '../../../../../data/models/entities/response_model.dart';
+import '../../../../../data/models/entities/services_response.dart';
 import '../../../../../data/models/requests/create_company_request.dart';
 import '../../../../../data/models/responses/company_by_token_response.dart';
 import '../../../../widgets/my_background.dart';
@@ -17,6 +18,7 @@ class ServicesSubscriptionPage extends StatelessWidget {
     BuildContext context, {
     required CompanyByTokenResponse company,
     required CreateCompanyRequest request,
+    required List<ServicesResponse> services,
   }) {
     return ChangeNotifierProvider(
       create: (_) => ServicesSubscriptionBloc()
@@ -24,6 +26,7 @@ class ServicesSubscriptionPage extends StatelessWidget {
           context,
           companyO: company,
           requestO: request,
+          servicesOb: services,
         ),
       child: const ServicesSubscriptionPage._(),
     );

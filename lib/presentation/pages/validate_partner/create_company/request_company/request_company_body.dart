@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/config/Utils.dart';
 import '../../../../../core/config/palette.dart';
 import '../../../../../core/config/size_text.dart';
 import '../../../../../data/models/requests/create_company_request.dart';
@@ -37,6 +38,49 @@ class RequestCompanyBody extends StatelessWidget {
               size: SizeText.text1,
               maxLines: 3,
               color: Palette.colorApp,
+            ),
+            MyCardContainer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      const MyText(text: 'Proveedor'),
+                      const MySizedBoxWidth(),
+                      Flexible(
+                        child: MyText(
+                          maxLines: 3,
+                          text: bloc.companySearched?.businessName ?? '',
+                          color: Palette.colorApp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const MyText(text: 'Correo'),
+                      const MySizedBoxWidth(),
+                      Flexible(
+                        child: MyText(
+                          maxLines: 3,
+                          text: bloc.companySearched?.emailAddress ?? '',
+                          color: Palette.colorApp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (!MyUtils.stringIsnullOrEmpty(
+                      bloc.companySearched?.phoneNumber))
+                    Row(
+                      children: [
+                        const MyText(text: 'Proveedor'),
+                        MyText(text: bloc.companySearched?.businessName ?? ''),
+                      ],
+                    ),
+                ],
+              ),
             ),
             MyCardContainer(
               child: Column(

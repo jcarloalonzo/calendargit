@@ -6,6 +6,7 @@ import '../../core/config/config.dart';
 import '../models/entities/category.dart';
 import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
+import '../models/entities/services_response.dart';
 import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/responses/business_response.dart';
@@ -247,6 +248,40 @@ class API {
       if (response.statusCode == 200) {
         responseData.data = (json.decode(response.body) as List)
             .map((i) => Category.fromJson(i))
+            .toList();
+
+        return responseData;
+      }
+      responseData.statusCode = response.statusCode;
+      responseData.error =
+          ResponseErrorModel.fromJson(json.decode(response.body));
+      return responseData;
+    } catch (error) {
+      responseData.statusCode = 500;
+      responseData.error =
+          ResponseErrorModel(code: 0, message: error.toString());
+    }
+    return responseData;
+  }
+
+  static Future<ResponseModel<List<ServicesResponse>>> servicesByCategories(
+      List<EsIdRequest> ids) async {
+    print(EsIdRequest.esIdRequestToJson(ids));
+    var responseData = ResponseModel<List<ServicesResponse>>();
+    try {
+      const url = '${Config.urlWebCliente}service/GetServiceByCategories';
+      print(url);
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: EsIdRequest.esIdRequestToJson(ids),
+      );
+
+      final decodeData = json.decode(response.body);
+      print(decodeData);
+      if (response.statusCode == 200) {
+        responseData.data = (json.decode(response.body) as List)
+            .map((i) => ServicesResponse.fromJson(i))
             .toList();
 
         return responseData;

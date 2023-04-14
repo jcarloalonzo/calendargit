@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/config/Utils.dart';
 import '../../../../../core/config/palette.dart';
 import '../../../../../core/config/size_text.dart';
 import '../../../../../data/models/requests/create_company_request.dart';
@@ -41,6 +42,48 @@ class RequestLoginBody extends StatelessWidget {
             MyCardContainer(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      const MyText(text: 'Proveedor'),
+                      const MySizedBoxWidth(),
+                      Flexible(
+                        child: MyText(
+                          maxLines: 3,
+                          text: bloc.company?.businessName ?? '',
+                          color: Palette.colorApp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const MyText(text: 'Correo'),
+                      const MySizedBoxWidth(),
+                      Flexible(
+                        child: MyText(
+                          maxLines: 3,
+                          text: bloc.company?.emailAddress ?? '',
+                          color: Palette.colorApp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (!MyUtils.stringIsnullOrEmpty(bloc.company?.phoneNumber))
+                    Row(
+                      children: [
+                        const MyText(text: 'Proveedor'),
+                        MyText(text: bloc.company?.businessName ?? ''),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+            MyCardContainer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const MyText(
                     text: 'Registro',
@@ -50,11 +93,13 @@ class RequestLoginBody extends StatelessWidget {
                   const MySizedBoxHeight(kDouble: 20),
                   MyTextFieldContainer(
                     controller: bloc.userController,
+                    isImportantFormRed: true,
                     title: 'Usuario',
                   ),
                   const MySizedBoxHeight(kDouble: 20),
                   MyTextFieldContainer(
                     isPassword: bloc.isHidden,
+                    isImportantFormRed: true,
                     controller: bloc.passwordController,
                     title: 'Contrasena',
                     suffixIcon: GestureDetector(
