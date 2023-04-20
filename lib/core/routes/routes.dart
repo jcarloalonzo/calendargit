@@ -10,8 +10,8 @@ import '../../presentation/pages/agent/schedule_reservation_free/schedule_reserv
 import '../../presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
 import '../../presentation/pages/calendar/calendar_page.dart';
 import '../../presentation/pages/invoice/new_invoice_free/invoice_free_page.dart';
-import '../../presentation/pages/license/license_spa_page.dart';
 import '../../presentation/pages/navigator/background_navigator.dart';
+import '../../presentation/pages/share_token/share_token_page.dart';
 import '../../presentation/pages/validate_partner/login/login_page.dart';
 import '../../presentation/pages/validate_partner/splash/splash_page.dart';
 import '../../presentation/pages/validate_partner/unallowed_company/unallowed_company_page.dart';
@@ -20,6 +20,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     LoginPage.routeName: (context) => LoginPage.init(context),
     SplashPage.routeName: (context) => SplashPage.init(context),
+    ShareTokenPage.routeName: (context) => ShareTokenPage.init(context),
     AgentReproPage.routeName: (context) => const AgentReproPage(),
     InvoiceFreePage.routeName: (context) => const InvoiceFreePage(),
     // AgendaDetails.routeName: (context) => const AgendaDetails(),
@@ -43,8 +44,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     //     CreateScheduleStepTwo(),
     // CreateScheduleStepThree.routeName: (BuildContext context) =>
     //     const CreateScheduleStepThree(),
-
-    LicenseSpaPage.routeName: (context) => LicenseSpaPage.init(context),
 
     CalendarPage.routeName: (BuildContext context) => const CalendarPage(),
     // AgentPage.routeName: (BuildContext context) => const AgentPage(),

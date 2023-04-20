@@ -9,6 +9,7 @@ import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/responses/business_response.dart';
 import '../models/responses/company_by_token_response.dart';
+import '../models/responses/person_response.dart';
 import '../models/responses/validate_token_response.dart';
 
 class ProviderData {
@@ -57,6 +58,12 @@ class ProviderData {
   static Future<ResponseModel<List<ServicesResponse>>> servicesByCategories(
       List<EsIdRequest> ids) async {
     final response = await API.servicesByCategories(ids);
+    return response;
+  }
+
+  static Future<ResponseModel<List<PersonResponse>>> personsByBusiness(
+      int businessID, int personTypeID) async {
+    final response = await API.personsByBusiness(businessID, personTypeID);
     return response;
   }
 }

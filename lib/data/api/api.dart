@@ -11,6 +11,7 @@ import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/responses/business_response.dart';
 import '../models/responses/company_by_token_response.dart';
+import '../models/responses/person_response.dart';
 import '../models/responses/validate_token_response.dart';
 
 class API {
@@ -208,8 +209,10 @@ class API {
 
   static Future<ResponseModel<LoginResponse>> login(LoginRequest obj) async {
     ResponseModel<LoginResponse> responseData = ResponseModel<LoginResponse>();
+    print(LoginRequest.loginRequestToJson(obj));
     try {
       const url = '${Config.urlWebCliente}User/ValidateLogin';
+      print(url);
       final response = await http.post(
         Uri.parse(url),
         headers: <String, String>{'Content-Type': 'application/json'},
@@ -282,6 +285,39 @@ class API {
       if (response.statusCode == 200) {
         responseData.data = (json.decode(response.body) as List)
             .map((i) => ServicesResponse.fromJson(i))
+            .toList();
+
+        return responseData;
+      }
+      responseData.statusCode = response.statusCode;
+      responseData.error =
+          ResponseErrorModel.fromJson(json.decode(response.body));
+      return responseData;
+    } catch (error) {
+      responseData.statusCode = 500;
+      responseData.error =
+          ResponseErrorModel(code: 0, message: error.toString());
+    }
+    return responseData;
+  }
+
+  static Future<ResponseModel<List<PersonResponse>>> personsByBusiness(
+      int businessID, int personTypeID) async {
+    var responseData = ResponseModel<List<PersonResponse>>();
+    try {
+      final String url =
+          '${Config.urlWebCliente}person/getByBusiness/$businessID/$personTypeID';
+      print(url);
+      final response = await http.get(
+        Uri.parse(url),
+        headers: <String, String>{'Content-Type': 'application/json'},
+      );
+
+      final decodeData = json.decode(response.body);
+      print(decodeData);
+      if (response.statusCode == 200) {
+        responseData.data = (json.decode(response.body) as List)
+            .map((i) => PersonResponse.fromJson(i))
             .toList();
 
         return responseData;

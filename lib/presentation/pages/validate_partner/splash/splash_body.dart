@@ -49,6 +49,9 @@ class _SplashBodyState extends State<SplashBody> {
       case TypeLogin.home:
         final user = prefs.user;
         mainBloc.login = LoginResponse.loginModelFromJson(user!);
+        final business = prefs.business;
+        mainBloc.business =
+            BusinessResponse.businessResponseFromJson(business!);
         Navigator.pushNamedAndRemoveUntil(
             context, BackGroundNavigator.routeName, (route) => false);
         return;

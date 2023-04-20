@@ -4,7 +4,9 @@ import '../../core/config/palette.dart';
 import '../../core/config/size_text.dart';
 import '../../data/preferences/preferences_user.dart';
 import '../pages/navigator/background_navigator.dart';
+import '../pages/share_token/share_token_page.dart';
 import '../pages/validate_partner/login/login_page.dart';
+import '../pages/workers/home/workers_page.dart';
 import 'my_dialogs.dart';
 import 'my_text.dart';
 import 'mysizedbox.dart';
@@ -39,31 +41,21 @@ class DrawerMenu extends StatelessWidget {
                   },
                 ),
                 _CustomListTle(
-                  icon: Icons.home,
-                  title: 'Agenda',
+                  icon: Icons.people,
+                  title: 'Colaboradores',
                   onTap: () {
-                    Navigator.pushNamed(context, BackGroundNavigator.routeName);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WorkersPage.init(context),
+                        ));
                   },
                 ),
                 _CustomListTle(
-                  icon: Icons.home,
-                  title: 'Invoice',
+                  icon: Icons.qr_code,
+                  title: 'Compartir codigo',
                   onTap: () {
-                    Navigator.pushNamed(context, BackGroundNavigator.routeName);
-                  },
-                ),
-                _CustomListTle(
-                  icon: Icons.home,
-                  title: 'Clientes',
-                  onTap: () {
-                    Navigator.pushNamed(context, BackGroundNavigator.routeName);
-                  },
-                ),
-                _CustomListTle(
-                  icon: Icons.home,
-                  title: 'Mi cuenta',
-                  onTap: () {
-                    Navigator.pushNamed(context, BackGroundNavigator.routeName);
+                    Navigator.pushNamed(context, ShareTokenPage.routeName);
                   },
                 ),
                 _CustomListTle(

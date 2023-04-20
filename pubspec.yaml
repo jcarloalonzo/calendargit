@@ -1,7 +1,7 @@
 name: calendario
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.2
   calendar_view: ^1.0.0
@@ -29,10 +28,10 @@ dependencies:
   shared_preferences: ^2.0.13
   share_plus: ^6.3.1
   flutter_barcode_scanner: ^2.0.0
+  fluttertoast: ^8.1.1
+  qr_flutter: ^4.0.0
+  dotted_border: ^2.0.0+3
 
-
-  
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,11 +45,10 @@ flutter_icons:
   ios: true
   image_path: "assets/icon/icon_app.png"
   adaptive_icon_background: "assets/icon/icon_app.png"
-  
-flutter:
 
+flutter:
   uses-material-design: true
-  
+
   assets:
     - assets/svg/
     - assets/icon/
