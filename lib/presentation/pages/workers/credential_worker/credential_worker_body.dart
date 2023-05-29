@@ -5,9 +5,11 @@ import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_card_container.dart';
+import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/mysizedbox.dart';
 import '../../../widgets/textfield_general.dart';
+import '../add_services_worker/add_servicesl_worker_page.dart';
 import 'credential_worker_bloc.dart';
 
 class CredentialWorkerBody extends StatelessWidget {
@@ -16,7 +18,7 @@ class CredentialWorkerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<CredentialWorkerBloc>(context);
-
+    final myLoading = MyLoading(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,20 +39,34 @@ class CredentialWorkerBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const MyTextFieldContainer(
+                  MyTextFieldContainer(
                     title: 'Usuario',
                     isImportantFormRed: true,
+                    isEnabled: false,
+                    isObscure: true,
+                    controller: bloc.userController,
                   ),
                   const MySizedBoxHeight(),
-                  const MyTextFieldContainer(
+                  MyTextFieldContainer(
                     title: 'Contraseña',
                     isImportantFormRed: true,
+                    controller: bloc.passwordController,
                   ),
-                  const MySizedBoxHeight(),
+                  const MySizedBoxHeight(kDouble: 50),
                   MyButtom(
                     text: 'Registrar',
                     onTap: () async {
-                      //
+                      myLoading.createLoading();
+                      final int? response = await bloc.registrar();
+                      myLoading.dismiss();
+                      if (response == null) return;
+                      if (!context.mounted) return;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                AddServicesWorkerPage.init(context, response),
+                          ));
                     },
                   ),
                 ],

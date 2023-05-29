@@ -162,7 +162,7 @@ class ScheduleBloc extends ChangeNotifier {
 
     try {
       GetBookingListRequest obj = GetBookingListRequest();
-      obj.businessID = _dataLogin?.userBusinessDto?[0].businessId;
+      obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
       obj.personID = _dataLogin?.personId;
       obj.initialDate = _fechaSelected;
       obj.finalDate = _fechaSelected;
@@ -187,7 +187,7 @@ class ScheduleBloc extends ChangeNotifier {
     notifyListeners();
     try {
       GetBookingListRequest obj = GetBookingListRequest();
-      obj.businessID = _dataLogin?.userBusinessDto?[0].businessId;
+      obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
       obj.personID = _dataLogin?.personId;
       obj.initialDate = _fechaSelected;
       obj.finalDate = _fechaSelected;
@@ -250,7 +250,7 @@ class ScheduleBloc extends ChangeNotifier {
     notifyListeners();
     try {
       final response =
-          await APIBooking.personGetRangeDate(_dataLogin!.personId!);
+          await APIBooking.personGetRangeDate(_dataLogin!.personId);
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');
       if (response.statusCode == 200) {
@@ -377,8 +377,8 @@ class ScheduleBloc extends ChangeNotifier {
 
     objRQ.user = _dataLogin?.userId;
 
-    objRQ.businessId = loginModel.userBusinessDto?[0].businessId;
-    objRQ.businessIdent = loginModel.userBusinessDto?[0].identification;
+    objRQ.businessId = loginModel.userBusinessDto[0].businessId;
+    objRQ.businessIdent = loginModel.userBusinessDto[0].identification;
 
     objRQ.date = _dateSelectedTurn;
 
@@ -411,9 +411,9 @@ class ScheduleBloc extends ChangeNotifier {
 
     obj.bookingId = _bookingSeleccionado?.bookingId;
     obj.authorizedUser = 0;
-    obj.businessId = _dataLogin?.userBusinessDto?[0].businessId;
-    obj.businessIdent = _dataLogin?.userBusinessDto?[0].identification;
-    obj.officeId = _dataLogin?.userBusinessDto?[0].officeId;
+    obj.businessId = _dataLogin?.userBusinessDto[0].businessId;
+    obj.businessIdent = _dataLogin?.userBusinessDto[0].identification;
+    obj.officeId = _dataLogin?.userBusinessDto[0].officeId;
     // obj.completed = true;
 
     // obj.invoice = false;
@@ -440,8 +440,8 @@ class ScheduleBloc extends ChangeNotifier {
 
     obj.bookingId = _bookingSeleccionado?.bookingId;
     obj.user = _dataLogin?.userId;
-    obj.businessId = _dataLogin?.userBusinessDto?[0].businessId;
-    obj.businessIdent = _dataLogin?.userBusinessDto?[0].identification;
+    obj.businessId = _dataLogin?.userBusinessDto[0].businessId;
+    obj.businessIdent = _dataLogin?.userBusinessDto[0].identification;
     obj.reason = reason;
 
     // var response = await anulaBooking(obj);
@@ -549,9 +549,9 @@ class ScheduleBloc extends ChangeNotifier {
 
     GenerateInvoiceBookingRequest obj = GenerateInvoiceBookingRequest();
     obj.user = _dataLogin!.userId;
-    obj.businessId = _dataLogin!.userBusinessDto?[0].businessId;
-    obj.businessIdent = _dataLogin!.userBusinessDto?[0].identification;
-    obj.officeId = _dataLogin!.userBusinessDto?[0].officeId;
+    obj.businessId = _dataLogin!.userBusinessDto[0].businessId;
+    obj.businessIdent = _dataLogin!.userBusinessDto[0].identification;
+    obj.officeId = _dataLogin!.userBusinessDto[0].officeId;
     obj.subAmount = _bookingSeleccionado?.price;
     obj.taxPorc = 0;
     obj.taxAmount = 0;

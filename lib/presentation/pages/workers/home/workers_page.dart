@@ -6,6 +6,7 @@ import '../../../../core/config/palette.dart';
 import '../../../../data/models/entities/response_model.dart';
 import '../../../bloc/main_bloc.dart';
 import '../../../widgets/my_background.dart';
+import '../../navigator/background_navigator.dart';
 import '../add_worker/add_worker_page.dart';
 import 'workers_bloc.dart';
 import 'workers_body.dart';
@@ -39,7 +40,15 @@ class WorkersPage extends StatelessWidget {
     ResponseModel.handleError(bloc, context);
 
     return MyBackGround(
+      willPop: () async {
+        if (bloc.isLoading) return false;
+        Navigator.pushNamedAndRemoveUntil(
+            context, BackGroundNavigator.routeName, (route) => false);
+        return false;
+      },
       backPageEnable: !bloc.isLoading,
+      // backPageEnable: false,
+
       titleAppBar: 'Colaboradores',
       isLoading: bloc.isLoading,
       isAppBar: true,

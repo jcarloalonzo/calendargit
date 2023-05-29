@@ -5,6 +5,7 @@ import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/mysizedbox.dart';
+import '../detail_worker/detail_worker_page.dart';
 import 'components/item_container_worker.dart';
 import 'workers_bloc.dart';
 
@@ -41,7 +42,16 @@ class WorkersBody extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   final worker = bloc.workers[index];
-                  return ItemContainerWorker(worker: worker);
+                  return GestureDetector(
+                      onTap: () async {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailWorkerPage.init(context, worker),
+                            ));
+                      },
+                      child: ItemContainerWorker(worker: worker));
                 },
                 itemCount: bloc.workers.length,
               ),

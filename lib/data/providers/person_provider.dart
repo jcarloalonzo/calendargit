@@ -14,7 +14,7 @@ class APIPerson {
     try {
       final url =
           '${Config.urlWebCliente}person/getDetailService/personID/$personID';
-
+      print(url);
       final resp = await http.get(
         Uri.parse(url),
       );

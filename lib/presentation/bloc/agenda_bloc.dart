@@ -180,8 +180,8 @@ class AgendaBloc extends ChangeNotifier {
 
     objRQ.bookingId = _bookingSeleccionado?.bookingId;
     objRQ.user = loginModel.userId;
-    objRQ.businessId = loginModel.userBusinessDto?[0].businessId;
-    objRQ.businessIdent = loginModel.userBusinessDto?[0].identification;
+    objRQ.businessId = loginModel.userBusinessDto[0].businessId;
+    objRQ.businessIdent = loginModel.userBusinessDto[0].identification;
 
     objRQ.reason = reason;
     // var response = await confirmBooking(objRQ, _bookingId!);

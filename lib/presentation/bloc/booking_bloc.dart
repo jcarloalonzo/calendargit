@@ -220,9 +220,9 @@ class BookingBloc extends ChangeNotifier {
   Future<ResponseModel<bool>> confirmButtom(LoginResponse loginModel) async {
     ConfirmBookingRequest objRQ = ConfirmBookingRequest();
     objRQ.authorizedUser = loginModel.userId;
-    objRQ.businessId = loginModel.userBusinessDto?[0].businessId;
-    objRQ.businessIdent = loginModel.userBusinessDto?[0].identification;
-    objRQ.officeId = loginModel.userBusinessDto?[0].officeId;
+    objRQ.businessId = loginModel.userBusinessDto[0].businessId;
+    objRQ.businessIdent = loginModel.userBusinessDto[0].identification;
+    objRQ.officeId = loginModel.userBusinessDto[0].officeId;
     objRQ.completed = _bookingDetail?.completed;
     objRQ.invoice = _bookingDetail?.invoiceState;
     objRQ.priceFinal = _bookingDetail?.priceFinal;

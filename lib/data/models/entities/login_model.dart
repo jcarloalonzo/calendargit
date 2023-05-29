@@ -6,15 +6,15 @@ import 'dart:convert';
 
 class LoginResponse {
   LoginResponse({
-    this.userId,
-    this.personId,
+    required this.userId,
+    required this.personId,
     this.personTypeId,
     this.documentTypeId,
     this.documentNumber,
     this.phoneNumber,
     this.emailAddress,
     this.name,
-    this.userBusinessDto,
+    this.userBusinessDto = const [],
   });
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         userId: json['UserID'],
@@ -37,15 +37,15 @@ class LoginResponse {
   //
   //
 
-  int? userId;
-  int? personId;
+  int userId;
+  int personId;
   int? personTypeId;
   int? documentTypeId;
   String? documentNumber;
   String? phoneNumber;
   String? emailAddress;
   String? name;
-  List<UserBusinessDto>? userBusinessDto;
+  List<UserBusinessDto> userBusinessDto;
 
   Map<String, dynamic> toJson() => {
         'UserID': userId,
@@ -57,7 +57,7 @@ class LoginResponse {
         'EmailAddress': emailAddress,
         'Name': name,
         'UserBusinessDTO':
-            List<dynamic>.from(userBusinessDto!.map((x) => x.toJson())),
+            List<dynamic>.from(userBusinessDto.map((x) => x.toJson())),
       };
 }
 

@@ -19,7 +19,7 @@ class BookingPage extends StatelessWidget {
           create: (_) => BookingBloc()
             ..init(
                 businessID: blocLogin.modelBusiness!.businessId!,
-                personID: blocLogin.login!.personId!,
+                personID: blocLogin.login!.personId,
                 bookingID: bookingID),
         ),
       ],

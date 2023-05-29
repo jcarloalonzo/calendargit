@@ -5,11 +5,15 @@ import '../models/entities/category.dart';
 import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
 import '../models/entities/services_response.dart';
+import '../models/requests/add_person_worker_request.dart';
 import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
+import '../models/requests/set_services_person_request.dart';
 import '../models/responses/business_response.dart';
 import '../models/responses/company_by_token_response.dart';
+import '../models/responses/detail_service_person.dart';
 import '../models/responses/person_response.dart';
+import '../models/responses/services_business_response.dart';
 import '../models/responses/validate_token_response.dart';
 
 class ProviderData {
@@ -65,5 +69,30 @@ class ProviderData {
       int businessID, int personTypeID) async {
     final response = await API.personsByBusiness(businessID, personTypeID);
     return response;
+  }
+
+  static Future<ResponseModel<int>> addPersonWorker(
+      AddPersonWorkerRequest request) async {
+    final response = await API.addPersonWorker(request);
+    return response;
+  }
+
+  static Future<ResponseModel<List<ServiceBusinessResponse>>>
+      servicesByBusiness(int businessID) async {
+    final response = await API.servicesByBusiness(businessID);
+    return response;
+  }
+
+  static Future<ResponseModel<bool>> setServicesPerson(
+      SetServicesPersonRequest request) async {
+    final response = await API.setServicesPerson(request);
+    return response;
+  }
+
+  static Future<ResponseModel<List<DetailServicePerson>>>
+      getDetailServicePerson(
+          {required int businessID, required int personID}) async {
+    return API.getDetailServicePerson(
+        businessID: businessID, personID: personID);
   }
 }

@@ -6,27 +6,28 @@ import 'drawer_menu.dart';
 import 'my_custom_loading.dart';
 
 class MyBackGround extends StatelessWidget {
-  const MyBackGround(
-      {Key? key,
-      this.child,
-      this.bottomNavigator,
-      this.titleAppBar,
-      this.hintText,
-      this.controller,
-      this.onSubmit,
-      this.onPressIcon,
-      this.onPressTextField,
-      this.bottomNavigatorBar,
-      this.actions,
-      this.isDrawer = false,
-      this.backPageEnable = true,
-      this.allAnchorwindow = false,
-      this.onTapVoice,
-      this.wFloatingActionButtom,
-      this.backgroundColor = Palette.backgroundColor,
-      this.isLoading = false,
-      this.isAppBar = true})
-      : super(key: key);
+  const MyBackGround({
+    Key? key,
+    this.child,
+    this.bottomNavigator,
+    this.titleAppBar,
+    this.hintText,
+    this.controller,
+    this.onSubmit,
+    this.onPressIcon,
+    this.onPressTextField,
+    this.bottomNavigatorBar,
+    this.actions,
+    this.isDrawer = false,
+    this.backPageEnable = true,
+    this.allAnchorwindow = false,
+    this.onTapVoice,
+    this.wFloatingActionButtom,
+    this.backgroundColor = Palette.backgroundColor,
+    this.isLoading = false,
+    this.isAppBar = true,
+    this.willPop,
+  }) : super(key: key);
   final Widget? child;
   final Widget? bottomNavigator;
   final Widget? wFloatingActionButtom;
@@ -45,13 +46,11 @@ class MyBackGround extends StatelessWidget {
   final Function()? onTapVoice;
   final Color? backgroundColor;
   final bool isLoading;
-
+  final WillPopCallback? willPop;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        return backPageEnable;
-      },
+      onWillPop: willPop ?? () async => backPageEnable,
       child: Scaffold(
         bottomNavigationBar: bottomNavigatorBar,
         backgroundColor: backgroundColor,

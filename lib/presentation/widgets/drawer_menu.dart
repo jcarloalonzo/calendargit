@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/config/palette.dart';
 import '../../core/config/size_text.dart';
 import '../../data/preferences/preferences_user.dart';
+import '../bloc/main_bloc.dart';
 import '../pages/navigator/background_navigator.dart';
 import '../pages/share_token/share_token_page.dart';
 import '../pages/validate_partner/login/login_page.dart';
@@ -19,6 +21,7 @@ class DrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<MainBloc>();
     return SafeArea(
       child: Drawer(
         backgroundColor: Palette.white,
@@ -88,7 +91,7 @@ class DrawerMenu extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   MyText(
-                    text: '© 2022 JELAF',
+                    text: '© 2023 JELAF',
                   ),
                   MyText(
                     text: 'V 1.0',
@@ -110,12 +113,14 @@ class _CabeceraDrower extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<MainBloc>();
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
           const CircleAvatar(
-            backgroundColor: Palette.green,
+            backgroundColor: Palette.colorApp,
             radius: 40,
             child: Icon(
               Icons.person,
@@ -130,42 +135,49 @@ class _CabeceraDrower extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const MyText(
-                  text: 'Pedro Gómez',
+                MyText(
+                  text: bloc.login?.name ?? '',
+                  maxLines: 3,
                   fontWeight: FontWeight.w800,
                   color: Palette.blue,
-                  size: SizeText.text3,
+                  size: SizeText.text3 - 1,
                 ),
                 const MySizedBoxHeight(kDouble: 5),
                 Row(
-                  children: const [
-                    Icon(
-                      Icons.location_city,
+                  children: [
+                    const Icon(
+                      Icons.person,
                       color: Palette.blue,
                       size: 20,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     MyText(
-                      text: 'SUCURSAL LIMA',
+                      text: bloc.login?.emailAddress ?? '',
                       fontWeight: FontWeight.w400,
                       size: SizeText.text6,
                       color: Palette.blue,
                     ),
                   ],
                 ),
+                const MySizedBoxHeight(kDouble: 5),
                 Row(
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.location_city,
                       color: Palette.blue,
                       size: 20,
                     ),
-                    SizedBox(width: 10),
-                    MyText(
-                      text: 'OFICINA LIMA',
-                      fontWeight: FontWeight.w400,
-                      size: SizeText.text6,
-                      color: Palette.blue,
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: MyText(
+                        text: (bloc.login!.userBusinessDto.isNotEmpty)
+                            ? bloc.login!.userBusinessDto[0].descriptionOffice!
+                            : '',
+                        fontWeight: FontWeight.w400,
+                        maxLines: 3,
+                        size: SizeText.text6,
+                        color: Palette.blue,
+                      ),
                     ),
                   ],
                 ),
@@ -204,7 +216,7 @@ class _CustomListTle extends StatelessWidget {
       title: MyText(
         text: title,
         fontWeight: FontWeight.w400,
-        color: Colors.black,
+        color: Palette.colorApp,
         size: SizeText.text4,
       ),
       minLeadingWidth: 0,

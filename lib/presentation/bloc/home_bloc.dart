@@ -63,8 +63,8 @@ class HomeBloc extends ChangeNotifier {
 
     try {
       final response = await APIBooking.getBookingHome(
-          businessID: _dataLogin!.userBusinessDto![0].businessId!,
-          personID: _dataLogin!.personId!,
+          businessID: _dataLogin!.userBusinessDto[0].businessId!,
+          personID: _dataLogin!.personId,
           date: MyUtils.formatDate(DateTime.now()));
       // _response.statusCode = 300;
       // _response.error = ResponseErrorModel(code: 500, message: 'prueba');

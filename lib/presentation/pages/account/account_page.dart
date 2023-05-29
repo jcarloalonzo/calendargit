@@ -4,32 +4,29 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
 import '../../../../data/models/entities/response_model.dart';
-import '../../../../data/models/requests/add_person_worker_request.dart';
-import '../../../bloc/main_bloc.dart';
-import '../../../widgets/my_background.dart';
-import 'credential_worker_bloc.dart';
-import 'credential_worker_body.dart';
+import '../../bloc/main_bloc.dart';
+import '../../widgets/my_background.dart';
+import 'account_bloc.dart';
+import 'account_body.dart';
 
-class CredentialWorkerPage extends StatelessWidget {
-  const CredentialWorkerPage._();
-  static String routeName = '/CredentialWorkerPage';
+class AccountPage extends StatelessWidget {
+  const AccountPage._();
+  static String routeName = '/AccountPage';
 
   static Widget init(
     BuildContext context,
-    AddPersonWorkerRequest request,
   ) {
     final main = Provider.of<MainBloc>(context, listen: false);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => CredentialWorkerBloc(
+          create: (_) => AccountBloc(
             login: main.login!,
             business: main.business!,
-            request: request,
           )..init(),
         ),
       ],
-      child: const CredentialWorkerPage._(),
+      child: const AccountPage._(),
     );
   }
 
@@ -37,17 +34,17 @@ class CredentialWorkerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Jiffy.locale('es');
 
-    final bloc = Provider.of<CredentialWorkerBloc>(context);
+    final bloc = Provider.of<AccountBloc>(context);
     ResponseModel.handleError(bloc, context);
 
     return MyBackGround(
       backPageEnable: !bloc.isLoading,
-      titleAppBar: 'Credenciales',
+      titleAppBar: 'Mi cuenta',
       isLoading: bloc.isLoading,
       isAppBar: true,
       backgroundColor: Palette.white,
       allAnchorwindow: true,
-      child: const CredentialWorkerBody(),
+      child: const AccountBody(),
     );
   }
 }

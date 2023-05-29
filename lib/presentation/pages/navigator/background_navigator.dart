@@ -10,7 +10,7 @@ import '../../widgets/drawer_menu.dart';
 import '../../widgets/my_alerts.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/mysizedbox.dart';
-import '../account/acccount_page.dart';
+import '../account/account_page.dart';
 import '../calendar/calendar_methods.dart';
 import '../calendar/calendar_page.dart';
 import '../schedule/schedule_methods.dart';
@@ -37,18 +37,6 @@ class BackGroundNavigator extends StatefulWidget {
 class _BackGroundNavigatorState extends State<BackGroundNavigator> {
   bool isListening = false;
 
-  final List _screens = [
-    // const HomePage(),
-    // HomePage(),
-    const SchedulePage(),
-    const CalendarPage(), // SchedulePage.init(context),
-
-    const AccountPage(),
-
-    // SchedulePage(),
-    // HomePage(),
-  ];
-
   int _index = 0;
 
   @override
@@ -72,6 +60,17 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
   Widget build(BuildContext context) {
     final blocSchedule = Provider.of<ScheduleBloc>(context);
     final blocCalendar = Provider.of<CalendarBloc>(context);
+
+    final List screens = [
+      // const HomePage(),
+      // HomePage(),
+      const SchedulePage(),
+      const CalendarPage(), // SchedulePage.init(context),
+      AccountPage.init(context),
+
+      // SchedulePage(),
+      // HomePage(),
+    ];
     return SafeArea(
       child: Scaffold(
           drawer: DrawerMenu(),
@@ -178,7 +177,7 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
 
           // floatingActionButtonLocation:
           //     FloatingActionButtonLocation.centerDocked,
-          body: _screens[_index]),
+          body: screens[_index]),
     );
   }
 }

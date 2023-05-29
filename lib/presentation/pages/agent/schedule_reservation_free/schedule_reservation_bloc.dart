@@ -158,7 +158,7 @@ class ScheduleReservationBloc extends ChangeNotifier {
     notifyListeners();
 
     RegisterBookingRequest obj = RegisterBookingRequest();
-    obj.officeId = _dataLogin?.userBusinessDto?[0].officeId;
+    obj.officeId = _dataLogin?.userBusinessDto[0].officeId;
     obj.serviceId = _serviceSelected?.serviceId;
     obj.personId = _dataLogin?.personId;
     obj.clientId = _clientSelected?.clientId;
@@ -184,7 +184,7 @@ class ScheduleReservationBloc extends ChangeNotifier {
     );
 
     final response = await APIBooking.registerScheduleFree(
-        obj: obj, businessID: _dataLogin!.userBusinessDto![0].businessId!);
+        obj: obj, businessID: _dataLogin!.userBusinessDto[0].businessId!);
     // response.statusCode = 300;
     // response.error = ResponseErrorModel(code: 500, message: 'prueba');
     await _setError(response);
@@ -211,7 +211,7 @@ class ScheduleReservationBloc extends ChangeNotifier {
     GetPriceRequest obj = GetPriceRequest();
 
     obj.businessID = 1;
-    obj.officeID = _dataLogin?.userBusinessDto?[0].officeId;
+    obj.officeID = _dataLogin?.userBusinessDto[0].officeId;
     obj.serviceID = _serviceSelected?.serviceId;
     obj.date = Jiffy(d).format('yyyy-MM-dd');
 

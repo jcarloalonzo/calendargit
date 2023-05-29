@@ -1,53 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/config/palette.dart';
 import '../../../../data/models/entities/response_model.dart';
-import '../../../../data/models/requests/add_person_worker_request.dart';
+import '../../../../data/models/responses/person_response.dart';
 import '../../../bloc/main_bloc.dart';
 import '../../../widgets/my_background.dart';
-import 'credential_worker_bloc.dart';
-import 'credential_worker_body.dart';
+import 'detail_worker_bloc.dart';
+import 'detail_worker_body.dart';
 
-class CredentialWorkerPage extends StatelessWidget {
-  const CredentialWorkerPage._();
-  static String routeName = '/CredentialWorkerPage';
+class DetailWorkerPage extends StatelessWidget {
+  const DetailWorkerPage._();
+  static String routeName = '/DetailWorkerPage';
 
   static Widget init(
     BuildContext context,
-    AddPersonWorkerRequest request,
+    PersonResponse worker,
   ) {
     final main = Provider.of<MainBloc>(context, listen: false);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => CredentialWorkerBloc(
+          create: (_) => DetailWorkerBloc(
             login: main.login!,
             business: main.business!,
-            request: request,
+            worker: worker,
           )..init(),
         ),
       ],
-      child: const CredentialWorkerPage._(),
+      child: const DetailWorkerPage._(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Jiffy.locale('es');
-
-    final bloc = Provider.of<CredentialWorkerBloc>(context);
+    final bloc = Provider.of<DetailWorkerBloc>(context);
     ResponseModel.handleError(bloc, context);
 
     return MyBackGround(
       backPageEnable: !bloc.isLoading,
-      titleAppBar: 'Credenciales',
+      titleAppBar: 'Detalle de empleado',
+      actions: [
+        IconButton(
+          onPressed: () {
+            //
+          },
+          icon: const Icon(
+            Icons.edit,
+            color: Palette.white,
+          ),
+        )
+      ],
       isLoading: bloc.isLoading,
       isAppBar: true,
       backgroundColor: Palette.white,
       allAnchorwindow: true,
-      child: const CredentialWorkerBody(),
+      child: const DetailWorkerBody(),
     );
   }
 }

@@ -173,7 +173,7 @@ class CalendarBloc extends ChangeNotifier {
           'yyyy-MM-dd');
 
       GetBookingListRequest obj = GetBookingListRequest();
-      obj.businessID = _dataLogin?.userBusinessDto?[0].businessId;
+      obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
       obj.personID = _dataLogin?.personId;
       obj.initialDate = initialDate;
       obj.finalDate = finalDate;

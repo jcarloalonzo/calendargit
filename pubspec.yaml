@@ -31,6 +31,7 @@ dependencies:
   fluttertoast: ^8.1.1
   qr_flutter: ^4.0.0
   dotted_border: ^2.0.0+3
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
     - assets/svg/
     - assets/icon/
     - assets/png/
+    - assets/gif/
 
   fonts:
     - family: Roboto

@@ -1,58 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../../core/config/size_text.dart';
-import '../../widgets/my_text.dart';
-import '../../widgets/mysizedbox.dart';
+import 'account_bloc.dart';
+import 'components/container_account.dart';
+import 'components/container_account_office.dart';
+import 'components/container_person_account.dart';
 
 class AccountBody extends StatelessWidget {
-  const AccountBody({
-    Key? key,
-  }) : super(key: key);
+  const AccountBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final blocHome = Provider.of<HomeBloc>(context, listen: false);
-    // final blocLogin = Provider.of<MainBloc>(context, listen: false);
+    final bloc = Provider.of<AccountBloc>(context);
+    final business = bloc.business;
+    final login = bloc.login;
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ContainerAccount(bloc: bloc),
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          MySizedBoxHeight(),
+            ContainerPersonAccount(login: login),
 
-          MyText(
-            text: 'Mi cuenta',
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            size: SizeText.text3,
-          ),
-          MySizedBoxHeight(),
+            if (login.userBusinessDto.isNotEmpty)
+              ContainerAccountOffice(office: bloc.office),
 
-          // const SizedBox(height: 15),
-          // Row(
-          //   children:   [
-          //     MyText(
-          //       text: 'Bienvenid@ ${blocLogin.model!.name}',
-          //       fontWeight: FontWeight.w400,
-          //     )
-          //   ],
-          // ),
-          // const SizedBox(height: 15),
-          // TitleHombe(
-          //   title: 'Tenemos para hoy',
-          //   date: Config.formatDate(DateTime.now(), 'dd/MM/yy'),
-          // ),
-          // const SizedBox(height: 15),
-          // HomeCard(service: blocHome.cardnow),
-          // const SizedBox(height: 30),
-          // TitleHombe(
-          //   title: 'Para mañana',
-          //   date: Config.formatDate(
-          //       DateTime.now().add(const Duration(days: 1)), 'dd/MM/yy'),
-          // ),
-          // const SizedBox(height: 15),
-          // HomeCard(service: blocHome.cardafter),
-        ],
+            //
+            //
+            //
+          ],
+        ),
       ),
     );
   }

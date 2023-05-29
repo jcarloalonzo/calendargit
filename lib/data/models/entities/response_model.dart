@@ -14,6 +14,7 @@ class ResponseModel<T> {
           MyDialogs.yesAbortDialog(
               context: context,
               body: bloc.error?.error?.message ?? 'Error',
+              title: 'Atención',
               onlyButtom: true);
           bloc.error = null;
         });
