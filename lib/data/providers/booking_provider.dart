@@ -4,9 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../../core/config/config.dart';
 import '../models/entities/anula_booking_request.dart';
-import '../models/entities/booking.dart';
 import '../models/entities/complete_booking_request.dart';
-import '../models/entities/home_model.dart';
 import '../models/entities/program_turn_model.dart';
 import '../models/entities/reprogram_request.dart';
 import '../models/entities/response_model.dart';
@@ -18,70 +16,6 @@ import '../models/responses/to_invoice_response.dart';
 import '../models/responses/to_register_schedule_free_response.dart';
 
 class APIBooking {
-  static Future<ResponseModel<List<BookingHome>>> getBookingHome(
-      {required int businessID,
-      required int personID,
-      required String date}) async {
-    var responseData = ResponseModel<List<BookingHome>>();
-    try {
-      final url =
-          '${Config.urlWebCliente}v1/booking/getBookingHome/businessID/$businessID/personID/$personID/date/$date';
-
-      final resp = await http.get(
-        Uri.parse(url),
-      );
-
-      if (resp.statusCode == 200) {
-        responseData.data = (json.decode(resp.body) as List)
-            .map((i) => BookingHome.fromJson(i))
-            .toList();
-      } else {
-        responseData.statusCode = resp.statusCode;
-        responseData.error =
-            ResponseErrorModel.fromJson(json.decode(resp.body));
-      }
-    } catch (error) {
-      responseData.statusCode = 500;
-      responseData.error =
-          ResponseErrorModel(code: 0, message: error.toString());
-    }
-    return responseData;
-  }
-
-  static Future<ResponseModel<List<Booking>>> getBookingList(
-      {required GetBookingListRequest obj}) async {
-    var responseData = ResponseModel<List<Booking>>();
-    try {
-      final url =
-          '${Config.urlWebCliente}v1/booking/getBookingList/${obj.businessID}?personID=${obj.personID}&InitialDate=${obj.initialDate}&FinalDate=${obj.finalDate}&BookingStateID=${obj.bookingStateID}';
-
-      final resp = await http.get(
-        Uri.parse(url),
-      );
-
-      final decodeData = json.decode(resp.body);
-      print(decodeData);
-//
-
-      if (resp.statusCode == 200) {
-        responseData.data = (json.decode(resp.body) as List)
-            .map((i) => Booking.fromJson(i))
-            .toList();
-      } else {
-        responseData.statusCode = resp.statusCode;
-        responseData.error =
-            ResponseErrorModel.fromJson(json.decode(resp.body));
-        // responseData.error = ResponseErrorModel(
-        //     code: decodeData['Code'], message: decodeData['Message']);
-      }
-    } catch (error) {
-      responseData.statusCode = 500;
-      responseData.error =
-          ResponseErrorModel(code: 0, message: error.toString());
-    }
-    return responseData;
-  }
-
   static Future<ResponseModel> validateToReprogram(
       {required int bookingID}) async {
     ResponseModel responseData = ResponseModel();

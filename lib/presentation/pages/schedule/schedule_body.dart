@@ -1,25 +1,24 @@
-import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/config/Utils.dart';
 import '../../../core/config/palette.dart';
 import '../../../core/config/size_text.dart';
-import '../../bloc/schedule_bloc.dart';
 import '../../widgets/my_card_container.dart';
 import '../../widgets/my_custom_loading.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/mysizedbox.dart';
 import '../../widgets/sin_datos_container.dart';
-import 'schedule_widgets.dart';
+import 'components/cabecera_schedule_container.dart';
+import 'components/calendar_schedule_widget.dart';
+import 'components/list_card_item_schedule.dart';
+import 'schedule_bloc.dart';
 
 class ScheduleBody extends StatelessWidget {
   const ScheduleBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: true);
+    final bloc = context.watch<ScheduleBloc>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,7 +35,7 @@ class ScheduleBody extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 20),
-              _BuildCabecera(bloc: bloc),
+              CabeceraScheduleContainer(fechaSelected: bloc.fechaSelected),
               if (bloc.calculaDayString() != null)
                 MyCardContainer(
                   backgroundColor: Palette.lightBlue,
@@ -50,10 +49,10 @@ class ScheduleBody extends StatelessWidget {
             ],
           ),
         ),
-        _CalendarSchedule(),
+        const CalendarScheduleWidget(),
         (bloc.isLoadingBookings)
             ? const Flexible(child: MyCustomLoading())
-            : (bloc.listBooking.isNotEmpty)
+            : (bloc.bookings.isNotEmpty)
                 ? _BodyListSchedule()
                 : const SinDatosContainer(),
       ],
@@ -64,7 +63,7 @@ class ScheduleBody extends StatelessWidget {
 class _BodyListSchedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final lista = Provider.of<ScheduleBloc>(context, listen: true).listBooking;
+    final lista = Provider.of<ScheduleBloc>(context, listen: true).bookings;
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -119,91 +118,6 @@ class _BodyListSchedule extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _CalendarSchedule extends StatelessWidget {
-  _CalendarSchedule();
-  final CalendarAgendaController _calendarAgendaControllerNotAppBar =
-      CalendarAgendaController();
-  @override
-  Widget build(BuildContext context) {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: true);
-
-    return Container(
-      color: Colors.transparent,
-      height: 100,
-      child: CalendarAgenda(
-        fullCalendar: false,
-        backgroundColor: Colors.transparent,
-        controller: _calendarAgendaControllerNotAppBar,
-        locale: 'es',
-        weekDay: WeekDay.short,
-        fullCalendarScroll: FullCalendarScroll.vertical,
-        fullCalendarDay: WeekDay.short,
-        selectedDateColor: Palette.blue6,
-        leftMargin: 0,
-        dateColor: Colors.black,
-        padding: 0,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().add(const Duration(days: -3)),
-        lastDate: DateTime.now().add(const Duration(days: 30)),
-        calendarBackground: Colors.black,
-        calendarEventColor: Colors.black,
-        calendarEventSelectedColor: Palette.blue6,
-        appbar: false,
-        selectedDayPosition: SelectedDayPosition.center,
-        onDateSelected: (date) async {
-          bloc.fechaSelected = MyUtils.formatDate(date);
-          await bloc.getBookingsPickDate();
-        },
-      ),
-    );
-  }
-}
-
-class _BuildCabecera extends StatelessWidget {
-  const _BuildCabecera({
-    Key? key,
-    required this.bloc,
-  }) : super(key: key);
-
-  final ScheduleBloc bloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: [
-          MyText(
-            text: Jiffy(bloc.fechaSelected).format('d'),
-            color: Palette.white,
-            size: 70,
-            fontWeight: FontWeight.w700,
-          ),
-          const SizedBox(width: 15),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyText(
-                text: MyUtils.firstUpper(Jiffy(bloc.fechaSelected).EEEE),
-                color: Palette.white,
-                size: SizeText.text4 + 1,
-                fontWeight: FontWeight.w400,
-              ),
-              const SizedBox(height: 5),
-              MyText(
-                text: MyUtils.firstUpper(
-                    Jiffy(bloc.fechaSelected).format('MMMM yyyy')),
-                color: Palette.white,
-                size: SizeText.text4 + 1,
-                fontWeight: FontWeight.w400,
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }

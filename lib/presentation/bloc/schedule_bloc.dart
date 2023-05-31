@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../core/config/Utils.dart';
 import '../../data/models/entities/anula_booking_request.dart';
 import '../../data/models/entities/booking.dart';
 import '../../data/models/entities/complete_booking_request.dart';
@@ -16,7 +15,7 @@ import '../../data/models/responses/to_invoice_response.dart';
 import '../../data/providers/booking_provider.dart';
 import '../widgets/my_loading_super.dart';
 
-class ScheduleBloc extends ChangeNotifier {
+class ScheduleBlocOld extends ChangeNotifier {
   Booking? _bookingSeleccionado;
   Booking? get bookingSeleccionado {
     return _bookingSeleccionado;
@@ -125,93 +124,93 @@ class ScheduleBloc extends ChangeNotifier {
 
   // CAPTURAR
 
-  String? calculaDayString() {
-    if (_fechaSelected != null) {
-      int v = MyUtils.calculateDifference(_fechaSelected!);
+  // String? calculaDayString() {
+  //   if (_fechaSelected != null) {
+  //     int v = MyUtils.calculateDifference(_fechaSelected!);
 
-      switch (v) {
-        case -1:
-          return 'Ayer';
-        case 0:
-          return 'Hoy';
-        case 1:
-          return 'Mañana';
-        default:
-      }
-      return null;
-    }
-    return null;
-  }
+  //     switch (v) {
+  //       case -1:
+  //         return 'Ayer';
+  //       case 0:
+  //         return 'Hoy';
+  //       case 1:
+  //         return 'Mañana';
+  //       default:
+  //     }
+  //     return null;
+  //   }
+  //   return null;
+  // }
 
-  initPage({LoginResponse? login}) async {
-    if (_dataLogin == null) {
-      if (login != null) {
-        _dataLogin = login;
-      }
-    }
-    _isLoading = true;
-    _fechaSelected = MyUtils.formatDate(DateTime.now());
-    await getBookings();
-    notifyListeners();
-  }
+  // initPage({LoginResponse? login}) async {
+  //   if (_dataLogin == null) {
+  //     if (login != null) {
+  //       _dataLogin = login;
+  //     }
+  //   }
+  //   _isLoading = true;
+  //   _fechaSelected = MyUtils.formatDate(DateTime.now());
+  //   await getBookings();
+  //   notifyListeners();
+  // }
 
-  Future<void> getBookings({int? bookingState = 1}) async {
-    _isLoading = true;
-    _listBooking = [];
-    notifyListeners();
+  // Future<void> getBookings({int? bookingState = 1}) async {
+  //   _isLoading = true;
+  //   _listBooking = [];
+  //   notifyListeners();
 
-    try {
-      GetBookingListRequest obj = GetBookingListRequest();
-      obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
-      obj.personID = _dataLogin?.personId;
-      obj.initialDate = _fechaSelected;
-      obj.finalDate = _fechaSelected;
-      obj.bookingStateID = bookingState;
-      notifyListeners();
-      final response = await APIBooking.getBookingList(obj: obj);
-      // response.statusCode = 300;
-      // response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (response.statusCode == 200) {
-        _listBooking = response.data!;
-      }
-      await _setError(response);
-      return;
-    } catch (e) {
-      await _tryCatchError(e);
-    }
-  }
+  //   try {
+  //     GetBookingListRequest obj = GetBookingListRequest();
+  //     obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
+  //     obj.personID = _dataLogin?.personId;
+  //     obj.initialDate = _fechaSelected;
+  //     obj.finalDate = _fechaSelected;
+  //     obj.bookingStateID = bookingState;
+  //     notifyListeners();
+  //     final response = await APIBooking.getBookingList(obj: obj);
+  //     // response.statusCode = 300;
+  //     // response.error = ResponseErrorModel(code: 500, message: 'prueba');
+  //     if (response.statusCode == 200) {
+  //       _listBooking = response.data!;
+  //     }
+  //     await _setError(response);
+  //     return;
+  //   } catch (e) {
+  //     await _tryCatchError(e);
+  //   }
+  // }
 
-  Future<void> getBookingsPickDate({int? bookingState = 1}) async {
-    _isLoadingBookings = true;
-    _listBooking = [];
-    notifyListeners();
-    try {
-      GetBookingListRequest obj = GetBookingListRequest();
-      obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
-      obj.personID = _dataLogin?.personId;
-      obj.initialDate = _fechaSelected;
-      obj.finalDate = _fechaSelected;
-      obj.bookingStateID = bookingState;
-      notifyListeners();
-      final response = await APIBooking.getBookingList(obj: obj);
-      // response.statusCode = 300;
-      // response.error = ResponseErrorModel(code: 500, message: 'prueba');
-      if (response.statusCode == 200) {
-        _listBooking = response.data!;
-      }
-      // if (response != null) {
-      //   _listBooking = response.data!;
-      //   _isLoading = false;
-      //   notifyListeners();
-      //   return true;
-      // }
-      await _setError(response);
-      return;
-    } catch (e) {
-      await _tryCatchError(e);
-    }
-  }
-  //
+  // Future<void> getBookingsPickDate({int? bookingState = 1}) async {
+  //   _isLoadingBookings = true;
+  //   _listBooking = [];
+  //   notifyListeners();
+  //   try {
+  //     GetBookingListRequest obj = GetBookingListRequest();
+  //     obj.businessID = _dataLogin?.userBusinessDto[0].businessId;
+  //     obj.personID = _dataLogin?.personId;
+  //     obj.initialDate = _fechaSelected;
+  //     obj.finalDate = _fechaSelected;
+  //     obj.bookingStateID = bookingState;
+  //     notifyListeners();
+  //     final response = await APIBooking.getBookingList(obj: obj);
+  //     // response.statusCode = 300;
+  //     // response.error = ResponseErrorModel(code: 500, message: 'prueba');
+  //     if (response.statusCode == 200) {
+  //       _listBooking = response.data!;
+  //     }
+  //     // if (response != null) {
+  //     //   _listBooking = response.data!;
+  //     //   _isLoading = false;
+  //     //   notifyListeners();
+  //     //   return true;
+  //     // }
+  //     await _setError(response);
+  //     return;
+  //   } catch (e) {
+  //     await _tryCatchError(e);
+  //   }
+  // }
+  // //
   //
   //
   //

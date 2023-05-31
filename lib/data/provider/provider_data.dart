@@ -1,11 +1,14 @@
 // ignore_for_file: body_might_complete_normally_nullable
 
 import '../api/api.dart';
+import '../models/entities/booking.dart';
 import '../models/entities/category.dart';
+import '../models/entities/home_model.dart';
 import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
 import '../models/entities/services_response.dart';
 import '../models/requests/add_person_worker_request.dart';
+import '../models/requests/booking_request.dart';
 import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/requests/set_services_person_request.dart';
@@ -94,5 +97,18 @@ class ProviderData {
           {required int businessID, required int personID}) async {
     return API.getDetailServicePerson(
         businessID: businessID, personID: personID);
+  }
+
+  static Future<ResponseModel<List<BookingHome>>> getBookingHome(
+      {required int businessID,
+      required int personID,
+      required String date}) async {
+    return API.getBookingHome(
+        businessID: businessID, personID: personID, date: date);
+  }
+
+  static Future<ResponseModel<List<Booking>>> getBookingList(
+      GetBookingListRequest request) async {
+    return API.getBookingList(obj: request);
   }
 }

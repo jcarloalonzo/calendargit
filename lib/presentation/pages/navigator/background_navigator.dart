@@ -3,17 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../../../core/config/palette.dart';
 import '../../bloc/calendar_bloc.dart';
-import '../../bloc/home_bloc.dart';
-import '../../bloc/schedule_bloc.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/drawer_menu.dart';
-import '../../widgets/my_alerts.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/mysizedbox.dart';
 import '../account/account_page.dart';
-import '../calendar/calendar_methods.dart';
 import '../calendar/calendar_page.dart';
-import '../schedule/schedule_methods.dart';
 import '../schedule/schedule_page.dart';
 //
 
@@ -45,26 +40,26 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
   }
 
   void setIndex(BuildContext c, int s) {
-    final scheduleLoading =
-        Provider.of<ScheduleBloc>(context, listen: false).isLoading;
-    final homeLoading = Provider.of<HomeBloc>(context, listen: false).isLoading;
+    // final scheduleLoading =
+    //     Provider.of<ScheduleBloc>(context, listen: false).isLoading;
+    // final homeLoading = Provider.of<HomeBloc>(context, listen: false).isLoading;
     final calendarLoading =
         Provider.of<CalendarBloc>(context, listen: false).isLoading;
 
-    if (!scheduleLoading && !homeLoading && !calendarLoading) {
-      setState(() => _index = s);
-    }
+    // if (!scheduleLoading && !homeLoading && !calendarLoading) {
+    setState(() => _index = s);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    final blocSchedule = Provider.of<ScheduleBloc>(context);
+    // final blocSchedule = Provider.of<ScheduleBloc>(context);
     final blocCalendar = Provider.of<CalendarBloc>(context);
 
     final List screens = [
       // const HomePage(),
       // HomePage(),
-      const SchedulePage(),
+      SchedulePage.init(context),
       const CalendarPage(), // SchedulePage.init(context),
       AccountPage.init(context),
 
@@ -77,49 +72,49 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
           appBar: buildAppBar(
             title: 'SALON',
             isDrawer: true,
-            actions: [
-              if (_index == 0 || _index == 1)
-                // if (_index == 1)
+            // actions: [
+            //   if (_index == 0 || _index == 1)
+            //     // if (_index == 1)
 
-                IconButton(
-                  icon: const Icon(Icons.info_outline),
-                  color: Palette.white,
-                  onPressed: () async =>
-                      await ScheduleMethods.infoMethod(context),
-                ),
-              if (_index == 0 || _index == 1)
-                // if (_index == 1)
-                IconButton(
-                  icon: const Icon(Icons.filter_list_outlined),
-                  color: Palette.white,
-                  onPressed: () async {
-                    if (_index == 0) {
-                      Provider.of<ScheduleBloc>(context, listen: false)
-                          .initFilter();
+            //     IconButton(
+            //       icon: const Icon(Icons.info_outline),
+            //       color: Palette.white,
+            //       onPressed: () async =>
+            //           await ScheduleMethods.infoMethod(context),
+            //     ),
+            //   if (_index == 0 || _index == 1)
+            //     // if (_index == 1)
+            //     IconButton(
+            //       icon: const Icon(Icons.filter_list_outlined),
+            //       color: Palette.white,
+            //       onPressed: () async {
+            //         if (_index == 0) {
+            //           Provider.of<ScheduleBloc>(context, listen: false)
+            //               .initFilter();
 
-                      final action =
-                          await ScheduleMethods.filterMethodSchedule(context);
-                      if (action == DialogsAlerts.yes) {
-                        await blocSchedule.getBookingsPickDate(
-                            bookingState:
-                                blocSchedule.typeStateBookingDropDown.cod);
-                      }
-                    } else if (_index == 1) {
-                      Provider.of<CalendarBloc>(context, listen: false)
-                          .initFilter();
+            //           final action =
+            //               await ScheduleMethods.filterMethodSchedule(context);
+            //           if (action == DialogsAlerts.yes) {
+            //             await blocSchedule.getBookingsPickDate(
+            //                 bookingState:
+            //                     blocSchedule.typeStateBookingDropDown.cod);
+            //           }
+            //         } else if (_index == 1) {
+            //           Provider.of<CalendarBloc>(context, listen: false)
+            //               .initFilter();
 
-                      final action =
-                          await CalendarMethods.filterMethodSchedule(context);
-                      if (action == DialogsAlerts.yes) {
-                        await blocCalendar.getBookings(
-                            context: context,
-                            bookingState:
-                                blocCalendar.typeStateBookingDropDown.cod);
-                      }
-                    }
-                  },
-                ),
-            ],
+            //           final action =
+            //               await CalendarMethods.filterMethodSchedule(context);
+            //           if (action == DialogsAlerts.yes) {
+            //             await blocCalendar.getBookings(
+            //                 context: context,
+            //                 bookingState:
+            //                     blocCalendar.typeStateBookingDropDown.cod);
+            //           }
+            //         }
+            //       },
+            //     ),
+            // ],
           ),
           backgroundColor: Palette.backgroundColor,
           bottomNavigationBar: Container(
@@ -135,15 +130,6 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
             width: double.infinity,
             child: Row(
               children: [
-                // _IconBottomBar(
-                //   index: 0,
-                //   titulo: 'Home',
-                //   icono: Icons.home,
-                //   onTap: () {
-                //     setIndex(context, 0);
-                //   },
-                //   currentIndex: _index,
-                // ),
                 _IconBottomBar(
                   index: 0,
                   titulo: 'Home',

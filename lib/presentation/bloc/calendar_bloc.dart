@@ -8,7 +8,7 @@ import '../../data/models/entities/dropdown_model.dart';
 import '../../data/models/entities/login_model.dart';
 import '../../data/models/entities/response_model.dart';
 import '../../data/models/requests/booking_request.dart';
-import '../../data/providers/booking_provider.dart';
+import '../../data/provider/provider_data.dart';
 
 class CalendarBloc extends ChangeNotifier {
   // bool _charge = false;
@@ -179,7 +179,7 @@ class CalendarBloc extends ChangeNotifier {
       obj.finalDate = finalDate;
       obj.bookingStateID = bookingState;
       notifyListeners();
-      final response = await APIBooking.getBookingList(obj: obj);
+      final response = await ProviderData.getBookingList(obj);
       // response.statusCode = 300;
       // response.error = ResponseErrorModel(code: 500, message: 'prueba');
       if (response.statusCode == 200) {

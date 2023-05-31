@@ -8,7 +8,6 @@ import '../../../core/config/size_text.dart';
 import '../../../data/models/entities/booking.dart';
 import '../../widgets/my_dialogs.dart';
 import '../../widgets/my_text.dart';
-import '../agent/schedule_reservation_free/schedule_reservationfree_page.dart';
 import '../booking/booking_detail_page/booking_detail_page.dart';
 
 class CalendarBody extends StatelessWidget {
@@ -34,17 +33,10 @@ class CalendarBody extends StatelessWidget {
               body:
                   '¿Desea realizar reserva a la hora: ${MyUtils.firstUpper(Jiffy(e).format("HH:mm"))}?');
           if (action == DialogAction.yes) {
-            Navigator.pushNamed(context, ScheduleReservationFreePage.routeName,
-                arguments: e.toString());
-
-            // if (a != null)
-            // CalendarControllerProvider.of<Booking>(context).controller.add(a);
+            // Navigator.pushNamed(context, ScheduleReservationFreePage.routeName,
+            // arguments: e.toString());
           }
         },
-        // onPageChange: (e, x) {
-        //   print(e);
-        //   print(x);
-        // },
         key: state,
         showVerticalLine: true,
         pageTransitionCurve: Curves.slowMiddle,

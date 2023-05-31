@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../core/config/Utils.dart';
 import '../../../../core/config/palette.dart';
 import '../../../../core/config/size_text.dart';
 import '../../../../data/models/entities/booking.dart';
-import '../../../bloc/schedule_bloc.dart';
-import '../../../widgets/my_alerts.dart';
 import '../../../widgets/my_background_with_buttons.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_card_container.dart';
-import '../../../widgets/my_dialogs.dart';
 import '../../../widgets/my_icon_buttom_circle.dart';
-import '../../../widgets/my_loading_super.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/mysizedbox.dart';
 import '../../../widgets/textfield_general.dart';
-import '../../agent/agent_reprogramming/agent_repro_page.dart';
-import '../../navigator/background_navigator.dart';
-import '../../schedule/schedule_methods.dart';
 
 class BookingDetailPage extends StatelessWidget {
   BookingDetailPage({Key? key}) : super(key: key);
@@ -31,7 +23,7 @@ class BookingDetailPage extends StatelessWidget {
     // final args =
     //     ModalRoute.of(context)!.settings.arguments as EventDetailArguments;
     final args = ModalRoute.of(context)!.settings.arguments as Booking;
-    final bloc = Provider.of<ScheduleBloc>(context, listen: false);
+    // final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
     return MyBackGroundWithButtons(
       titleAppBar: 'Detalles de la reserva',
@@ -54,39 +46,20 @@ class BookingDetailPage extends StatelessWidget {
                         text: 'Cancelar',
                         color: Palette.red1,
                         onTap: () async {
-                          // Navigator.pushNamed(context, AgentCompletePage.routeName);
-                          // _openmodal(context,
-                          //     'Completar reserva ${bloc.bookingSeleccionado!.bookingCode}');
+                          // bloc.initProgram(bookingObj: args);
 
-                          bloc.initProgram(bookingObj: args);
+                          // Provider.of<ScheduleBloc>(context, listen: false)
+                          //     .initCancelFilter();
 
-                          // Navigator.pushNamed(
-                          //     context, AgentCancelDetailPage.routeName);
-                          Provider.of<ScheduleBloc>(context, listen: false)
-                              .initCancelFilter();
-
-                          final action =
-                              await ScheduleMethods.cancelacionBookingMethod(
-                                  context: context,
-                                  title:
-                                      'Cancelar reserva ${bloc.bookingSeleccionado!.bookingCode}',
-                                  body: '¿Está seguro de cancelar la reserva?');
-                          if (action == DialogsAlerts.yes) {
-                            // final act = await MyDialogs.yesAbortDialog(
-                            //     context: context,
-                            //     title:
-                            //         'Cancelar reserva ${bloc.bookingSeleccionado!.bookingCode}',
-                            //     body:
-                            //         'Anular reserva ${bloc.bookingSeleccionado!.bookingCode}');
-
-                            // if (act == DialogAction.yes) {
-                            //   // print('yes');
-                            return _processCancelate(context);
-                            // }
-                            // await blocSchedule.getBookingsPickDate(
-                            //     bookingState:
-                            //         blocSchedule.typeStateBookingDropDown.cod);
-                          }
+                          // final action =
+                          //     await ScheduleMethods.cancelacionBookingMethod(
+                          //         context: context,
+                          //         title:
+                          //             'Cancelar reserva ${bloc.bookingSeleccionado!.bookingCode}',
+                          //         body: '¿Está seguro de cancelar la reserva?');
+                          // if (action == DialogsAlerts.yes) {
+                          //   return _processCancelate(context);
+                          // }
                         }),
                   ),
                   const SizedBox(width: 30),
@@ -95,25 +68,10 @@ class BookingDetailPage extends StatelessWidget {
                         text: 'Completar',
                         color: Palette.green2,
                         onTap: () async {
-                          bloc.initProgram(
-                            bookingObj: args,
-                          );
-
-                          // final action = await MyDialogs.yesAbortDialog(
-                          //     context: context,
-                          //     title: 'Completar Reserva',
-                          //     body:
-                          //         'Completar reserva ${bloc.bookingSeleccionado!.bookingCode}');
-
-                          // if (action == DialogAction.yes) {
-                          // print('yes');
-                          return _processconfirm(context, args);
-                          // }
-                          // Navigator.pushNamed(
-                          //     context, AgentCompletePage.routeName);
-                          // Navigator.pushNamed(context, AgentCompletePage.routeName);
-                          // _openmodal(context,
-                          //     'Completar reserva ${bloc.bookingSeleccionado!.bookingCode}');
+                          // bloc.initProgram(
+                          //   bookingObj: args,
+                          // );
+                          // return _processconfirm(context, args);
                         }),
                   ),
                 ],
@@ -125,32 +83,20 @@ class BookingDetailPage extends StatelessWidget {
                   text: 'Reprogramar',
                   color: Palette.blue2,
                   onTap: () async {
-                    // final myLoading = MyLoading( context);
-                    // myLoading.createLoading();
-
-                    bloc.initProgram(bookingObj: args);
-
-                    bool valida = await bloc.validaReprogram(
-                        bookingID: args.bookingId!, ctx: context);
-                    // myLoading.dismiss();
-
-                    // Navigator.pop(context);
-
-                    if (valida) {
-                      bloc.setServiceID = args.serviceId;
-                      Navigator.pushNamed(context, AgentReproPage.routeName);
-                    }
-                    // Navigator.pushNamed(context, AgentCompletePage.routeName);
-
-                    // _openmodal(context,
-                    //     'Completar reserva ${bloc.bookingSeleccionado!.bookingCode}');
+                    // bloc.initProgram(bookingObj: args);
+                    // bool valida = await bloc.validaReprogram(
+                    //     bookingID: args.bookingId!, ctx: context);
+                    // if (valida) {
+                    //   bloc.setServiceID = args.serviceId;
+                    //   Navigator.pushNamed(context, AgentReproPage.routeName);
+                    // }
                   }),
             if (args.bookingStateId == 3)
               MyButtom(
                   text: 'Facturar',
                   color: Palette.blue2,
                   onTap: () async {
-                    return _processsInvoice(context, args);
+                    // return _processsInvoice(context, args);
                   }),
           ],
         ),
@@ -320,97 +266,82 @@ class BookingDetailPage extends StatelessWidget {
     );
   }
 
-  void _processsInvoice(BuildContext context, Booking booking) async {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: false);
+  // void _processsInvoice(BuildContext context, Booking booking) async {
+  //   final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-    final myLoading = MyLoading(context);
+  //   final myLoading = MyLoading(context);
 
-    bloc.initProgram(bookingObj: booking);
+  //   bloc.initProgram(bookingObj: booking);
 
-    final action = await ScheduleMethods.toInvoiceMethod(context);
+  //   final action = await ScheduleMethods.toInvoiceMethod(context);
 
-    if (action == DialogsAlerts.yes) {
-      myLoading.createLoading();
+  //   if (action == DialogsAlerts.yes) {
+  //     myLoading.createLoading();
 
-      var response = await bloc.generateInvoiceBooking();
-      myLoading.dismiss();
+  //     var response = await bloc.generateInvoiceBooking();
+  //     myLoading.dismiss();
 
-      if (response.statusCode == 200) {
-        Future.delayed(Duration.zero, () async {
-          final action = await MyAlerts.sucess(
-              context: context,
-              body:
-                  'Se emitio el invoice ${response.data?.codeNumber}-${response.data?.numberId} forma correcta.');
-          if (action == DialogsAlerts.yes) {
-            Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
-          }
-        });
-      }
-      // if (resp != null) {}
+  //     if (response.statusCode == 200) {
+  //       Future.delayed(Duration.zero, () async {
+  //         final action = await MyAlerts.sucess(
+  //             context: context,
+  //             body:
+  //                 'Se emitio el invoice ${response.data?.codeNumber}-${response.data?.numberId} forma correcta.');
+  //         if (action == DialogsAlerts.yes) {
+  //           Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
+  //         }
+  //       });
+  //     }
+  //   } else {
+  //     print('no');
+  //   }
+  // }
+  // //
 
-      // print(resp?.invoiceId.toString());
-      // print(resp?.codeNumber.toString());
-      // print(resp?.numberId.toString());
-    } else {
-      print('no');
-    }
-  }
-  //
+  // void _processCancelate(BuildContext context) async {
+  //   final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-  void _processCancelate(BuildContext context) async {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: false);
+  //   final myLoading = MyLoading(context);
+  //   myLoading.createLoading();
 
-    final myLoading = MyLoading(context);
-    myLoading.createLoading();
+  //   var response = await bloc.anularBooking(
+  //       reason: bloc.tipoCancelacionSelected.descripcion);
 
-    var response = await bloc.anularBooking(
-        reason: bloc.tipoCancelacionSelected.descripcion);
+  //   if (response.statusCode == 200) {
+  //     Future.delayed(Duration.zero, () async {
+  //       final action = await MyAlerts.sucess(
+  //           context: context, body: 'Se cancelo la reserva de forma correcta');
+  //       if (action == DialogsAlerts.yes) {
+  //         Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
+  //       }
+  //     });
+  //   }
+  //   myLoading.dismiss();
+  // }
+  // //
+  // //
 
-    if (response.statusCode == 200) {
-      Future.delayed(Duration.zero, () async {
-        final action = await MyAlerts.sucess(
-            context: context, body: 'Se cancelo la reserva de forma correcta');
-        if (action == DialogsAlerts.yes) {
-          Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
-        }
-      });
-    }
-    myLoading.dismiss();
-  }
-  //
-  //
+  // void _processconfirm(BuildContext context, Booking booking) async {
+  //   final bloc = Provider.of<ScheduleBloc>(context, listen: false);
 
-  void _processconfirm(BuildContext context, Booking booking) async {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: false);
+  //   final myLoading = MyLoading(context);
+  //   myLoading.createLoading();
 
-    final myLoading = MyLoading(context);
-    myLoading.createLoading();
+  //   var response = await bloc.completeBooking();
+  //   myLoading.dismiss();
+  //   if (response.statusCode == 200) {
+  //     Future.delayed(Duration.zero, () async {
+  //       final action = await MyDialogs.yesAbortDialog(
+  //           context: context,
+  //           title: 'Reserva completada con exito',
+  //           body: '¿Deseas emitir invoice?');
 
-    var response = await bloc.completeBooking();
-    // comentario: _observationController.text,
-    // priceFinal: booking.price.toString());
-    myLoading.dismiss();
-
-    if (response.statusCode == 200) {
-      Future.delayed(Duration.zero, () async {
-        // final action = await MyAlerts.sucess(context: context);
-        // if (action == DialogsAlerts.yes) {
-        //   Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
-        // }
-        final action = await MyDialogs.yesAbortDialog(
-            context: context,
-            title: 'Reserva completada con exito',
-            body: '¿Deseas emitir invoice?');
-
-        if (action == DialogAction.yes) {
-          // bloc.initProgram(bookingObj: booking);
-
-          // await ScheduleMethods.toInvoiceMethod(context);
-          _processsInvoice(context, booking);
-        } else {
-          Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
-        }
-      });
-    }
-  }
+  //       if (action == DialogAction.yes) {
+  //         _processsInvoice(context, booking);
+  //       } else {
+  //         Navigator.popAndPushNamed(context, BackGroundNavigator.routeName);
+  //       }
+  //     });
+  //   }
+  // }
 }

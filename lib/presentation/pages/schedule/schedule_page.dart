@@ -2,55 +2,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/preferences/preferences_user.dart';
+import '../../../data/models/entities/response_model.dart';
 import '../../bloc/main_bloc.dart';
-import '../../bloc/schedule_bloc.dart';
-import '../../widgets/confirm_alternate.dart';
 import '../../widgets/my_background.dart';
+import 'schedule_bloc.dart';
 import 'schedule_body.dart';
 
-class SchedulePage extends StatefulWidget {
-  const SchedulePage({Key? key}) : super(key: key);
+class SchedulePage extends StatelessWidget {
+  const SchedulePage._();
+  static String routeName = '/SchedulePage';
 
-  @override
-  State<SchedulePage> createState() => _SchedulePageState();
-}
-
-class _SchedulePageState extends State<SchedulePage> {
-  final prefsUser = PreferencesUser();
-
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () async {
-      final loginBloc = Provider.of<MainBloc>(context, listen: false);
-      // if (loginBloc.login == null) {
-      //   if (prefsUser.user != null) {
-      //     var a = LoginResponse.loginModelFromJson(prefsUser.user!);
-      //     final loginBloc = Provider.of<MainBloc>(context, listen: false);
-      //     loginBloc.login = a;
-      //   }
-      // }
-      final bloc = Provider.of<ScheduleBloc>(context, listen: false);
-      await bloc.initPage(login: loginBloc.login);
-    });
-    super.initState();
+  static Widget init(
+    BuildContext context,
+  ) {
+    final loginUser = context.read<MainBloc>().login!;
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ScheduleBloc(loginUser)..init()),
+      ],
+      child: const SchedulePage._(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<ScheduleBloc>(context, listen: true);
-
-    if (bloc.error != null) {
-      if (bloc.error!.statusCode != 200) {
-        Future.delayed(Duration.zero, () async {
-          confirmAlternantError(
-              context: context,
-              errormodel: bloc.error!.error!,
-              statuscode: bloc.error!.statusCode!);
-          bloc.error = null;
-        });
-      }
-    }
+    final bloc = context.watch<ScheduleBloc>();
+    ResponseModel.handleError(bloc, context);
 
     return MyBackGround(
       allAnchorwindow: true,

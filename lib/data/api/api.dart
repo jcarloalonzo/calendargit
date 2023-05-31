@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../core/config/config.dart';
+import '../models/entities/booking.dart';
 import '../models/entities/category.dart';
+import '../models/entities/home_model.dart';
 import '../models/entities/login_model.dart';
 import '../models/entities/response_model.dart';
 import '../models/entities/services_response.dart';
 import '../models/requests/add_person_worker_request.dart';
+import '../models/requests/booking_request.dart';
 import '../models/requests/create_company_request.dart';
 import '../models/requests/login_request.dart';
 import '../models/requests/set_services_person_request.dart';
@@ -466,5 +469,69 @@ class API {
       responsedata.error = ResponseErrorModel(code: 0, message: e.toString());
       return responsedata;
     }
+  }
+
+  static Future<ResponseModel<List<BookingHome>>> getBookingHome(
+      {required int businessID,
+      required int personID,
+      required String date}) async {
+    var responseData = ResponseModel<List<BookingHome>>();
+    try {
+      final url =
+          '${Config.urlWebCliente}v1/booking/getBookingHome/businessID/$businessID/personID/$personID/date/$date';
+
+      final resp = await http.get(
+        Uri.parse(url),
+      );
+
+      if (resp.statusCode == 200) {
+        responseData.data = (json.decode(resp.body) as List)
+            .map((i) => BookingHome.fromJson(i))
+            .toList();
+      } else {
+        responseData.statusCode = resp.statusCode;
+        responseData.error =
+            ResponseErrorModel.fromJson(json.decode(resp.body));
+      }
+    } catch (error) {
+      responseData.statusCode = 500;
+      responseData.error =
+          ResponseErrorModel(code: 0, message: error.toString());
+    }
+    return responseData;
+  }
+
+  static Future<ResponseModel<List<Booking>>> getBookingList(
+      {required GetBookingListRequest obj}) async {
+    var responseData = ResponseModel<List<Booking>>();
+    try {
+      final url =
+          '${Config.urlWebCliente}v1/booking/getBookingList/${obj.businessID}?personID=${obj.personID}&InitialDate=${obj.initialDate}&FinalDate=${obj.finalDate}&BookingStateID=${obj.bookingStateID}';
+
+      final resp = await http.get(
+        Uri.parse(url),
+      );
+
+      final decodeData = json.decode(resp.body);
+      print(decodeData);
+//
+
+      if (resp.statusCode == 200) {
+        responseData.data = (json.decode(resp.body) as List)
+            .map((i) => Booking.fromJson(i))
+            .toList();
+      } else {
+        responseData.statusCode = resp.statusCode;
+        responseData.error =
+            ResponseErrorModel.fromJson(json.decode(resp.body));
+        // responseData.error = ResponseErrorModel(
+        //     code: decodeData['Code'], message: decodeData['Message']);
+      }
+    } catch (error) {
+      responseData.statusCode = 500;
+      responseData.error =
+          ResponseErrorModel(code: 0, message: error.toString());
+    }
+    return responseData;
   }
 }

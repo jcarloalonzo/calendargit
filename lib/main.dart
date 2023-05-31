@@ -10,9 +10,7 @@ import 'data/preferences/preferences_user.dart';
 import 'presentation/bloc/agenda_bloc.dart';
 import 'presentation/bloc/agent_bloc.dart';
 import 'presentation/bloc/calendar_bloc.dart';
-import 'presentation/bloc/home_bloc.dart';
 import 'presentation/bloc/main_bloc.dart';
-import 'presentation/bloc/schedule_bloc.dart';
 import 'presentation/pages/validate_partner/splash/splash_page.dart';
 
 void main() async {
@@ -22,23 +20,11 @@ void main() async {
   await prefsUser.initPrefs();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-        create: (_) => MainBloc()..init(),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => HomeBloc(),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => AgendaBloc(),
-      ),
+      ChangeNotifierProvider(create: (_) => MainBloc()..init()),
+      // ChangeNotifierProvider(create: (_) => HomeBloc()),
+      ChangeNotifierProvider(create: (_) => AgendaBloc()),
       ChangeNotifierProvider(create: (_) => AgentModelProvider()),
       ChangeNotifierProvider(create: (_) => CalendarBloc()),
-      //
-      //
-      //
-      ChangeNotifierProvider(
-        create: (_) => ScheduleBloc(),
-      ),
     ],
     child: MyApp(),
   ));
@@ -47,15 +33,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final prefsUser = PreferencesUser();
-
   @override
   Widget build(BuildContext context) {
-    // List<CalendarEventData<Event>> lista = <CalendarEventData<Event>>[]
-    //   ..insertAll(0, data());
-
     return CalendarControllerProvider<Booking>(
-      // return CalendarControllerProvider<Booking>(
-      // controller: EventController<Event>()..addAll(lista),
       controller: EventController<Booking>(),
       child: MaterialApp(
         title: 'App Agenda',
