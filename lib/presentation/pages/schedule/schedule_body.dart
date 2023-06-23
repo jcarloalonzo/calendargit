@@ -7,7 +7,6 @@ import '../../widgets/my_card_container.dart';
 import '../../widgets/my_custom_loading.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/mysizedbox.dart';
-import '../../widgets/sin_datos_container.dart';
 import 'components/cabecera_schedule_container.dart';
 import 'components/calendar_schedule_widget.dart';
 import 'components/list_card_item_schedule.dart';
@@ -22,12 +21,6 @@ class ScheduleBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // ElevatedButton(
-        //     onPressed: () {
-        //       final prefs = PreferencesUser();
-        //       prefs.dispose();
-        //     },
-        //     child: const Text('text')),
         Container(
           padding: const EdgeInsets.all(15),
           width: double.infinity,
@@ -52,9 +45,7 @@ class ScheduleBody extends StatelessWidget {
         const CalendarScheduleWidget(),
         (bloc.isLoadingBookings)
             ? const Flexible(child: MyCustomLoading())
-            : (bloc.bookings.isNotEmpty)
-                ? _BodyListSchedule()
-                : const SinDatosContainer(),
+            : _BodyListSchedule()
       ],
     );
   }
@@ -82,9 +73,7 @@ class _BodyListSchedule extends StatelessWidget {
                 itemCount: lista.length,
                 shrinkWrap: true,
                 itemBuilder: (context, i) {
-                  return ListCardItemSchedule(
-                    obj: lista[i],
-                  );
+                  return ListCardItemSchedule(booking: lista[i]);
                 },
               ),
             ),

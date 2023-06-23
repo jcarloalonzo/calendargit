@@ -1,11 +1,15 @@
 // ignore_for_file: body_might_complete_normally_nullable
 
 import '../api/api.dart';
+import '../models/entities/anula_booking_request.dart';
 import '../models/entities/booking.dart';
 import '../models/entities/category.dart';
+import '../models/entities/complete_booking_request.dart';
 import '../models/entities/home_model.dart';
 import '../models/entities/login_model.dart';
+import '../models/entities/program_turn_model.dart';
 import '../models/entities/response_model.dart';
+import '../models/entities/services_hours_model.dart';
 import '../models/entities/services_response.dart';
 import '../models/requests/add_person_worker_request.dart';
 import '../models/requests/booking_request.dart';
@@ -110,5 +114,34 @@ class ProviderData {
   static Future<ResponseModel<List<Booking>>> getBookingList(
       GetBookingListRequest request) async {
     return API.getBookingList(obj: request);
+  }
+
+  static Future<ResponseModel<bool>> anulateBooking(
+      AnulaBookingRequest request) async {
+    final response = await API.anulateBooking(request);
+    return response;
+  }
+
+  static Future<ResponseModel<bool>> completeBooking(
+      CompleteBookingRequest request) async {
+    final response = await API.completeBooking(request);
+    return response;
+  }
+
+  static Future<ResponseModel<bool>> validateToReprogram(int request) async {
+    final response = await API.validateToReprogram(request);
+    return response;
+  }
+
+  static Future<ResponseModel<PersonRangeDateModel>> personGetRangeDate(
+      {required int personId, required int businessID}) async {
+    final response = await API.personGetRangeDate(
+        businessID: businessID, personID: personId);
+    return response;
+  }
+
+  static Future<ResponseModel<List<ProgamTurnModel>>> programGetTurn(
+      ProgramGetTurnRequest obj) async {
+    return API.programGetTurn(obj);
   }
 }

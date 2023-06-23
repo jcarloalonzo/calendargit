@@ -4,11 +4,9 @@ import 'package:http/http.dart' as http;
 
 import '../../core/config/config.dart';
 import '../models/entities/anula_booking_request.dart';
-import '../models/entities/complete_booking_request.dart';
 import '../models/entities/program_turn_model.dart';
 import '../models/entities/reprogram_request.dart';
 import '../models/entities/response_model.dart';
-import '../models/entities/services_hours_model.dart';
 import '../models/requests/booking_request.dart';
 import '../models/requests/generate_invoice_booking_request.dart';
 import '../models/requests/register_booking_request.dart';
@@ -58,40 +56,8 @@ class APIBooking {
 
   //
 
-  static Future<ResponseModel<PersonRangeDateModel>> personGetRangeDate(
-      int personID) async {
-    var responseData = ResponseModel<PersonRangeDateModel>();
-
-    try {
-      final url =
-          '${Config.urlWebCliente}program/getRangeDate/personID/$personID';
-
-      final resp = await http.get(Uri.parse(url));
-      // final decodeData = json.decode(resp.body);
-      // print(decodeData);
-      if (resp.statusCode == 200) {
-        responseData.data =
-            PersonRangeDateModel.fromJson(json.decode(resp.body));
-      } else {
-        responseData.statusCode = resp.statusCode;
-        responseData.error =
-            ResponseErrorModel.fromJson(json.decode(resp.body));
-        // responseData.error =
-        //     ResponseErrorModel.fromJson(json.decode(resp.body));
-        // responseData.error = ResponseErrorModel(
-        //     code: decodeData['Code'], message: decodeData['Message']);
-      }
-      return responseData;
-    } catch (e) {
-      print(e);
-      responseData.statusCode = 500;
-      responseData.error = ResponseErrorModel(code: 0, message: e.toString());
-      return responseData;
-    }
-  }
-
   static Future<ResponseModel<List<ProgamTurnModel>>> programGetTurn(
-      {required GetTurnRequest obj}) async {
+      {required ProgramGetTurnRequest obj}) async {
     var responseData = ResponseModel<List<ProgamTurnModel>>();
 
     try {
@@ -168,52 +134,6 @@ class APIBooking {
   }
 
   //
-
-  static Future<ResponseModel<bool>> completeBookingAPI(
-      {required CompleteBookingRequest obj}) async {
-    ResponseModel<bool> responseData = ResponseModel<bool>();
-    try {
-      // final url = '${urlWebServer.toString()}api/Company/Register';
-      final url = '${Config.urlWebCliente}v1/booking/confirm/${obj.bookingId}';
-
-      final resp = await http.post(
-        Uri.parse(url),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        // body: confirmBookingRequestToJson(obj),
-        body: jsonEncode(
-          <String, dynamic>{
-            'AuthorizedUser': obj.authorizedUser,
-            'businessID': obj.businessId,
-            'businessIdent': obj.businessIdent,
-            'officeID': obj.officeId,
-          },
-        ),
-      );
-
-      // print(resp.body);
-      // final decodeData = json.decode(resp.body);
-      // print(decodeData);
-
-      //PENDIENTE CAMBIAR STATUS CODE A TODOS LOS APIS
-      responseData.statusCode = resp.statusCode;
-      if (resp.statusCode == 200) {
-        // responseData.data = true;
-        // responseData.statusCode = 500;
-        // responseData.error = ResponseErrorModel(code: 500, message: 'prueba');
-      } else {
-        responseData.statusCode = resp.statusCode;
-        responseData.error =
-            ResponseErrorModel.fromJson(json.decode(resp.body));
-        // responseData.error = ResponseErrorModel(
-        //     code: decodeData['Code'], message: decodeData['Message']);
-      }
-      return responseData;
-    } catch (e) {
-      responseData.statusCode = 500;
-      responseData.error = ResponseErrorModel(code: 500, message: e.toString());
-      return responseData;
-    }
-  }
 
   static Future<ResponseModel<bool>> anulaBooking(
       {required AnulaBookingRequest obj}) async {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../presentation/pages/booking/booking_detail_page/booking_detail_page.dart';
 import '../../presentation/pages/calendar/calendar_page.dart';
 import '../../presentation/pages/invoice/new_invoice_free/invoice_free_page.dart';
 import '../../presentation/pages/navigator/background_navigator.dart';
@@ -20,7 +19,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     BackGroundNavigator.routeName: (BuildContext context) =>
         const BackGroundNavigator(),
 
-    BookingDetailPage.routeName: (BuildContext context) => BookingDetailPage(),
     // CreateScheduleStepOne.routeName: (BuildContext context) =>
     //     CreateScheduleStepOne(),
     // CreateScheduleStepTwo.routeName: (BuildContext context) =>

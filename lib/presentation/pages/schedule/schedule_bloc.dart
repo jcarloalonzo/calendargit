@@ -28,12 +28,10 @@ class ScheduleBloc extends StateNotifier {
     _fechaSelected = MyUtils.formatDate(DateTime.now());
     _isLoadingBookings = false;
     _bookings = [];
-
-    notifyListeners();
-
-    final bookingsResponse = await getBookingsPickDate();
+    final List<Booking> bookingsResponse = await getBookingsPickDate();
     if (!mounted) return;
-    //
+    _bookings = bookingsResponse; //
+    notifyListeners();
     //
   }
 
@@ -62,10 +60,22 @@ class ScheduleBloc extends StateNotifier {
         notifyListeners();
         return [];
       }
+
       return response.data!;
     } catch (e) {
       setError(e.toString());
       return [];
+    }
+  }
+
+  Future<void> getBookingDate() async {
+    try {
+      final List<Booking> bookingsResponse = await getBookingsPickDate();
+      if (!mounted) return;
+      _bookings = bookingsResponse; //
+      notifyListeners();
+    } catch (e) {
+      setError(e.toString());
     }
   }
 

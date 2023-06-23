@@ -49,15 +49,11 @@ class _CalendarPageState extends State<CalendarPage> {
       backPageEnable: false,
       isLoading: bloc.isLoading,
       allAnchorwindow: true,
-      wFloatingActionButtom: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-      child: Column(
-        children: const [
-          CalendarBody(),
-        ],
-      ),
+      // wFloatingActionButtom: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: const Icon(Icons.add),
+      // ),
+      child: const CalendarBody(),
     );
   }
 }

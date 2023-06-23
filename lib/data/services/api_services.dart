@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../core/config/config.dart';
-import '../models/entities/anula_booking_request.dart';
 import '../models/entities/booking.dart';
 import '../models/entities/booking_detail_model.dart';
 import '../models/entities/complete_booking_request.dart';
@@ -394,47 +393,6 @@ class APIServices {
   //
   //
 
-  static Future<ResponseModel<bool>> anulaBookingAPI(
-      {required AnulaBookingRequest obj}) async {
-    ResponseModel<bool> responsedata = ResponseModel<bool>();
-    try {
-      // final url = '${urlWebServer.toString()}api/Company/Register';
-      final url = '${Config.urlWebCliente}v1/booking/anulate/${obj.bookingId}';
-
-      final response = await http.post(
-        Uri.parse(url),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        // body: confirmBookingRequestToJson(obj),
-        body: jsonEncode(
-          <String, dynamic>{
-            'user': obj.user,
-            'businessID': obj.businessId,
-            'businessIdent': obj.businessIdent,
-            'reason': obj.reason
-          },
-        ),
-      );
-
-      print(response.body);
-      final decodeData = json.decode(response.body);
-      print(decodeData);
-
-      //PENDIENTE CAMBIAR STATUS CODE A TODOS LOS APIS
-      responsedata.statusCode = response.statusCode;
-      if (response.statusCode == 200) {
-        // responsedata.data = true;
-      } else {
-        responsedata.statusCode = response.statusCode;
-        responsedata.error = ResponseErrorModel(
-            code: decodeData['Code'], message: decodeData['Message']);
-      }
-      return responsedata;
-    } catch (e) {
-      responsedata.statusCode = 500;
-      responsedata.error = ResponseErrorModel(code: 500, message: e.toString());
-      return responsedata;
-    }
-  }
   //
   //
   //

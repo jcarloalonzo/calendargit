@@ -13,8 +13,6 @@
 // import '../../../widgets/my_background_with_buttons.dart';
 // import '../../../widgets/my_buttom.dart';
 // import '../../../widgets/my_loading_super.dart';
-// import 'schedule_reservation_bloc.dart';
-// import 'schedule_reservationfree_body.dart';
 
 // class ScheduleReservationFreePage extends StatelessWidget {
 //   const ScheduleReservationFreePage._();

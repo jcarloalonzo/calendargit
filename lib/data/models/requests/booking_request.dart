@@ -13,8 +13,8 @@ class GetBookingListRequest {
   int? bookingStateID;
 }
 
-class GetTurnRequest {
-  GetTurnRequest({
+class ProgramGetTurnRequest {
+  ProgramGetTurnRequest({
     this.personID,
     this.dateProgram,
     this.serviceID,

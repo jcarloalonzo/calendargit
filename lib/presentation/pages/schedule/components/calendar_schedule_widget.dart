@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/config/Utils.dart';
 import '../../../../core/config/palette.dart';
+import '../../../widgets/show_loader.dart';
 import '../schedule_bloc.dart';
 
 class CalendarScheduleWidget extends StatefulWidget {
@@ -56,7 +57,9 @@ class _CalendarScheduleWidgetState extends State<CalendarScheduleWidget> {
         selectedDayPosition: SelectedDayPosition.center,
         onDateSelected: (date) async {
           bloc.fechaSelected = MyUtils.formatDate(date);
-          await bloc.getBookingsPickDate();
+
+          await Loader.showLoader(context, bloc.getBookingDate());
+          // await bloc.getBookingDate();
         },
       ),
     );

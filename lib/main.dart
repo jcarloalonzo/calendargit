@@ -7,7 +7,6 @@ import 'core/config/palette.dart';
 import 'core/routes/routes.dart';
 import 'data/models/entities/booking.dart';
 import 'data/preferences/preferences_user.dart';
-import 'presentation/bloc/agenda_bloc.dart';
 import 'presentation/bloc/agent_bloc.dart';
 import 'presentation/bloc/calendar_bloc.dart';
 import 'presentation/bloc/main_bloc.dart';
@@ -22,7 +21,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => MainBloc()..init()),
       // ChangeNotifierProvider(create: (_) => HomeBloc()),
-      ChangeNotifierProvider(create: (_) => AgendaBloc()),
+      // ChangeNotifierProvider(create: (_) => AgendaBloc()),
       ChangeNotifierProvider(create: (_) => AgentModelProvider()),
       ChangeNotifierProvider(create: (_) => CalendarBloc()),
     ],

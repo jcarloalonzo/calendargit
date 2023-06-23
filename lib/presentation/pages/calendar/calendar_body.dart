@@ -141,17 +141,12 @@ class CalendarBody extends StatelessWidget {
         eventArranger:
             const SideEventArranger(), // To define how simultaneous events will be arranged.
         onEventTap: (events, date) {
-          Navigator.pushNamed(
-            context,
-            BookingDetailPage.routeName,
-            arguments: events[0].event!,
-          );
-
-          // CalendarControllerProvider.of<Booking>(context)
-
-          // .controller.remove(events);
-
-          // Navigator.pushNamed(context, EventDetail.routeName);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    BookingDetailPage.init(context, events[0].event!),
+              ));
         },
         // onDateLongPress: (date) => print(date),
       ),

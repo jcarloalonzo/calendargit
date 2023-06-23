@@ -69,7 +69,7 @@ class MyBackGround extends StatelessWidget {
             : Container(
                 margin: (allAnchorwindow)
                     ? EdgeInsets.zero
-                    : const EdgeInsets.symmetric(horizontal: 20),
+                    : const EdgeInsets.symmetric(horizontal: 5),
                 child: child),
       ),
     );

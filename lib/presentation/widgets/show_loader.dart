@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/config/palette.dart';
 
 class Loader {
+  Loader._();
   static Future showLoader<T>(BuildContext context, Future<T> future) async {
     final overlayState = Overlay.of(context);
     final overlayEntry = OverlayEntry(

@@ -12,9 +12,7 @@ class SchedulePage extends StatelessWidget {
   const SchedulePage._();
   static String routeName = '/SchedulePage';
 
-  static Widget init(
-    BuildContext context,
-  ) {
+  static Widget init(BuildContext context) {
     final loginUser = context.read<MainBloc>().login!;
     return MultiProvider(
       providers: [

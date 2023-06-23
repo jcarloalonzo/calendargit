@@ -10,13 +10,10 @@ import '../../../widgets/my_text.dart';
 import '../../booking/booking_detail_page/booking_detail_page.dart';
 
 class ListCardItemSchedule extends StatelessWidget {
-  const ListCardItemSchedule({
-    Key? key,
-    this.onTap,
-    required this.obj,
-  }) : super(key: key);
+  const ListCardItemSchedule({Key? key, this.onTap, required this.booking})
+      : super(key: key);
   final Function()? onTap;
-  final Booking obj;
+  final Booking booking;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +28,14 @@ class ListCardItemSchedule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyText(
-                  text: obj.initialTime!,
+                  text: booking.initialTime!,
                   fontWeight: FontWeight.w700,
                   size: SizeText.text3,
                   color: Palette.black1,
                 ),
                 const SizedBox(height: 8),
                 MyText(
-                  text: '  ${obj.finalTime}',
+                  text: '  ${booking.finalTime}',
                   fontWeight: FontWeight.w700,
                   color: Palette.gray7,
                   size: SizeText.text4,
@@ -68,8 +65,8 @@ class ListCardItemSchedule extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border(
                               left: BorderSide(
-                                  color:
-                                      MyUtils.statusColor(obj.bookingStateId!),
+                                  color: MyUtils.statusColor(
+                                      booking.bookingStateId!),
                                   width: 8))),
                       child: Row(
                         children: [
@@ -80,14 +77,14 @@ class ListCardItemSchedule extends StatelessWidget {
                               children: [
                                 const SizedBox(height: 7),
                                 MyText(
-                                  text: obj.serviceDescription ?? '',
+                                  text: booking.serviceDescription ?? '',
                                   maxLines: 2,
                                   size: SizeText.text3 - 1,
                                   fontWeight: FontWeight.w700,
                                 ),
                                 const SizedBox(height: 7),
                                 MyText(
-                                  text: obj.name ?? '',
+                                  text: booking.name ?? '',
                                   size: SizeText.text5,
                                   maxLines: 2,
                                   fontWeight: FontWeight.w400,
@@ -109,9 +106,18 @@ class ListCardItemSchedule extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () => Navigator.pushNamed(
-                  context, BookingDetailPage.routeName,
-                  arguments: obj),
+              // onTap: () => Navigator.pushNamed(
+              //     context, BookingDetailPage.routeName,
+              //     arguments: booking),
+
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          BookingDetailPage.init(context, booking),
+                    ));
+              },
             ),
           ),
         ],

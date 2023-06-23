@@ -15,13 +15,7 @@ class APIService {
       final url =
           '${Config.urlWebCliente}service/getPrice/${obj.businessID}/office/${obj.officeID}/service/${obj.serviceID}?date=${obj.date}';
 
-      final resp = await http.get(
-        Uri.parse(url),
-      );
-
-      // print(resp.body);
-      // final decodeData = json.decode(resp.body);
-      // print(decodeData);
+      final resp = await http.get(Uri.parse(url));
 
       //PENDIENTE CAMBIAR STATUS CODE A TODOS LOS APIS
       responseData.statusCode = resp.statusCode;
