@@ -72,49 +72,6 @@ class _BackGroundNavigatorState extends State<BackGroundNavigator> {
           appBar: buildAppBar(
             title: 'SALON',
             isDrawer: true,
-            // actions: [
-            //   if (_index == 0 || _index == 1)
-            //     // if (_index == 1)
-
-            //     IconButton(
-            //       icon: const Icon(Icons.info_outline),
-            //       color: Palette.white,
-            //       onPressed: () async =>
-            //           await ScheduleMethods.infoMethod(context),
-            //     ),
-            //   if (_index == 0 || _index == 1)
-            //     // if (_index == 1)
-            //     IconButton(
-            //       icon: const Icon(Icons.filter_list_outlined),
-            //       color: Palette.white,
-            //       onPressed: () async {
-            //         if (_index == 0) {
-            //           Provider.of<ScheduleBloc>(context, listen: false)
-            //               .initFilter();
-
-            //           final action =
-            //               await ScheduleMethods.filterMethodSchedule(context);
-            //           if (action == DialogsAlerts.yes) {
-            //             await blocSchedule.getBookingsPickDate(
-            //                 bookingState:
-            //                     blocSchedule.typeStateBookingDropDown.cod);
-            //           }
-            //         } else if (_index == 1) {
-            //           Provider.of<CalendarBloc>(context, listen: false)
-            //               .initFilter();
-
-            //           final action =
-            //               await CalendarMethods.filterMethodSchedule(context);
-            //           if (action == DialogsAlerts.yes) {
-            //             await blocCalendar.getBookings(
-            //                 context: context,
-            //                 bookingState:
-            //                     blocCalendar.typeStateBookingDropDown.cod);
-            //           }
-            //         }
-            //       },
-            //     ),
-            // ],
           ),
           backgroundColor: Palette.backgroundColor,
           bottomNavigationBar: Container(

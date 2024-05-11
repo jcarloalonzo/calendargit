@@ -6,40 +6,36 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.1.1 <4.0.0"
 
 dependencies:
+  cached_network_image: ^3.2.3
+  calendar_view: ^1.0.0
+  cupertino_icons: ^1.0.2
+  dotted_border: ^2.0.0+3
   flutter:
     sdk: flutter
+  flutter_barcode_scanner: ^2.0.0
   flutter_localizations:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
-  calendar_view: ^1.0.0
-  intl: ^0.17.0
   flutter_svg: ^1.1.4
-  provider: ^6.0.1
-  http: ^0.13.4
-  google_fonts: ^3.0.1
-  material_design_icons_flutter: ^5.0.6295
-  table_calendar: ^3.0.3
-  calendar_agenda: ^0.0.2+3
-  jiffy: ^5.0.0
-  shared_preferences: ^2.0.13
-  share_plus: ^6.3.1
-  flutter_barcode_scanner: ^2.0.0
   fluttertoast: ^8.1.1
+  google_fonts: ^3.0.1
+  http: ^0.13.4
+  jiffy: ^5.0.0
+  material_design_icons_flutter: ^5.0.6295
+  provider: ^6.0.1
   qr_flutter: ^4.0.0
-  dotted_border: ^2.0.0+3
-  cached_network_image: ^3.2.3
+  share_plus: ^6.3.1
+  shared_preferences: ^2.0.13
+  weekly_date_picker: ^1.4.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
   flutter_launcher_icons: ^0.10.0
 
   flutter_lints: ^2.0.1
+  flutter_test:
+    sdk: flutter
 
 flutter_icons:
   android: "launcher_icon"

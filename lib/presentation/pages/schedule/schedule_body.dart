@@ -84,8 +84,8 @@ class _BodyListSchedule extends StatelessWidget {
   }
 
   Row _buildRowHoraServicio(BuildContext ctx) {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Expanded(
           flex: 1,
           child: MyText(

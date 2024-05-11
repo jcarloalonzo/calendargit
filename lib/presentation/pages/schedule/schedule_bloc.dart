@@ -17,6 +17,13 @@ class ScheduleBloc extends StateNotifier {
   late List<Booking> _bookings;
   List<Booking> get bookings => _bookings;
 
+  late DateTime _dateTime;
+  DateTime get dateTime => _dateTime;
+  set dateTime(DateTime value) {
+    _dateTime = value;
+    notifyListeners();
+  }
+
   late String _fechaSelected;
   String get fechaSelected => _fechaSelected;
   set fechaSelected(String v) {
@@ -25,6 +32,7 @@ class ScheduleBloc extends StateNotifier {
   }
 
   Future<void> init() async {
+    _dateTime = DateTime.now();
     _fechaSelected = MyUtils.formatDate(DateTime.now());
     _isLoadingBookings = false;
     _bookings = [];
@@ -46,8 +54,10 @@ class ScheduleBloc extends StateNotifier {
       GetBookingListRequest request = GetBookingListRequest(
         businessID: loginUser.userBusinessDto[0].businessId,
         personID: loginUser.personId,
-        initialDate: _fechaSelected,
-        finalDate: _fechaSelected,
+        // initialDate: _fechaSelected,
+        // finalDate: _fechaSelected,
+        initialDate: MyUtils.formatDate(dateTime),
+        finalDate: MyUtils.formatDate(dateTime),
         bookingStateID: bookingState,
       );
       _isLoadingBookings = false;

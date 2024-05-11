@@ -4,9 +4,10 @@ class Config {
   // ============================
   //  URIhttps://api.empeli.com/Store/api/
   // ============================
-  static const String urlWebCliente = 'https://api.empeli.com/store/api/';
+  static const String urlWebCliente =
+      'https://erp.jelaf.pe/apiSpaBusinessEEUU/api/';
   // static const String urlLoginClient = 'https://api.empeli.com/Client/api/';
-  static const String urlProvider = 'https://api.empeli.com/api/';
+  static const String urlProvider = 'https://erp.jelaf.pe/apiProviderEEUU/api/';
 
   static formatPrice(num price) => '\$. ${price.toStringAsFixed(2)}';
 

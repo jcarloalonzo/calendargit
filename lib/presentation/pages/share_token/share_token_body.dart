@@ -51,7 +51,7 @@ class ShareTokenBody extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Center(
-                    child: QrImage(
+                    child: QrImageView(
                       data: company.codeuid ?? '',
                       version: QrVersions.auto,
                       size: 150.0,

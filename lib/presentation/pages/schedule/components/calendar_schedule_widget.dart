@@ -1,8 +1,7 @@
-import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weekly_date_picker/weekly_date_picker.dart';
 
-import '../../../../core/config/Utils.dart';
 import '../../../../core/config/palette.dart';
 import '../../../widgets/show_loader.dart';
 import '../schedule_bloc.dart';
@@ -15,16 +14,16 @@ class CalendarScheduleWidget extends StatefulWidget {
 }
 
 class _CalendarScheduleWidgetState extends State<CalendarScheduleWidget> {
-  late CalendarAgendaController calendarAgendaControllerNotAppBar;
+  // late CalendarAgendaController calendarAgendaControllerNotAppBar;
   @override
   void initState() {
     super.initState();
-    calendarAgendaControllerNotAppBar = CalendarAgendaController();
+    // calendarAgendaControllerNotAppBar = CalendarAgendaController();
   }
 
   @override
   void dispose() {
-    calendarAgendaControllerNotAppBar.dispose();
+    // calendarAgendaControllerNotAppBar.dispose();
     super.dispose();
   }
 
@@ -32,36 +31,15 @@ class _CalendarScheduleWidgetState extends State<CalendarScheduleWidget> {
   Widget build(BuildContext context) {
     final bloc = context.watch<ScheduleBloc>();
 
-    return Container(
-      color: Colors.transparent,
-      height: 100,
-      child: CalendarAgenda(
-        fullCalendar: false,
-        backgroundColor: Colors.transparent,
-        controller: calendarAgendaControllerNotAppBar,
-        locale: 'es',
-        weekDay: WeekDay.short,
-        fullCalendarScroll: FullCalendarScroll.vertical,
-        fullCalendarDay: WeekDay.short,
-        selectedDateColor: Palette.blue6,
-        leftMargin: 0,
-        dateColor: Colors.black,
-        padding: 0,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().add(const Duration(days: -3)),
-        lastDate: DateTime.now().add(const Duration(days: 30)),
-        calendarBackground: Colors.black,
-        calendarEventColor: Colors.black,
-        calendarEventSelectedColor: Palette.blue6,
-        appbar: false,
-        selectedDayPosition: SelectedDayPosition.center,
-        onDateSelected: (date) async {
-          bloc.fechaSelected = MyUtils.formatDate(date);
-
-          await Loader.showLoader(context, bloc.getBookingDate());
-          // await bloc.getBookingDate();
-        },
-      ),
+    return WeeklyDatePicker(
+      selectedDigitBackgroundColor: Palette.colorApp,
+      selectedDigitBorderColor: Palette.colorApp,
+      selectedDay: bloc.dateTime, // DateTime
+      enableWeeknumberText: false,
+      changeDay: (p0) async {
+        bloc.dateTime = p0;
+        await Loader.showLoader(context, bloc.getBookingDate());
+      },
     );
   }
 }

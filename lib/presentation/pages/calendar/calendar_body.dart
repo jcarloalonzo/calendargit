@@ -41,11 +41,11 @@ class CalendarBody extends StatelessWidget {
         showVerticalLine: true,
         pageTransitionCurve: Curves.slowMiddle,
         backgroundColor: Palette.backgroundColor,
-        liveTimeIndicatorSettings: const HourIndicatorSettings(
-          color: Colors.red,
-          offset: 0,
-          height: 0,
-        ),
+        // liveTimeIndicatorSettings: const HourIndicatorSettings(
+        //   color: Colors.red,
+        //   offset: 0,
+        //   height: 0,
+        // ),
         // timeLineWidth: 500,
         pageTransitionDuration: const Duration(milliseconds: 400),
         timeLineBuilder: (e) {

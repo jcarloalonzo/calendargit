@@ -1,6 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import 'core/config/palette.dart';
@@ -37,18 +38,19 @@ class MyApp extends StatelessWidget {
     return CalendarControllerProvider<Booking>(
       controller: EventController<Booking>(),
       child: MaterialApp(
-        title: 'App Agenda',
+        title: 'SPA Profesional',
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('es', 'ES'), // Español, no country code
-        ],
-        locale: const Locale('es'),
+        // localizationsDelegates: const [
+        //   GlobalMaterialLocalizations.delegate,
+        //   GlobalCupertinoLocalizations.delegate,
+        //   GlobalWidgetsLocalizations.delegate,
+        // ],
+        // supportedLocales: const [
+        //   Locale('es', 'ES'), // Español, no country code
+        // ],
+        // locale: const Locale('es'),
         theme: ThemeData(
+          useMaterial3: false,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           scaffoldBackgroundColor: const Color(0xFFEFF3F6),
           appBarTheme: const AppBarTheme(

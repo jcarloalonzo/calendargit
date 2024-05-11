@@ -13,6 +13,7 @@ AppBar buildAppBar(
   return AppBar(
     elevation: 0,
     backgroundColor: Palette.colorApp,
+    iconTheme: const IconThemeData(color: Colors.white),
     toolbarHeight: 50,
     leading: (isDrawer)
         ? Builder(builder: (context) {
