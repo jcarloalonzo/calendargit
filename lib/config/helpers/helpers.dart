@@ -24,6 +24,10 @@ class Helpers {
     cleanErrorCallback();
   }
 
+  static String firstUpper(String str) {
+    return str.substring(0, 1).toUpperCase() + str.substring(1);
+  }
+
   static List<IdRequest> catogoriesToIdRequest(List<Category> categories) {
     List<IdRequest> ids =
         categories.map((e) => IdRequest(id: e.categoryId)).toList();

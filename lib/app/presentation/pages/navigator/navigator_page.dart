@@ -38,6 +38,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     return MyBackGround(
       isAppBar: true,
+      isPadding: false,
       isDrawer: true,
       bottomNavigatorBar: NavigationBar(
         onDestinationSelected: updateIndex,

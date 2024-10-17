@@ -38,6 +38,7 @@ import 'app/presentation/blocs/authentication/login/login_bloc.dart';
 import 'app/presentation/blocs/authentication/register/register_bloc.dart';
 import 'app/presentation/blocs/authentication/token/token_bloc.dart';
 import 'app/presentation/blocs/general/session/session_bloc.dart';
+import 'app/presentation/blocs/navigator/home/home_bloc.dart';
 import 'app/presentation/blocs/splash/splash_cubit.dart';
 import 'app/presentation/blocs/workers/new_worker/new_worker_step_one/new_worker_step_one_bloc.dart';
 import 'app/presentation/blocs/workers/new_worker/new_worker_step_two/new_worker_step_two_bloc.dart';
@@ -119,6 +120,10 @@ void init() {
   getIt.registerFactory(() => WorkerDetailBloc(
         webClientDetailsServicesWorkerUsecase: getIt(),
         // userLoginUsecase: getIt(),
+      ));
+
+  getIt.registerFactory(() => HomeBloc(
+      // userLoginUsecase: getIt(),
       ));
 
   // getIt.registerFactory(() => LoginBloc(
