@@ -1,0 +1,27 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        generate_for:
+          include:
+            - lib/app/domain/models/**/*.dart
+            - lib/app/domain/models/*.dart
+            - lib/app/data/entities/requests/*.dart
+            - lib/app/data/entities/responses/*.dart
+
+      freezed:
+        generate_for:
+          include:
+            - lib/app/presentation/blocs/*/**_state.dart
+            - lib/app/presentation/blocs/*/**_event.dart
+            - lib/app/presentation/blocs/*/*/**_model.dart
+            - lib/app/domain/models/*.dart
+            - lib/app/domain/failures/**/*
+            - lib/app/domain/either/either.dart
+            - lib/app/domain/error_model/error_model.dart
+            - lib/app/data/entities/responses/*.dart
+            - lib/app/data/entities/requests/*.dart
+            - lib/app/presentation/pages/invoice/new_invoice/popup_register_invoice/cubit/*.dart
+            - lib/app/presentation/pages/invoice/new_invoice/popup_register_invoice/cubit/response_model/popup_register_invoice_screen_model.dart
+            # - lib/app/data/entities/**/*
+# lib\app\data\entities\requests\payment_order_list_request.dart

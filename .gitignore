@@ -47,3 +47,9 @@ app.*.map.json
 
 
 key.properties
+
+
+*.g.dart
+*.gen.dart
+*.freezed.dart
+lib/app/generated/

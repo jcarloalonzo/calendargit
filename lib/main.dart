@@ -1,98 +1,25 @@
-import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
-import 'package:provider/provider.dart';
-
-import 'core/config/palette.dart';
-import 'core/routes/routes.dart';
-import 'data/models/entities/booking.dart';
-import 'data/preferences/preferences_user.dart';
-import 'presentation/bloc/agent_bloc.dart';
-import 'presentation/bloc/calendar_bloc.dart';
-import 'presentation/bloc/main_bloc.dart';
-import 'presentation/pages/validate_partner/splash/splash_page.dart';
+import 'app/my_app.dart';
+import 'config/app_config/config_constants.dart';
+import 'config/app_config/environment.dart';
+import 'dependency_injection.dart' as di;
+import 'generated/translations.g.dart';
 
 void main() async {
-  Provider.debugCheckInvalidValueType = null;
   WidgetsFlutterBinding.ensureInitialized();
-  final prefsUser = PreferencesUser();
-  await prefsUser.initPrefs();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => MainBloc()..init()),
-      // ChangeNotifierProvider(create: (_) => HomeBloc()),
-      // ChangeNotifierProvider(create: (_) => AgendaBloc()),
-      ChangeNotifierProvider(create: (_) => AgentModelProvider()),
-      ChangeNotifierProvider(create: (_) => CalendarBloc()),
-    ],
-    child: MyApp(),
-  ));
-}
+  await Environment.initEnvironment(ConfigConstants.envProduction);
+  LocaleSettings.useDeviceLocale();
+  Intl.defaultLocale = LocaleSettings.currentLocale.languageCode;
+  debugPrint(LocaleSettings.currentLocale.languageCode);
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  final prefsUser = PreferencesUser();
-  @override
-  Widget build(BuildContext context) {
-    return CalendarControllerProvider<Booking>(
-      controller: EventController<Booking>(),
-      child: MaterialApp(
-        title: 'SPA Profesional',
-        debugShowCheckedModeBanner: false,
-        // localizationsDelegates: const [
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        // ],
-        // supportedLocales: const [
-        //   Locale('es', 'ES'), // Español, no country code
-        // ],
-        // locale: const Locale('es'),
-        theme: ThemeData(
-          useMaterial3: false,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          scaffoldBackgroundColor: const Color(0xFFEFF3F6),
-          appBarTheme: const AppBarTheme(
-            iconTheme: IconThemeData(color: Colors.black),
-          ),
-          timePickerTheme: TimePickerThemeData(
-            backgroundColor: Palette.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            hourMinuteShape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(18)),
-              side: BorderSide(color: Colors.white, width: 4),
-            ),
-            dayPeriodBorderSide:
-                const BorderSide(color: Colors.white, width: 4),
-            dayPeriodColor: Colors.blueGrey.shade600,
-            dayPeriodTextColor: Colors.white,
-            dayPeriodShape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              side: BorderSide(color: Colors.white, width: 4),
-            ),
-            hourMinuteTextStyle:
-                const TextStyle(fontSize: 65, fontWeight: FontWeight.w600),
-            dialHandColor: Palette.colorApp,
-            dialTextColor: MaterialStateColor.resolveWith((states) =>
-                states.contains(MaterialState.selected)
-                    ? Colors.white
-                    : Palette.colorApp),
-            entryModeIconColor: Palette.colorApp,
-          ),
-        ),
-        routes: getApplicationRoutes(),
-        // initialRoute: (prefsUser.userLoginResponse != null)
-        //     ? BackGroundNavigator.routeName
-        //     : LoginPage.routeName,
-        // initialRoute: (prefsUser.userLoginResponse != null)
-        //     ? BackGroundNavigator.routeName
-        //     : LicenseSpaPage.routeName,
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  di.init();
 
-        initialRoute: SplashPage.routeName,
-        // initialRoute: LoginPage.routeName,
-      ),
-    );
-  }
+  runApp(MyApp());
 }
