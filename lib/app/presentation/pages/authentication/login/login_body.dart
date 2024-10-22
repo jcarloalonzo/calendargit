@@ -8,6 +8,7 @@ import '../../../../../config/app_config/space_helpers.dart';
 import '../../../../../generated/translations.g.dart';
 import '../../../../domain/models/user.dart';
 import '../../../blocs/authentication/login/login_bloc.dart';
+import '../../../blocs/general/bookings/bookings_bloc.dart';
 import '../../../widgets/custom_svg_picture.dart';
 import '../../../widgets/my_buttom.dart';
 import '../../../widgets/my_text.dart';
@@ -66,6 +67,9 @@ class LoginBody extends StatelessWidget {
     final User? user = await Loader.showLoader(context, bloc.login());
     if (!context.mounted) return;
     if (user == null) return;
+    await Future.delayed(Duration(seconds: 1));
+    if (!context.mounted) return;
+    context.read<BookingsBloc>().init();
     context.go(NavigatorPage.route);
   }
 }

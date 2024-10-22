@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 import '../../../../../../config/app_config/palette.dart';
-import '../../../../blocs/navigator/home/home_bloc.dart';
-import '../../../../widgets/util/loader.dart';
 
 class CalendarScheduleWidget extends StatelessWidget {
-  const CalendarScheduleWidget({super.key, required this.date});
+  const CalendarScheduleWidget(
+      {super.key, required this.date, required this.onTapDate});
   final DateTime date;
+  final Function(DateTime) onTapDate;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +18,8 @@ class CalendarScheduleWidget extends StatelessWidget {
       selectedDigitBorderColor: Palette.colorApp,
       selectedDay: date, // DateTime
       enableWeeknumberText: false,
-      changeDay: (date) => _changeDate(context, date),
+      // changeDay: (date) => _changeDate(context, date),
+      changeDay: onTapDate,
     );
-  }
-
-  void _changeDate(BuildContext context, DateTime date) async {
-    final bloc = context.read<HomeBloc>();
-    bloc.setDate(date);
-    await Loader.showLoader(context, bloc.getBookingDate());
   }
 }

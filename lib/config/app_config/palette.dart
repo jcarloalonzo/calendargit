@@ -58,4 +58,7 @@ class Palette {
   static const Color statuscancelada = Color(0xFFEB5757);
   static const Color statusinvoice = Color(0xFFF2994A);
   static const Color statusReprogramada = Color(0xFF2D9CDB);
+  static const Color available = Color(0xFF6FCF97);
+  static const Color notAvailable = Color(0xFFBDBDBD);
+  static const Color selected = Palette.primaryColor;
 }

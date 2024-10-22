@@ -4,6 +4,7 @@ import '../../../../../dependency_injection.dart';
 import '../../../../data/services/local/secure_storage_service.dart';
 import '../../../../domain/models/business.dart';
 import '../../../../domain/models/user.dart';
+import '../bookings/bookings_bloc.dart';
 import 'session_event.dart';
 import 'session_state.dart';
 
@@ -42,12 +43,14 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   void logout() async {
     final secureService = getIt<SecureStorageService>();
     secureService.signOff();
+    getIt<BookingsBloc>().logout();
     add(SessionLogoutEvent());
   }
 
   void logoutForceTokenApp() async {
     final secureService = getIt<SecureStorageService>();
     secureService.clearAll();
+    getIt<BookingsBloc>().logout();
     add(SessionLogoutEvent());
   }
 }

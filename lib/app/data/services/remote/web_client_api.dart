@@ -1,15 +1,24 @@
+import '../../../../config/helpers/helpers.dart';
 import '../../../domain/either/either.dart';
+import '../../../domain/models/booking.dart';
 import '../../../domain/models/business.dart';
 import '../../../domain/models/category.dart';
+import '../../../domain/models/professional_range_date_appointment.dart';
+import '../../../domain/models/professional_turn_appointment.dart';
 import '../../../domain/models/service.dart';
 import '../../../domain/models/service_worker.dart';
 import '../../../domain/models/user.dart';
 import '../../../domain/models/worker.dart';
+import '../../entities/requests/booking_list_request.dart';
+import '../../entities/requests/cancel_booking_request.dart';
 import '../../entities/requests/company_create_request.dart';
+import '../../entities/requests/complete_booking_request.dart';
 import '../../entities/requests/create_worker_request.dart';
 import '../../entities/requests/id_request.dart';
 import '../../entities/requests/login_request.dart';
+import '../../entities/requests/reschedule_booking_request.dart';
 import '../../entities/requests/set_services_worker_request.dart';
+import '../../entities/requests/turn_professional_appointment_request.dart';
 import '../../entities/responses/services_category_response.dart';
 import '../../http/http.dart';
 import '../../mappers/id_requests_mappers.dart';
@@ -171,6 +180,122 @@ class WebClientApi {
       method: HttpMethod.get,
       onSuccess: (json) {
         return Business.fromJson(json);
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, List<Booking>>> bookingList(
+      {required BookingListRequest request}) async {
+    final response = await _http.request(
+      '/v1/booking/getBookingList/${request.businessId}?personID=${request.personId}&InitialDate=${Helpers.formatDate(request.initialDate)}&FinalDate=${Helpers.formatDate(request.finalDate)}&BookingStateID=${request.bookingStateId}',
+      method: HttpMethod.get,
+      onSuccess: (json) {
+        final list = json as List;
+        return list.map((e) => Booking.fromJson(e)).toList();
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, bool>> cancelBooking(
+      {required CancelBookingRequest request, required int bookingId}) async {
+    final response = await _http.request(
+      '/v1/booking/anulate/$bookingId',
+      method: HttpMethod.post,
+      bodyRequest: request.toJson(),
+      onSuccess: (json) {
+        return json as bool;
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, bool>> completeBooking(
+      {required CompleteBookingRequest request, required int bookingId}) async {
+    final response = await _http.request(
+      '/v1/booking/confirm/$bookingId',
+      method: HttpMethod.post,
+      bodyRequest: request.toJson(),
+      onSuccess: (json) {
+        return json as bool;
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, bool>> validateReprogramBooking(
+      {required int bookingId}) async {
+    final response = await _http.request(
+      '/v1/booking/validateToReprogram/$bookingId',
+      method: HttpMethod.post,
+      bodyRequest: {},
+      onSuccess: (json) {
+        return json as bool;
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, List<ProfessionalTurnAppointment>>>
+      turnsProfessionalAppointment(
+          {required TurnProfessionalAppointmentRequest request}) async {
+    final response = await _http.request(
+      '/program/getTurn/personID/${request.personId}/serviceID/${request.serviceId}/dateProgram/${Helpers.formatDate(request.date)}',
+      method: HttpMethod.get,
+      onSuccess: (json) {
+        final list = json as List;
+        return list
+            .map((e) => ProfessionalTurnAppointment.fromJson(e))
+            .toList();
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, ProfessionalRangeDateAppointment>>
+      rangeDateProfessionalAppointment(
+          {required int businessId, required int personId}) async {
+    final response = await _http.request(
+      '/program/getRangeDate/personID?personID=$personId&BusinessID=$businessId',
+      method: HttpMethod.get,
+      onSuccess: (json) {
+        return ProfessionalRangeDateAppointment.fromJson(json);
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, bool>> rescheduleBooking(
+      {required RescheduleBookingRequest request,
+      required int bookingId}) async {
+    final response = await _http.request(
+      '/v1/booking/reprogram/$bookingId',
+      method: HttpMethod.post,
+      bodyRequest: request.toJson(),
+      onSuccess: (json) {
+        return json as bool;
       },
     );
     return response.when(

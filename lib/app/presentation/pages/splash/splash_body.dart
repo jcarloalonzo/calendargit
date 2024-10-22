@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../config/app_config/custom_assets.dart';
 import '../../../../config/app_config/palette.dart';
+import '../../blocs/general/bookings/bookings_bloc.dart';
 import '../../blocs/splash/splash_cubit.dart';
 import '../authentication/create_company/request_company/request_company_page.dart';
 import '../authentication/login/login_page.dart';
@@ -39,17 +40,13 @@ class _SplashBodyState extends State<SplashBody> {
           _goTo(RequestCompanyPage.route);
           return;
         case TypeLogin.home:
+          await Future.delayed(Duration(seconds: 1));
+          context.read<BookingsBloc>().init();
           _goTo(NavigatorPage.route);
           return;
 
         case TypeLogin.unallowedLicense:
-        // Navigator.pushNamedAndRemoveUntil(
-        // context, UnallowedCompanyPage.routeName, (route) => false);
-        // return;
         default:
-        // Navigator.pushNamedAndRemoveUntil(
-        // context, UnallowedCompanyPage.routeName, (route) => false);
-        // return;
       }
     } catch (e) {
       _goTo(TokenPage.route);

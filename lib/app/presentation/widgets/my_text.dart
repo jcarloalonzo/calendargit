@@ -10,7 +10,7 @@ class MyText extends StatelessWidget {
     this.size = SizeText.text6,
     this.color = Colors.black,
     this.textAlign = TextAlign.start,
-    this.maxLines = 1,
+    this.maxLines = 2,
     this.textOverFLow = TextOverflow.ellipsis,
   });
   final String text;

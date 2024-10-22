@@ -4,7 +4,6 @@ import '../../../../config/app_config/palette.dart';
 import '../../../../generated/translations.g.dart';
 import '../../widgets/my_background.dart';
 import 'account/account_page.dart';
-import 'calendar/calendar_page.dart';
 import 'home/home_page.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -30,7 +29,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
 
   static final List<Widget> _screens = [
     const HomePage(),
-    const CalendarPage(),
+    // const CalendarPage(),
     const AccountPage(),
   ];
 
@@ -53,10 +52,10 @@ class _NavigatorPageState extends State<NavigatorPage> {
             label: texts.label.home,
             icon: Icons.home,
           ),
-          _CustomNavigationDestination(
-            label: texts.label.calendar,
-            icon: Icons.calendar_month,
-          ),
+          // _CustomNavigationDestination(
+          //   label: texts.label.calendar,
+          //   icon: Icons.calendar_month,
+          // ),
           _CustomNavigationDestination(
             label: texts.label.account,
             icon: Icons.person,

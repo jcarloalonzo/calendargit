@@ -22,5 +22,15 @@
   "yourSpaProviderCodeIsAFollows": "Su código de proveedor de SPA es el siguiente",
   "codeCopiedToClipboard": "Código copiado al portapapeles",
   "shareInvitationCode": "Compartir código de invitación",
-  "doYouWantToLogoutAndRemoveTheTokenLinkedToThePhone": "¿Quieres cerrar sesión y eliminar el token vinculado al teléfono?"
+  "doYouWantToLogoutAndRemoveTheTokenLinkedToThePhone": "¿Quieres cerrar sesión y eliminar el token vinculado al teléfono?",
+
+  "areYouSureYouWantToCancelTheReservation": "¿Está seguro de que desea cancelar la reserva?",
+  "cancelReservation": "Cancelar reserva",
+  "theReservationWasCancelledSuccessfully": "La reserva se canceló correctamente",
+  "areYouSureYouWantToCompleteTheReservation": "¿Está seguro de que desea completar la reserva?",
+  "completeReservation": "Completar reserva",
+  "theReservationWasCompletedSuccessfully": "La reserva se completó correctamente",
+  "areYouSureYouWantToRescheduleTheReservation": "¿Está seguro de que desea reprogramar la reserva?",
+  "rescheduleReservation": "Reprogramar reserva",
+  "thereAreNoShiftsAvailableForTheSelectedDate": "No hay turnos disponibles para la fecha seleccionada"
 }

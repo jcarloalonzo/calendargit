@@ -9,6 +9,7 @@ import '../../app/data/entities/requests/id_request.dart';
 import '../../app/data/entities/responses/services_category_response.dart';
 import '../../app/domain/error_model/error_model.dart';
 import '../../app/domain/models/category.dart';
+import '../../app/domain/models/professional_turn_appointment.dart';
 import '../../app/domain/models/service.dart';
 import '../../app/presentation/widgets/popups/my_dialog.dart';
 import '../app_config/palette.dart';
@@ -162,5 +163,32 @@ class Helpers {
     file.writeAsBytes(decodedBytes, flush: true);
     String fullPath = file.path;
     return fullPath;
+  }
+
+  static Color statusColorBookingState(int status) {
+    switch (status) {
+      case 1:
+        return Palette.statusxconfirmar;
+      case 3:
+        return Palette.statuscompletada;
+      case 4:
+        return Palette.statuscancelada;
+      case 5:
+        return Palette.statusinvoice;
+      case 6:
+        return Palette.statusReprogramada;
+      default:
+        return Palette.statusxconfirmar;
+    }
+  }
+
+  static bool isSelectedShift(
+      {required ProfessionalTurnAppointment turn,
+      ProfessionalTurnAppointment? turnSelected}) {
+    if (turnSelected == null) return false;
+    final dataTurn = '${turn.initialTurn}-${turn.finalTurn}';
+    final dataTurnSelected =
+        '${turnSelected.initialTurn}-${turnSelected.finalTurn}';
+    return dataTurn == dataTurnSelected;
   }
 }

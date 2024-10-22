@@ -115,21 +115,6 @@ class TokenBloc extends Bloc<TokenEvent, TokenState> {
     );
   }
 
-  // Future<Company?> _companyByToken(String token) async {
-  //   final response = await _providerCompanyByTokenUsecase.call(token: token);
-  //   return response.when(
-  //     left: (failure) {
-  //       setError(failure);
-  //       return;
-  //     },
-  //     right: (company) {
-  //       // Guardando en memoria
-  //       getIt<SessionBloc>().updateCompany(company: company);
-  //       return company;
-  //     },
-  //   );
-  // }
-
   Future<Business?> _businessByToken(String token) async {
     final response = await _webClientBusinessByTokenUsecase.call(token: token);
     return response.when(

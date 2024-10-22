@@ -17,7 +17,7 @@ class MyDialogs {
       String? body,
       double height = 80,
       bool? onlyButtom = false}) async {
-    final action = await showDialog(
+    final DialogAction? action = await showDialog<DialogAction?>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
@@ -27,24 +27,27 @@ class MyDialogs {
           },
           child: AlertDialog(
             buttonPadding: EdgeInsets.zero,
-            contentPadding: EdgeInsets.zero,
+            contentPadding: EdgeInsets.all(5),
             elevation: 20,
             insetPadding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            title: Column(
-              children: [
-                const SizedBox(height: 10),
-                MyText(
-                  title ?? texts.label.attention,
-                  color: Palette.blue,
-                  textAlign: TextAlign.center,
-                  size: SizeText.text4,
-                  fontWeight: FontWeight.w800,
-                ),
-                const Divider(color: Palette.blue, thickness: 0.9),
-              ],
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  MyText(
+                    title ?? texts.label.attention,
+                    color: Palette.blue,
+                    textAlign: TextAlign.center,
+                    size: SizeText.text4,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  const Divider(color: Palette.blue, thickness: 0.9),
+                ],
+              ),
             ),
             titlePadding: EdgeInsets.zero,
             actionsPadding: EdgeInsets.zero,

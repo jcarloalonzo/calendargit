@@ -22,5 +22,14 @@
   "yourSpaProviderCodeIsAFollows": "Your SPA provider code is as follows",
   "codeCopiedToClipboard": "Code copied to clipboard",
   "shareInvitationCode": "Share invitation code",
-  "doYouWantToLogoutAndRemoveTheTokenLinkedToThePhone": "Do you want to log out and remove the token linked to the phone?"
+  "doYouWantToLogoutAndRemoveTheTokenLinkedToThePhone": "Do you want to log out and remove the token linked to the phone?",
+  "areYouSureYouWantToCancelTheReservation": "Are you sure you want to cancel the reservation?",
+  "cancelReservation": "Cancel reservation",
+  "theReservationWasCancelledSuccessfully": "The reservation was cancelled successfully",
+  "areYouSureYouWantToCompleteTheReservation": "Are you sure you want to complete the reservation?",
+  "completeReservation": "Complete reservation",
+  "theReservationWasCompletedSuccessfully": "The reservation was completed successfully",
+  "areYouSureYouWantToRescheduleTheReservation": "Are you sure you want to reschedule the reservation?",
+  "rescheduleReservation": "Reschedule reservation",
+  "thereAreNoShiftsAvailableForTheSelectedDate": "There are no shifts available for the selected date"
 }

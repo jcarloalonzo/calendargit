@@ -19,15 +19,22 @@ import 'app/domain/repositories/web_client_repository.dart';
 import 'app/domain/usecases/provider/provider_company_by_token_usecase.dart';
 import 'app/domain/usecases/provider/provider_sincronization_token_usecase.dart';
 import 'app/domain/usecases/provider/provider_validate_token_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_booking_list_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_business_by_token_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_cancel_booking_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_company_create_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_complete_booking_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_create_worker_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_details_services_worker_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_get_categories_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_login_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_range_date_professional_appointment_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_reschedule_booking_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_services_by_business_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_services_by_categories_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_set_Services_worker_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_turn_professional_appointment_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_validate_reprogram_booking_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_workers_usecase.dart';
 import 'app/presentation/blocs/authentication/create_company/categories_subscription/categories_subscription_bloc.dart';
 import 'app/presentation/blocs/authentication/create_company/request_company/request_company_bloc.dart';
@@ -37,8 +44,11 @@ import 'app/presentation/blocs/authentication/create_company/services_subscripti
 import 'app/presentation/blocs/authentication/login/login_bloc.dart';
 import 'app/presentation/blocs/authentication/register/register_bloc.dart';
 import 'app/presentation/blocs/authentication/token/token_bloc.dart';
+import 'app/presentation/blocs/booking_detail/booking_detail_bloc.dart';
+import 'app/presentation/blocs/general/bookings/bookings_bloc.dart';
 import 'app/presentation/blocs/general/session/session_bloc.dart';
-import 'app/presentation/blocs/navigator/home/home_bloc.dart';
+import 'app/presentation/blocs/reschedule_booking/reschedule_booking_bloc.dart';
+import 'app/presentation/blocs/reschedule_confirmation/reschedule_confirmation_bloc.dart';
 import 'app/presentation/blocs/splash/splash_cubit.dart';
 import 'app/presentation/blocs/workers/new_worker/new_worker_step_one/new_worker_step_one_bloc.dart';
 import 'app/presentation/blocs/workers/new_worker/new_worker_step_two/new_worker_step_two_bloc.dart';
@@ -121,17 +131,41 @@ void init() {
         webClientDetailsServicesWorkerUsecase: getIt(),
         // userLoginUsecase: getIt(),
       ));
-
-  getIt.registerFactory(() => HomeBloc(
-      // userLoginUsecase: getIt(),
+  getIt.registerFactory(() => BookingDetailBloc(
+        // userLoginUsecase: getIt(),
+        webClientCancelBookingUsecase: getIt(),
+        webClientCompleteBookingUsecase: getIt(),
+        webClientValidateReprogramBookingUsecase: getIt(),
       ));
-
+  getIt.registerFactory(() => RescheduleBookingBloc(
+        webClientRangeDateProfessionalAppointmentUsecase: getIt(),
+        webClientTurnProfessionalAppointmentUsecase: getIt(),
+        // userLoginUsecase: getIt(),
+      ));
+  getIt.registerFactory(() => RescheduleConfirmationBloc(
+        webClientRescheduleBookingUsecase: getIt(),
+        // userLoginUsecase: getIt(),
+      ));
   // getIt.registerFactory(() => LoginBloc(
   //       userLoginUsecase: getIt(),
   //     ));
   //! Usecases
   // WEbClient
+  getIt.registerLazySingleton(
+      () => WebClientRescheduleBookingUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+      () => WebClientCompleteBookingUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+      () => WebClientValidateReprogramBookingUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+      () => WebClientCancelBookingUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+      () => WebClientTurnProfessionalAppointmentUsecase(repository: getIt()));
 
+  getIt.registerLazySingleton(() =>
+      WebClientRangeDateProfessionalAppointmentUsecase(repository: getIt()));
+  getIt.registerLazySingleton(
+      () => WebClientBookingListUsecase(repository: getIt()));
   getIt.registerLazySingleton(() => WebClientLoginUsecase(repository: getIt()));
   getIt.registerLazySingleton(
       () => WebClientBusinessByTokenUsecase(repository: getIt()));
@@ -211,4 +245,11 @@ void init() {
       // netcoreGetTermsUsecase: getIt(),
       // netcoreGetCitiesUsecase: getIt(),
       ));
+
+  getIt.registerSingleton(BookingsBloc(
+    webClientBookingListUsecase: getIt(),
+    // netcoreGetTaxUsecase: getIt(),
+    // netcoreGetTermsUsecase: getIt(),
+    // netcoreGetCitiesUsecase: getIt(),
+  ));
 }
