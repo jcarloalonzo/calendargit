@@ -53,3 +53,6 @@ key.properties
 *.gen.dart
 *.freezed.dart
 lib/app/generated/
+
+
+location-file.md
