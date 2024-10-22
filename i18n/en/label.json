@@ -62,5 +62,15 @@
   "Available": "Available",
   "notAvailable": "Not available",
   "selected": "Selected",
-  "rescheduleAppointment": "Reschedule appointment"
+  "rescheduleAppointment": "Reschedule appointment",
+  "confirm": "Confirm",
+  "service": "Service",
+  "reservationData": "Reservation data",
+  "clientData": "Client data",
+  "newProgramming": "New programming",
+  "card": "Card",
+  "cash": "Cash",
+  "balance": "Balance",
+  "payment": "Payment",
+  "cardNumber": "Card number"
 }

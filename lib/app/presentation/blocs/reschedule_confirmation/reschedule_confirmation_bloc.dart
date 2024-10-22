@@ -1,8 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/app_config/enums.dart';
+import '../../../../dependency_injection.dart';
+import '../../../../generated/translations.g.dart';
+import '../../../data/entities/requests/reschedule_booking_request.dart';
 import '../../../domain/error_model/error_model.dart';
 import '../../../domain/usecases/web_client/web_client_reschedule_booking_usecase.dart';
+import '../general/bookings/bookings_bloc.dart';
+import '../general/session/session_bloc.dart';
 import '../reschedule_booking/screen_model/reschedule_booking_screen_model.dart';
 import 'reschedule_confirmation_event.dart';
 import 'reschedule_confirmation_state.dart';
@@ -74,6 +79,39 @@ class RescheduleConfirmationBloc
     } catch (e) {
       add(RescheduleConfirmationChangeStateEvent(
           RescheduleConfirmationState.failed()));
+    }
+  }
+
+  Future<bool> reschedule() async {
+    try {
+      final bookingId = _currentModel.booking.bookingId;
+      final user = getIt<SessionBloc>().state.user!;
+      final business = user.userBusinessData!;
+      final request = RescheduleBookingRequest(
+        user: user.userId,
+        businessIdent: business.identification,
+        date: _currentModel.date,
+        initialTime: _currentModel.turnSelected.initialTurn,
+        finalTime: _currentModel.turnSelected.finalTurn,
+        registerUser: 0,
+      );
+
+      final response = await _webClientRescheduleBookingUsecase.call(
+          request: request, bookingId: bookingId);
+
+      return response.when(
+        left: (failure) {
+          setError(failure);
+          return false;
+        },
+        right: (value) async {
+          await getIt<BookingsBloc>().refreshBookings();
+          return value;
+        },
+      );
+    } catch (e) {
+      setError(texts.messages.somethingWentWrongContactAdministrator);
+      return false;
     }
   }
 }

@@ -32,5 +32,9 @@
   "theReservationWasCompletedSuccessfully": "La reserva se completó correctamente",
   "areYouSureYouWantToRescheduleTheReservation": "¿Está seguro de que desea reprogramar la reserva?",
   "rescheduleReservation": "Reprogramar reserva",
-  "thereAreNoShiftsAvailableForTheSelectedDate": "No hay turnos disponibles para la fecha seleccionada"
+  "thereAreNoShiftsAvailableForTheSelectedDate": "No hay turnos disponibles para la fecha seleccionada",
+  "doYouWantToIssueTheInvoice": "¿Deseas emitir la factura?",
+  "youMustEnterAValidValue": "Debe ingresar un valor valido",
+  "youCannotEnterADiscountGreaterThanTheSubtotal": "No puede ingresar un dscto mayor al subtotal",
+  "paymentCannotBeLessThanTheTotal": "El pago no puede ser menor al total"
 }

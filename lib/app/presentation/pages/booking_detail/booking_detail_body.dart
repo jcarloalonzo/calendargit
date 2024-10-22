@@ -11,6 +11,7 @@ import '../../blocs/booking_detail/booking_detail_bloc.dart';
 import '../../widgets/my_buttom.dart';
 import '../../widgets/popups/my_dialog.dart';
 import '../../widgets/util/loader.dart';
+import '../booking_generate_invoice/booking_generate_invoice_page.dart';
 import '../reschedule_booking/reschedule_booking_page.dart';
 import 'components/booking_detail_container_data.dart';
 
@@ -58,6 +59,13 @@ class BookingDetailBody extends StatelessWidget {
             MyButtom(
               texts.label.reschedule,
               onTap: () => _onTapReschedule(context),
+            ),
+            SpaceHelpers.verticalVeryLong,
+          ],
+          if (booking.bookingStateId == StatusCode.attended) ...[
+            MyButtom(
+              texts.label.generateInvoice,
+              onTap: () => _onTapGenerateInvoice(context),
             ),
             SpaceHelpers.verticalVeryLong,
           ],
@@ -117,5 +125,16 @@ class BookingDetailBody extends StatelessWidget {
     context.push(RescheduleBookingPage.route, extra: booking);
 
     //
+  }
+
+  void _onTapGenerateInvoice(BuildContext context) async {
+    final dialogResponse = await MyDialogs.yesAbortDialog(
+      context: context,
+      title: texts.label.generateInvoice,
+      body: texts.messages.doYouWantToIssueTheInvoice,
+    );
+    if (!context.mounted) return;
+    if (dialogResponse == DialogAction.abort) return;
+    context.push(BookingGenerateInvoicePage.route, extra: booking);
   }
 }

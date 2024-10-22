@@ -16,18 +16,15 @@ class MyCardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
-      child: Card(
-        color: backgroundColor,
-        elevation: elevation,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: (padding) ? const EdgeInsets.all(14) : EdgeInsets.zero,
-          child: child,
-        ),
+    return Card(
+      color: backgroundColor,
+      elevation: elevation,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Padding(
+        padding: (padding) ? const EdgeInsets.all(14) : EdgeInsets.zero,
+        child: child,
       ),
     );
   }

@@ -26,6 +26,7 @@ import 'app/domain/usecases/web_client/web_client_company_create_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_complete_booking_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_create_worker_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_details_services_worker_usecase.dart';
+import 'app/domain/usecases/web_client/web_client_generate_invoice_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_get_categories_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_login_usecase.dart';
 import 'app/domain/usecases/web_client/web_client_range_date_professional_appointment_usecase.dart';
@@ -45,6 +46,7 @@ import 'app/presentation/blocs/authentication/login/login_bloc.dart';
 import 'app/presentation/blocs/authentication/register/register_bloc.dart';
 import 'app/presentation/blocs/authentication/token/token_bloc.dart';
 import 'app/presentation/blocs/booking_detail/booking_detail_bloc.dart';
+import 'app/presentation/blocs/booking_generate_invoice/booking_generate_invoice_bloc.dart';
 import 'app/presentation/blocs/general/bookings/bookings_bloc.dart';
 import 'app/presentation/blocs/general/session/session_bloc.dart';
 import 'app/presentation/blocs/reschedule_booking/reschedule_booking_bloc.dart';
@@ -146,6 +148,11 @@ void init() {
         webClientRescheduleBookingUsecase: getIt(),
         // userLoginUsecase: getIt(),
       ));
+
+  getIt.registerFactory(() => BookingGenerateInvoiceBloc(
+        webClientGenerateInvoiceUsecase: getIt(),
+        // userLoginUsecase: getIt(),
+      ));
   // getIt.registerFactory(() => LoginBloc(
   //       userLoginUsecase: getIt(),
   //     ));
@@ -153,6 +160,10 @@ void init() {
   // WEbClient
   getIt.registerLazySingleton(
       () => WebClientRescheduleBookingUsecase(repository: getIt()));
+
+  getIt.registerLazySingleton(
+      () => WebClientGenerateInvoiceUsecase(repository: getIt()));
+
   getIt.registerLazySingleton(
       () => WebClientCompleteBookingUsecase(repository: getIt()));
   getIt.registerLazySingleton(

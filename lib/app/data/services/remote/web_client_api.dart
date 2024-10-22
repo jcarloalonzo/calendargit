@@ -14,11 +14,13 @@ import '../../entities/requests/cancel_booking_request.dart';
 import '../../entities/requests/company_create_request.dart';
 import '../../entities/requests/complete_booking_request.dart';
 import '../../entities/requests/create_worker_request.dart';
+import '../../entities/requests/generate_invoice_request.dart';
 import '../../entities/requests/id_request.dart';
 import '../../entities/requests/login_request.dart';
 import '../../entities/requests/reschedule_booking_request.dart';
 import '../../entities/requests/set_services_worker_request.dart';
 import '../../entities/requests/turn_professional_appointment_request.dart';
+import '../../entities/responses/generate_invoice_response.dart';
 import '../../entities/responses/services_category_response.dart';
 import '../../http/http.dart';
 import '../../mappers/id_requests_mappers.dart';
@@ -296,6 +298,22 @@ class WebClientApi {
       bodyRequest: request.toJson(),
       onSuccess: (json) {
         return json as bool;
+      },
+    );
+    return response.when(
+      left: (failure) => Either.left(failure),
+      right: (value) => Either.right(value),
+    );
+  }
+
+  Future<Either<String, GenerateInvoiceResponse>> generateInvoice(
+      {required int bookingId, required GenerateInvoiceRequest request}) async {
+    final response = await _http.request(
+      '/v1/booking/invoice/$bookingId',
+      method: HttpMethod.post,
+      bodyRequest: request.toJson(),
+      onSuccess: (json) {
+        return GenerateInvoiceResponse.fromJson(json);
       },
     );
     return response.when(

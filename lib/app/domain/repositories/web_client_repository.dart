@@ -3,11 +3,13 @@ import '../../data/entities/requests/cancel_booking_request.dart';
 import '../../data/entities/requests/company_create_request.dart';
 import '../../data/entities/requests/complete_booking_request.dart';
 import '../../data/entities/requests/create_worker_request.dart';
+import '../../data/entities/requests/generate_invoice_request.dart';
 import '../../data/entities/requests/id_request.dart';
 import '../../data/entities/requests/login_request.dart';
 import '../../data/entities/requests/reschedule_booking_request.dart';
 import '../../data/entities/requests/set_services_worker_request.dart';
 import '../../data/entities/requests/turn_professional_appointment_request.dart';
+import '../../data/entities/responses/generate_invoice_response.dart';
 import '../../data/entities/responses/services_category_response.dart';
 import '../either/either.dart';
 import '../models/booking.dart';
@@ -63,4 +65,7 @@ abstract class WebClientRepository {
 
   Future<Either<String, bool>> rescheduleBooking(
       {required RescheduleBookingRequest request, required int bookingId});
+
+  Future<Either<String, GenerateInvoiceResponse>> generateInvoice(
+      {required int bookingId, required GenerateInvoiceRequest request});
 }

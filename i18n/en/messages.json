@@ -31,5 +31,9 @@
   "theReservationWasCompletedSuccessfully": "The reservation was completed successfully",
   "areYouSureYouWantToRescheduleTheReservation": "Are you sure you want to reschedule the reservation?",
   "rescheduleReservation": "Reschedule reservation",
-  "thereAreNoShiftsAvailableForTheSelectedDate": "There are no shifts available for the selected date"
+  "thereAreNoShiftsAvailableForTheSelectedDate": "There are no shifts available for the selected date",
+  "doYouWantToIssueTheInvoice": "Do you want to issue an invoice?",
+  "youMustEnterAValidValue": "You must enter a valid value",
+  "youCannotEnterADiscountGreaterThanTheSubtotal": "You cannot enter a discount greater than the subtotal",
+  "paymentCannotBeLessThanTheTotal": "Payment cannot be less than the total"
 }

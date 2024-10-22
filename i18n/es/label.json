@@ -61,5 +61,15 @@
   "Available": "Disponible",
   "notAvailable": "No disponible",
   "selected": "Seleccionado",
-  "rescheduleAppointment": "Reprogramar cita"
+  "rescheduleAppointment": "Reprogramar cita",
+  "confirm": "Confirmar",
+  "service": "Servicio",
+  "reservationData": "Datos de la reserva",
+  "clientData": "Datos del cliente",
+  "newProgramming": "Nueva programación",
+  "card": "Tarjeta",
+  "cash": "Efectivo",
+  "balance": "Vuelto",
+  "payment": "Pago",
+  "cardNumber": "Número de tarjeta"
 }

@@ -15,11 +15,13 @@ import '../entities/requests/cancel_booking_request.dart';
 import '../entities/requests/company_create_request.dart';
 import '../entities/requests/complete_booking_request.dart';
 import '../entities/requests/create_worker_request.dart';
+import '../entities/requests/generate_invoice_request.dart';
 import '../entities/requests/id_request.dart';
 import '../entities/requests/login_request.dart';
 import '../entities/requests/reschedule_booking_request.dart';
 import '../entities/requests/set_services_worker_request.dart';
 import '../entities/requests/turn_professional_appointment_request.dart';
+import '../entities/responses/generate_invoice_response.dart';
 import '../entities/responses/services_category_response.dart';
 
 class WebClientRepositoryImpl implements WebClientRepository {
@@ -133,5 +135,11 @@ class WebClientRepositoryImpl implements WebClientRepository {
       {required RescheduleBookingRequest request, required int bookingId}) {
     return _datasource.rescheduleBooking(
         request: request, bookingId: bookingId);
+  }
+
+  @override
+  Future<Either<String, GenerateInvoiceResponse>> generateInvoice(
+      {required int bookingId, required GenerateInvoiceRequest request}) {
+    return _datasource.generateInvoice(bookingId: bookingId, request: request);
   }
 }
