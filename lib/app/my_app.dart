@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            title: 'Distribuidor',
+            title: 'SPA Owner',
             routerConfig: appRouter,
           ),
         ),
