@@ -67,14 +67,7 @@ class _SplashBodyState extends State<SplashBody> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // SvgPicture.asset(CustomAssetsSVG.cambioseguroLetter),
               Image.asset(CustomAssetsPNG.jelaf),
-              // Image.asset(
-              // 'assets/png/jelaf_logo.png',
-              // height: 80,
-              // width: 80,
-              // ),
-
               const SizedBox(height: 60),
               const SizedBox(
                 height: 30,
